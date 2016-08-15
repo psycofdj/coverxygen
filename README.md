@@ -63,3 +63,10 @@ Details
 Special thanks to Alvaro Lopez Ortega <[alvaro@gnu.org](mailto:alvaro@gnu.org)> who found a smart and efficient solution get retreive doxygen informations from the generated xml.
 
 You can find his work at [alobbs/doxy-coverage](https://github.com/alobbs/doxy-coverage)
+
+
+# Project status
+
+Unstable but usable.
+[![PyPI version](https://badge.fury.io/py/coverxygen.svg)](https://badge.fury.io/py/coverxygen)
+
