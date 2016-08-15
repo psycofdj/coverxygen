@@ -1,16 +1,28 @@
 #!/usr/bin/env python
 # -*- mode: python; coding: utf-8 -*-
-from __future__ import print_function
 
-__author__    = "Xavier MARCELET"
-__email__     = "xavier@marcelet.com"
-__copyright__ = "Copyright (C) 2016 Xavier MARCELET"
+__author__       = "Xavier MARCELET <xavier@marcelet.com>"
+__copyright__    = "Copyright (C) 2016 Xavier MARCELET"
+__version__      = "0.1.1"
+__description__  = "Generate doxygen's documentation coverage report"
+__url__          = "https://github.com/psycofdj/coverxygen"
+__download_url__ = "https://github.com/psycofdj/coverxygen/tarball/%s" % __version__
+__keywords__     = ['doxygen', 'coverage', 'python']
+__classifiers__  = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Operating System :: Unix",
+  "Programming Language :: Python :: 3 :: Only",
+]
 
 import os
 import sys
 import argparse
 import xml.etree.ElementTree as ET
 from argparse import RawTextHelpFormatter
+
 
 def error(*objs):
     print("error: ", *objs, end='\n', file=sys.stderr)

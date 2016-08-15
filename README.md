@@ -13,6 +13,12 @@ Coverxygen relies on both doxygen (to generate the documentation information) an
 sudo apt-get install doxygen lcov
 ```
 
+## Installation
+
+```bash
+pip3 install coverxygen
+```
+
 ## Configure doxygen
 
 Tell doxygen to generate an XML version of your doxyfile.cfg configuration
