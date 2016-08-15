@@ -3,7 +3,7 @@
 
 __author__       = "Xavier MARCELET <xavier@marcelet.com>"
 __copyright__    = "Copyright (C) 2016 Xavier MARCELET"
-__version__      = "0.1.2"
+__version__      = "0.1.3"
 __description__  = "Generate doxygen's documentation coverage report"
 __url__          = "https://github.com/psycofdj/coverxygen"
 __download_url__ = "https://github.com/psycofdj/coverxygen/tarball/%s" % __version__
@@ -29,7 +29,7 @@ def error(*objs):
     sys.exit(1)
 
 
-def process_item(p_item, p_path, p_result, p_scope, p_kind):
+def process_item(p_item, p_path, p_result, p_scope, p_kind, p_prefix):
     l_file   = p_path
     l_lineNo = 1
     l_colNo  = 1
@@ -59,6 +59,9 @@ def process_item(p_item, p_path, p_result, p_scope, p_kind):
         return
       l_lineNo = int(l_lineNo)
 
+    if not l_file.startswith(p_prefix):
+      return
+
     if d_def is not None:
       l_name = d_def.text
     elif d_nam is not None:
@@ -76,7 +79,7 @@ def process_item(p_item, p_path, p_result, p_scope, p_kind):
       "file" : l_file
     })
 
-def process_file(p_path, p_output, p_scope, p_kind):
+def process_file(p_path, p_output, p_scope, p_kind, p_prefix):
   l_defs = {}
 
   try:
@@ -86,9 +89,9 @@ def process_file(p_path, p_output, p_scope, p_kind):
     sys.exit(1)
 
   for c_def in l_tree.findall("./compounddef//memberdef"):
-    process_item(c_def, p_path, l_defs, p_scope, p_kind)
+    process_item(c_def, p_path, l_defs, p_scope, p_kind, p_prefix)
   for c_def in l_tree.findall("./compounddef"):
-    process_item(c_def, p_path, l_defs, p_scope, p_kind)
+    process_item(c_def, p_path, l_defs, p_scope, p_kind, p_prefix)
 
   for c_file, c_data in l_defs.items():
     p_output.write("SF:%s\n" % c_file)
@@ -100,7 +103,7 @@ def process_file(p_path, p_output, p_scope, p_kind):
     p_output.write("end_of_record\n")
 
 
-def process(p_path, p_output, p_scope, p_kind):
+def process(p_path, p_output, p_scope, p_kind, p_prefix):
   l_index = os.path.join(p_path, "index.xml")
   if not os.path.exists(l_index):
     error("could not find root index.xml file", l_index)
@@ -115,13 +118,14 @@ def process(p_path, p_output, p_scope, p_kind):
     if entry.get('kind') in ('dir'):
       continue
     l_file = os.path.join (p_path, "%s.xml" %(entry.get('refid')))
-    process_file(l_file, l_output, p_scope, p_kind)
+    process_file(l_file, l_output, p_scope, p_kind, p_prefix)
 
 
 def main():
   l_parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter)
   l_parser.add_argument("--xml-dir", action="store", help ="path to generated doxygen XML directory", required=True)
-  l_parser.add_argument("--output",  action="store", help ="destination output file (- for stdout)", required=True)
+  l_parser.add_argument("--output",  action="store", help ="destination output file (- for stdout)",  required=True)
+  l_parser.add_argument("--prefix",  action="store", help ="keep only file matching given previx (default /)", default="/")
   l_parser.add_argument("--scope",
                         action="store",
                         help="comma-separated list of items's scope to include : \n"
@@ -159,7 +163,7 @@ def main():
 
   if not l_result:
     error("couldn't parse parameters")
-  process(l_result.xml_dir, l_result.output, l_result.scope, l_result.kind)
+  process(l_result.xml_dir, l_result.output, l_result.scope, l_result.kind, l_result.prefix)
 
 if __name__ == "__main__":
   main()
