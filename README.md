@@ -1,3 +1,19 @@
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-generate-toc again -->
+**Table of Contents**
+
+- [Coverxygen](#coverxygen)
+- [Howto](#howto)
+    - [Prerequistes](#prerequistes)
+    - [Installation](#installation)
+    - [Configure doxygen](#configure-doxygen)
+    - [Run Coverxygen](#run-coverxygen)
+    - [Run lcov or genhtml](#run-lcov-or-genhtml)
+    - [Results](#results)
+- [Credits](#credits)
+- [Project status](#project-status)
+
+<!-- markdown-toc end -->
+
 # Coverxygen
 
 
