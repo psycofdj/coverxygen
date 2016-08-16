@@ -2,8 +2,8 @@
 **Table of Contents**
 
 - [Coverxygen](#coverxygen)
-- [Howto](#howto)
-    - [Prerequistes](#prerequistes)
+- [How to](#how-to)
+    - [Prerequisites](#prerequisites)
     - [Installation](#installation)
     - [Configure doxygen](#configure-doxygen)
     - [Run Coverxygen](#run-coverxygen)
