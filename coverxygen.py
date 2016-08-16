@@ -20,13 +20,15 @@ __classifiers__  = [
 import os
 import sys
 import argparse
+import json
 import xml.etree.ElementTree as ET
 from argparse import RawTextHelpFormatter
 
 
-def error(*objs):
-    print("error: ", *objs, end='\n', file=sys.stderr)
-    sys.exit(1)
+def error(p_format, *p_args):
+  l_message = p_format % p_args
+  sys.stderr.write("error: %s" % l_message)
+  sys.exit(1)
 
 
 def process_item(p_item, p_path, p_result, p_scope, p_kind, p_prefix):
@@ -80,8 +82,8 @@ def process_item(p_item, p_path, p_result, p_scope, p_kind, p_prefix):
     })
 
 def process_file(p_path, p_output, p_scope, p_kind, p_prefix):
-  l_defs = {}
-
+  l_defs  = {}
+  l_files = []
   try:
     l_tree = ET.parse(p_path)
   except ET.ParseError as l_error:
@@ -93,20 +95,15 @@ def process_file(p_path, p_output, p_scope, p_kind, p_prefix):
   for c_def in l_tree.findall("./compounddef"):
     process_item(c_def, p_path, l_defs, p_scope, p_kind, p_prefix)
 
-  for c_file, c_data in l_defs.items():
-    p_output.write("SF:%s\n" % c_file)
-    for c_item in c_data:
-      l_value = 1
-      if not c_item["documented"]:
-        l_value = -1
-      p_output.write("DA:%d,%d\n" % (c_item["line"], l_value))
-    p_output.write("end_of_record\n")
 
+  if len(l_defs):
+    l_files.append(l_defs)
+  return l_files
 
-def process(p_path, p_output, p_scope, p_kind, p_prefix):
+def process(p_path, p_output, p_scope, p_kind, p_prefix, p_json):
   l_index = os.path.join(p_path, "index.xml")
   if not os.path.exists(l_index):
-    error("could not find root index.xml file", l_index)
+    error("could not find root index.xml file %s", l_index)
   l_tree = ET.parse(l_index)
 
   if "-" == p_output:
@@ -114,18 +111,32 @@ def process(p_path, p_output, p_scope, p_kind, p_prefix):
   else:
     l_output = open(p_output, "w")
 
+  l_result = []
   for entry in l_tree.findall('compound'):
     if entry.get('kind') in ('dir'):
       continue
     l_file = os.path.join (p_path, "%s.xml" %(entry.get('refid')))
-    process_file(l_file, l_output, p_scope, p_kind, p_prefix)
+    l_result += process_file(l_file, l_output, p_scope, p_kind, p_prefix)
 
+  if not p_json:
+    for c_data in l_result:
+      for c_file, c_data in c_data.items():
+        l_output.write("SF:%s\n" % c_file)
+        for c_item in c_data:
+          l_value = 1
+          if not c_item["documented"]:
+            l_value = -1
+          l_output.write("DA:%d,%d\n" % (c_item["line"], l_value))
+        l_output.write("end_of_record\n")
+  else:
+    l_output.write(json.dumps(l_result, indent=2))
 
 def main():
   l_parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter)
-  l_parser.add_argument("--xml-dir", action="store", help ="path to generated doxygen XML directory", required=True)
-  l_parser.add_argument("--output",  action="store", help ="destination output file (- for stdout)",  required=True)
-  l_parser.add_argument("--prefix",  action="store", help ="keep only file matching given previx (default /)", default="/")
+  l_parser.add_argument("--xml-dir", action="store",      help ="path to generated doxygen XML directory", required=True)
+  l_parser.add_argument("--output",  action="store",      help ="destination output file (- for stdout)",  required=True)
+  l_parser.add_argument("--json",    action="store_true", help ="output raw data as json file format",    default=False)
+  l_parser.add_argument("--prefix",  action="store",      help ="keep only file matching given previx (default /)", default="/")
   l_parser.add_argument("--scope",
                         action="store",
                         help="comma-separated list of items's scope to include : \n"
@@ -144,10 +155,10 @@ def main():
                         " - function  : function definitions\n"
                         " - class     : class definitions\n"
                         " - struct    : struct definitions\n"
-                        " - define    : macro definitions\n"
-                        " - file      : macro definitions\n"
-                        " - namespace : macro definitions\n"
-                        " - page      : macro definitions\n"
+                        " - define    : define definitions\n"
+                        " - file      : file definitions\n"
+                        " - namespace : namspace definitions\n"
+                        " - page      : page definitions\n"
                         " - all       : all above\n",
                         default="all")
 
@@ -163,7 +174,7 @@ def main():
 
   if not l_result:
     error("couldn't parse parameters")
-  process(l_result.xml_dir, l_result.output, l_result.scope, l_result.kind, l_result.prefix)
+  process(l_result.xml_dir, l_result.output, l_result.scope, l_result.kind, l_result.prefix, l_result.json)
 
 if __name__ == "__main__":
   main()
