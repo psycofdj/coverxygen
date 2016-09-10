@@ -3,7 +3,7 @@
 
 __author__       = "Xavier MARCELET <xavier@marcelet.com>"
 __copyright__    = "Copyright (C) 2016 Xavier MARCELET"
-__version__      = "0.1.4"
+__version__      = "0.1.5"
 __description__  = "Generate doxygen's documentation coverage report"
 __url__          = "https://github.com/psycofdj/coverxygen"
 __download_url__ = "https://github.com/psycofdj/coverxygen/tarball/%s" % __version__
@@ -133,9 +133,8 @@ def process(p_path, p_output, p_scope, p_kind, p_prefix, p_json):
 
 def main():
   l_parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter)
-  l_parser.add_argument("--xml-dir", action="store",      help ="path to generated doxygen XML directory", required=True)
-  l_parser.add_argument("--output",  action="store",      help ="destination output file (- for stdout)",  required=True)
-  l_parser.add_argument("--json",    action="store_true", help ="output raw data as json file format",    default=False)
+  l_parser.add_argument("--version", action="store_true", help ="prints version",                          default=False)
+  l_parser.add_argument("--json",    action="store_true", help ="output raw data as json file format",     default=False)
   l_parser.add_argument("--prefix",  action="store",      help ="keep only file matching given previx (default /)", default="/")
   l_parser.add_argument("--scope",
                         action="store",
@@ -162,6 +161,14 @@ def main():
                         " - all       : all above\n",
                         default="all")
 
+  l_result = l_parser.parse_args()
+
+  if l_result.version:
+    print(__version__)
+    sys,exit(0)
+
+  l_parser.add_argument("--xml-dir", action="store",      help ="path to generated doxygen XML directory", required=True)
+  l_parser.add_argument("--output",  action="store",      help ="destination output file (- for stdout)",  required=True)
   l_result = l_parser.parse_args()
 
   if "all" == l_result.scope:
