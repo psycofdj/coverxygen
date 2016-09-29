@@ -52,6 +52,36 @@ doxygen <path_to_your_doxygen.cfg>
 coverxygen --xml-path <path_to_doxygen_xml_dir> --output doc-coverage.info
 ```
 
+Full usage :
+```
+usage: coverxygen.py [-h] [--version] [--json] --xml-dir XML_DIR --output OUTPUT [--prefix PREFIX] [--scope SCOPE] [--kind KIND]
+
+optional arguments:
+  -h, --help         show this help message and exit
+  --version          prints version
+  --json             output raw data as json file format
+  --xml-dir XML_DIR  path to generated doxygen XML directory
+  --output OUTPUT    destination output file (- for stdout)
+  --prefix PREFIX    keep only file matching given prefix (default /)
+  --scope SCOPE      comma-separated list of items' scope to include :
+                      - public    : public member elements
+                      - protected : protected member elements
+                      - private   : private member elements
+                      - all       : all above
+  --kind KIND        comma-separated list of items' type to include :
+                      - enum      : enum definitions
+                      - typedef   : typedef definitions
+                      - variable  : variable definitions
+                      - function  : function definitions
+                      - class     : class definitions
+                      - struct    : struct definitions
+                      - define    : define definitions
+                      - file      : file definitions
+                      - namespace : namespace definitions
+                      - page      : page definitions
+                      - all       : all above
+```
+
 ## Run lcov or genhtml
 
 If you want an simple console output :
@@ -87,5 +117,7 @@ Unstable but usable.
 [![PyPI version](https://badge.fury.io/py/coverxygen.svg)](https://badge.fury.io/py/coverxygen)
 
 
-<!--  LocalWords:  doxyfile cfg xml alobbs doxy
- -->
+<!--  LocalWords:  doxyfile cfg xml alobbs doxy -->
+<!-- Local Variables: -->
+<!-- ispell-local-dictionary: "american" -->
+<!-- End: -->

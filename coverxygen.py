@@ -141,10 +141,10 @@ def main():
   l_parser.add_argument("--json",    action="store_true", help ="output raw data as json file format",     default=False)
   l_parser.add_argument("--xml-dir", action="store",      help ="path to generated doxygen XML directory", required=True)
   l_parser.add_argument("--output",  action="store",      help ="destination output file (- for stdout)",  required=True)
-  l_parser.add_argument("--prefix",  action="store",      help ="keep only file matching given previx (default /)", default="/")
+  l_parser.add_argument("--prefix",  action="store",      help ="keep only file matching given prefix (default /)", default="/")
   l_parser.add_argument("--scope",
                         action="store",
-                        help="comma-separated list of items's scope to include : \n"
+                        help="comma-separated list of items' scope to include : \n"
                         " - public    : public member elements\n"
                         " - protected : protected member elements\n"
                         " - private   : private member elements\n"
@@ -153,7 +153,7 @@ def main():
 
   l_parser.add_argument("--kind",
                         action="store",
-                        help="comma-separated list of items's type to include : \n"
+                        help="comma-separated list of items' type to include : \n"
                         " - enum      : enum definitions \n"
                         " - typedef   : typedef definitions\n"
                         " - variable  : variable definitions\n"
@@ -162,7 +162,7 @@ def main():
                         " - struct    : struct definitions\n"
                         " - define    : define definitions\n"
                         " - file      : file definitions\n"
-                        " - namespace : namspace definitions\n"
+                        " - namespace : namespace definitions\n"
                         " - page      : page definitions\n"
                         " - all       : all above\n",
                         default="all")
@@ -182,3 +182,7 @@ def main():
 
 if __name__ == "__main__":
   main()
+
+# Local Variables:
+# ispell-local-dictionary: "american"
+# End:
