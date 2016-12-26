@@ -1,3 +1,21 @@
+coverxygen (1.0.0ppa3) xenial; urgency=medium
+
+  * fix ppa packaging
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Tue, 27 Dec 2016 00:06:59 +0100
+
+coverxygen (1.0.0ppa2) xenial; urgency=medium
+
+  * fix ppa packaging
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Mon, 26 Dec 2016 23:59:45 +0100
+
+coverxygen (1.0.0ppa1) unstable; urgency=medium
+
+  * ppa packaging
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Mon, 26 Dec 2016 23:48:23 +0100
+
 coverxygen (1.0.0) unstable; urgency=medium
 
   * Initial release

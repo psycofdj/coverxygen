@@ -8,4 +8,5 @@ Package: coverxygen
 Architecture: all
 Depends: ${python:Depends}, ${misc:Depends}
 Description: Generate doxygen's documentation coverage report
+ http://github.com/psycofdj/coverxygen
  .
