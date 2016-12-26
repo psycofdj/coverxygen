@@ -4,7 +4,7 @@ cache:
 
 
 install:
-  - sudo apt-get install graphviz debhelper python2.7 python-setuptools python3 python3-setuptool
+  - sudo apt-get install graphviz debhelper python2.7 python-setuptools python3 python3-setuptools
 
 script:
   - export PATH=/usr/bin:${PATH}
