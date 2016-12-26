@@ -2,11 +2,20 @@ Source: coverxygen
 Section: utils
 Priority: optional
 Maintainer: Xavier MARCELET <xavier@marcelet.com>
-Build-Depends: debhelper (>= 7.0.50), python2.7 (>= 2.7), python-setuptools
+Build-Depends: debhelper (>= 7.0.50), python2.7 (>= 2.7), python3 (>= 3.4), python-setuptools, python3-setuptools
+X-Python3-Version: >= 3.4
+X-Python2-Version: >= 2.7
 
-Package: coverxygen
+Package: python-coverxygen
 Architecture: all
 Depends: ${python:Depends}, ${misc:Depends}
+Description: Generate doxygen's documentation coverage report
+ http://github.com/psycofdj/coverxygen
+ .
+
+Package: python3-coverxygen
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}
 Description: Generate doxygen's documentation coverage report
  http://github.com/psycofdj/coverxygen
  .

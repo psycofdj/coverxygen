@@ -16,4 +16,5 @@ override_dh_auto_build:
 	python setup.py build --force
 
 override_dh_auto_install:
-	python setup.py install --force --root=debian/coverxygen --no-compile -O0 --install-layout=deb
+	python setup.py install --force --root=debian/python-coverxygen  --no-compile -O0 --install-layout=deb
+	python setup.py install --force --root=debian/python3-coverxygen --no-compile -O0 --install-layout=deb
