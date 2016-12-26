@@ -3,18 +3,19 @@
 
 __author__       = "Xavier MARCELET <xavier@marcelet.com>"
 __copyright__    = "Copyright (C) 2016 Xavier MARCELET"
-__version__      = "0.1.6"
+__version__      = "1.0.0"
 __description__  = "Generate doxygen's documentation coverage report"
 __url__          = "https://github.com/psycofdj/coverxygen"
 __download_url__ = "https://github.com/psycofdj/coverxygen/tarball/%s" % __version__
 __keywords__     = ['doxygen', 'coverage', 'python']
 __classifiers__  = [
-  "Development Status :: 2 - Pre-Alpha",
+  "Development Status :: 5 - Production/Stable",
   "Environment :: Console",
   "Intended Audience :: Developers",
   "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
   "Operating System :: Unix",
-  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 2",
+  "Programming Language :: Python :: 3"
 ]
 
 import os

@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+# -*- mode: makefile-mode; -*-
+
+#export DH_VERBOSE = 1
+
+%:
+	dh $@ --with python2,python3  --buildsystem=pybuild
+
+override_dh_auto_test:
+
+override_dh_auto_clean:
+	python setup.py clean -a
+	find . -name \*.pyc -exec rm {} \;
+
+override_dh_auto_build:
+	python setup.py build --force
+
+override_dh_auto_install:
+	python setup.py install --force --root=debian/coverxygen --no-compile -O0 --install-layout=deb

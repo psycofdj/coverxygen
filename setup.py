@@ -7,7 +7,7 @@ __author__    = "Xavier MARCELET <xavier@marcelet.com>"
 #------------------------------------------------------------------#
 
 import sys
-from distutils.core import setup
+from setuptools import setup
 sys.path.insert(0, ".")
 import coverxygen
 

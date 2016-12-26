@@ -1,0 +1,11 @@
+Source: coverxygen
+Section: utils
+Priority: optional
+Maintainer: Xavier MARCELET <xavier@marcelet.com>
+Build-Depends: debhelper (>= 7.0.50), python2.7 (>= 2.7), python-setuptools
+
+Package: coverxygen
+Architecture: all
+Depends: ${python:Depends}, ${misc:Depends}
+Description: Generate doxygen's documentation coverage report
+ .
