@@ -1,3 +1,9 @@
+coverxygen (1.0.3) xenial; urgency=medium
+
+  * fix python3 debian package
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Mon, 26 Dec 2016 23:49:23 +0100
+
 coverxygen (1.0.2) xenial; urgency=medium
 
   * ppa packaging
