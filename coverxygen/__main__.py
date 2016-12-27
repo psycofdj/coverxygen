@@ -55,7 +55,7 @@ def main():
 
   if not l_result:
     error("couldn't parse parameters")
-  l_obj = Coverxygen()
+  l_obj = coverxygen.Coverxygen()
   l_obj.process(l_result.xml_dir, l_result.output, l_result.scope, l_result.kind, l_result.prefix, l_result.json)
 
 if __name__ == "__main__":

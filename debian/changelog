@@ -1,3 +1,15 @@
+coverxygen (1.1.1ubuntu1~xenialppa1) xenial; urgency=medium
+
+  * fixes script import
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Wed, 28 Dec 2016 00:51:06 +0100
+
+coverxygen (1.1.1ubuntu1~trustyppa1) trusty; urgency=medium
+
+  * fixes script import
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Wed, 28 Dec 2016 00:48:58 +0100
+
 coverxygen (1.1.0ubuntu1~xenialppa2) xenial; urgency=medium
 
   * debian packages for python2 and python3
