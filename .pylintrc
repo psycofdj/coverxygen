@@ -1,0 +1,19 @@
+[MASTER]
+ignore=test
+extension-pkg-whitelist=pycurl
+
+[MESSAGES CONTROL]
+disable=C0111,C0413,C0326,R0903,I0011
+
+[FORMAT]
+indent-string='  '
+indent-after-paren=2
+
+[VARIABLES]
+variable-rgx = [lc]_[a-z][a-zA-Z0-9]*$
+argument-rgx = (self)|(cls)|(mcs)|(p_[a-z][a-zA-Z0-9]*)$
+attr-rgx = m_[a-z][a-zA-Z0-9]*$
+
+[DESIGN]
+max-args=6
+max-attributes=10

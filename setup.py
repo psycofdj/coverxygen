@@ -13,7 +13,7 @@ import coverxygen
 
 setup(
   name            = "coverxygen",
-  scripts         = ["coverxygen.py"],
+  packages        = ['coverxygen'],
   version         = coverxygen.__version__,
   description     = coverxygen.__description__,
   author          = coverxygen.__author__.split("<")[0].strip(),

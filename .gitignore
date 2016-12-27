@@ -88,3 +88,18 @@ ENV/
 # Rope project settings
 .ropeproject
 .pybuild
+
+
+
+
+debian/debhelper-build-stamp
+debian/files
+debian/python-coverxygen.substvars
+debian/python-coverxygen/
+debian/python3-coverxygen.postinst.debhelper
+debian/python3-coverxygen.prerm.debhelper
+debian/python3-coverxygen.substvars
+debian/python3-coverxygen/
+debian/python-coverxygen.postinst.debhelper
+debian/python-coverxygen.prerm.debhelper
+
