@@ -49,12 +49,12 @@ doxygen <path_to_your_doxygen.cfg>
 
 ## Run Coverxygen
 ```bash
-coverxygen --xml-path <path_to_doxygen_xml_dir> --output doc-coverage.info
+python -m coverxygen --xml-path <path_to_doxygen_xml_dir> --output doc-coverage.info
 ```
 
 Full usage :
 ```
-usage: coverxygen.py [-h] [--version] [--json] --xml-dir XML_DIR --output OUTPUT [--prefix PREFIX] [--scope SCOPE] [--kind KIND]
+usage: coverxygen [-h] [--version] [--json] --xml-dir XML_DIR --output OUTPUT [--prefix PREFIX] [--scope SCOPE] [--kind KIND]
 
 optional arguments:
   -h, --help         show this help message and exit

@@ -1,11 +1,13 @@
-coverxygen (1.0.3) xenial; urgency=medium
+coverxygen (1.1.0ubuntu1~xenialppa2) xenial; urgency=medium
 
-  * fix python3 debian package
+  * debian packages for python2 and python3
+  * replaces standalone script by module with entrypoint
 
- -- Xavier MARCELET <xavier@marcelet.com>  Mon, 26 Dec 2016 23:49:23 +0100
+ -- Xavier MARCELET <xavier@marcelet.com>  Tue, 27 Dec 2016 22:42:09 +0100
 
-coverxygen (1.0.2) xenial; urgency=medium
+coverxygen (1.1.0ubuntu1~trustyppa2) trusty; urgency=medium
 
-  * ppa packaging
+  * debian packages for python2 and python3
+  * replaces standalone script by module with entrypoint
 
- -- Xavier MARCELET <xavier@marcelet.com>  Mon, 26 Dec 2016 23:48:23 +0100
+ -- Xavier MARCELET <xavier@marcelet.com>  Tue, 27 Dec 2016 22:42:08 +0100
