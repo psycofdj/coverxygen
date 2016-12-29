@@ -9,3 +9,4 @@ install:
 script:
   - export PATH=/usr/bin:${PATH}
   - dpkg-buildpackage -uc -us
+  - lintian ../xtdmake_*.deb
