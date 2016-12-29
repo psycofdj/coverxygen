@@ -31,8 +31,21 @@ sudo apt-get install doxygen lcov
 
 ## Installation
 
+From pip
+
 ```bash
 pip3 install coverxygen
+```
+From PPA Packages
+
+link : https://launchpad.net/~psycofdj/+archive/ubuntu/coverxygen
+```bash
+sudo add-apt-repository ppa:psycofdj/coverxygen
+sudo apt-get update
+# with python2 (default)
+sudo apt-get install python-coverxygen        
+# or with python3
+sudo apt-get install python3-coverxygen
 ```
 
 ## Configure doxygen
