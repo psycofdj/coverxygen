@@ -4,9 +4,10 @@ cache:
 
 
 install:
-  - sudo apt-get install graphviz debhelper python-all python-setuptools python3-all python3-setuptools
+  - sudo apt-get install graphviz debhelper python-all python-setuptools python3-all python3-setuptools lintian
 
 script:
   - export PATH=/usr/bin:${PATH}
   - dpkg-buildpackage -uc -us
-  - lintian ../xtdmake_*.deb
+  - lintian ../python-coverxygen_*.deb
+  - lintian ../python3-coverxygen_*.deb
