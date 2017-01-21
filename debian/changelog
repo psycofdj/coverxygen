@@ -1,3 +1,15 @@
+coverxygen (1.2.0ppa1~xenial) trusty; urgency=medium
+
+  * compatibility with doxygen strip path
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Sat, 21 Jan 2017 11:10:01 +0100
+
+coverxygen (1.2.0ppa1~trusty) trusty; urgency=medium
+
+  * compatibility with doxygen strip path
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Sat, 21 Jan 2017 11:10:00 +0100
+
 coverxygen (1.1.1ubuntu1~xenialppa1) xenial; urgency=medium
 
   * fixes script import
