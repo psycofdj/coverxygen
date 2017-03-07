@@ -1,0 +1,6 @@
+unittest2
+requests
+coverage
+coveralls
+pylint
+pytest

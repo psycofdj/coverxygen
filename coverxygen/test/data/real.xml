@@ -1,0 +1,1463 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.11">
+  <compounddef id="classxtd_1_1Application" kind="class" language="C++" prot="public">
+    <compoundname>xtd::Application</compoundname>
+    <includes refid="src_2Application_8hh" local="no">Application.hh</includes>
+    <innerclass refid="structxtd_1_1Application_1_1t__option" prot="private">xtd::Application::t_option</innerclass>
+      <sectiondef kind="protected-type">
+      <memberdef kind="enum" id="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7" prot="protected" static="no">
+        <name>argument</name>
+        <enumvalue id="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7ac5e3b9675d114c21ad3367d318f6aa95" prot="protected">
+          <name>mandatory</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+            <para>mandatory argument for option </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7a334c4a4c42fdb79d7ebc3e73b517e6f8" prot="protected">
+          <name>none</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+<para>forbidden argument for option </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Behavior switch for the argument of an option. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="102" column="1" bodyfile="src/Application.hh" bodystart="101" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="enum" id="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24" prot="protected" static="no">
+        <name>requirement</name>
+        <enumvalue id="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24ad57c24f3fe52d16e7169b912dd647f0d" prot="protected">
+          <name>optional</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+<para>option is optional on command line </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24ac5e3b9675d114c21ad3367d318f6aa95" prot="protected">
+          <name>mandatory</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+<para>option must be given on command line </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Behavior for the presence of the option itself. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="112" column="1" bodyfile="src/Application.hh" bodystart="111" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classxtd_1_1Application_1a907b6fe8247636495890e668530863d6" prot="protected" static="no">
+        <type>std::function&lt; void(void)&gt;</type>
+        <definition>typedef std::function&lt;void(void)&gt; xtd::Application::t_sig_handler</definition>
+        <argsstring></argsstring>
+        <name>t_sig_handler</name>
+        <briefdescription>
+<para>Signal handler functor prototype,. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="classxtd_1_1Application_1aad6cb9d52d7553ee1287e3222cb1e417" kindref="member">addSignalHandler</ref> </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="95" column="1" bodyfile="src/Application.hh" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classxtd_1_1Application_1a8a1a6cf1d4d2d29394e9ee260dce02fe" prot="private" static="no">
+        <type>std::function&lt; void(const string &amp;, const t_option &amp;)&gt;</type>
+        <definition>typedef std::function&lt;void(const string&amp;, const t_option&amp;)&gt; xtd::Application::t_callback</definition>
+        <argsstring></argsstring>
+        <name>t_callback</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="121" column="1" bodyfile="src/Application.hh" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classxtd_1_1Application_1a9f8c4bd162a47570ae60cf529e8d3447" prot="private" static="no">
+        <type>vector&lt; t_option &gt;</type>
+        <definition>typedef vector&lt;t_option&gt; xtd::Application::t_option_list</definition>
+        <argsstring></argsstring>
+        <name>t_option_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="132" column="1" bodyfile="src/Application.hh" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="friend">
+      <memberdef kind="friend" id="classxtd_1_1Application_1ababa551c7b2c0b9e81acaac6e7791736" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>friend class</type>
+        <definition>friend class ::TestApplication</definition>
+        <argsstring></argsstring>
+        <name>::TestApplication</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="89" column="1" bodyfile="src/Application.hh" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classxtd_1_1Application_1abdf4c6f863c5a7a4ee842906f546c458" prot="protected" static="no" mutable="no">
+        <type>string</type>
+        <definition>string xtd::Application::m_binName</definition>
+        <argsstring></argsstring>
+        <name>m_binName</name>
+        <briefdescription>
+<para>binary name (argv[0]) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="369" column="1" bodyfile="src/Application.hh" bodystart="369" bodyend="-1"/>
+        <referencedby refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" compoundref="Application_8cc" startline="130" endline="178">execute</referencedby>
+        <referencedby refid="classxtd_1_1Application_1af187eb955972b9101e411bfa724aa317" compoundref="Application_8cc" startline="350" endline="366">isOptionGiven</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1a3f815061d81aa12974b2b6ee48b9f5e9" prot="protected" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t xtd::Application::m_logLevel</definition>
+        <argsstring></argsstring>
+        <name>m_logLevel</name>
+        <briefdescription>
+<para>log level read from command line </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="370" column="1" bodyfile="src/Application.hh" bodystart="370" bodyend="-1"/>
+        <referencedby refid="classxtd_1_1Application_1a3da92b7f6543aa1dd26aee2d886d8135" compoundref="Application_8cc" startline="24" endline="59">Application</referencedby>
+        <referencedby refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" compoundref="Application_8cc" startline="130" endline="178">execute</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1a7651fd3849530cdded556187a6b42c25" prot="protected" static="no" mutable="no">
+        <type>vector&lt; string &gt;</type>
+        <definition>vector&lt;string&gt; xtd::Application::m_remainingArgs</definition>
+        <argsstring></argsstring>
+        <name>m_remainingArgs</name>
+        <briefdescription>
+<para>positional command line arguments </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="371" column="1" bodyfile="src/Application.hh" bodystart="371" bodyend="-1"/>
+        <referencedby refid="classxtd_1_1Application_1a24fee41865f36ba29f20bfb075563b51" compoundref="Application_8cc" startline="225" endline="255">addOption</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1ad820953bc15b729ce010f422595d3a3f" prot="protected" static="no" mutable="no">
+        <type>string</type>
+        <definition>string xtd::Application::m_rcsid</definition>
+        <argsstring></argsstring>
+        <name>m_rcsid</name>
+        <briefdescription>
+<para>binary identity information </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="372" column="1" bodyfile="src/Application.hh" bodystart="372" bodyend="-1"/>
+        <referencedby refid="classxtd_1_1Application_1ac4fda3519ac27c48509536f189d2b060" compoundref="Application_8cc" startline="66" endline="69">getVersion</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1a1d6a2f25f2864137bfd1d775e7e9c98b" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool xtd::Application::m_disableExit</definition>
+        <argsstring></argsstring>
+        <name>m_disableExit</name>
+        <briefdescription>
+<para>holds exit activation state </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="373" column="1" bodyfile="src/Application.hh" bodystart="373" bodyend="-1"/>
+        <referencedby refid="classxtd_1_1Application_1af187eb955972b9101e411bfa724aa317" compoundref="Application_8cc" startline="350" endline="366">isOptionGiven</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1a8559a4b6b31d68e47e80c3a27031b6cf" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool xtd::Application::m_disableCatch</definition>
+        <argsstring></argsstring>
+        <name>m_disableCatch</name>
+        <briefdescription>
+<para>holds exception catching state </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="374" column="1" bodyfile="src/Application.hh" bodystart="374" bodyend="-1"/>
+        <referencedby refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" compoundref="Application_8cc" startline="130" endline="178">execute</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classxtd_1_1Application_1a172e7346007a9c9c415676dc20448c05" prot="private" static="no" mutable="no">
+        <type>t_option_list</type>
+        <definition>t_option_list xtd::Application::m_optionList</definition>
+        <argsstring></argsstring>
+        <name>m_optionList</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="377" column="1" bodyfile="src/Application.hh" bodystart="377" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1af5fd841d5c408ada5da58fc02e41b0e1" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string xtd::Application::m_helpText</definition>
+        <argsstring></argsstring>
+        <name>m_helpText</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="378" column="1" bodyfile="src/Application.hh" bodystart="378" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1aa26b372f33d11dcb19fce8b1893df5c5" prot="private" static="no" mutable="no">
+        <type>boost::thread</type>
+        <definition>boost::thread xtd::Application::m_runThread</definition>
+        <argsstring></argsstring>
+        <name>m_runThread</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="379" column="1" bodyfile="src/Application.hh" bodystart="379" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1a653309319aa3e9fcc8dee7e5cade810f" prot="private" static="no" mutable="no">
+        <type>boost::asio::io_service</type>
+        <definition>boost::asio::io_service xtd::Application::m_ioService</definition>
+        <argsstring></argsstring>
+        <name>m_ioService</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="380" column="1" bodyfile="src/Application.hh" bodystart="380" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1a6bd57141044477f115c88780084bfedd" prot="private" static="no" mutable="no">
+        <type>boost::asio::io_service::work</type>
+        <definition>boost::asio::io_service::work xtd::Application::m_work</definition>
+        <argsstring></argsstring>
+        <name>m_work</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="381" column="1" bodyfile="src/Application.hh" bodystart="381" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1a75a6b93ec5f607c08f3d337ccaf498cc" prot="private" static="no" mutable="no">
+        <type>boost::asio::signal_set</type>
+        <definition>boost::asio::signal_set xtd::Application::m_signals</definition>
+        <argsstring></argsstring>
+        <name>m_signals</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="382" column="1" bodyfile="src/Application.hh" bodystart="382" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classxtd_1_1Application_1a096f6f3a0f526c0744fd59f096f743e8" prot="private" static="no" mutable="no">
+        <type>map&lt; int, <ref refid="classxtd_1_1Application_1a907b6fe8247636495890e668530863d6" kindref="member">t_sig_handler</ref> &gt;</type>
+        <definition>map&lt;int, t_sig_handler&gt; xtd::Application::m_signalHandlerMap</definition>
+        <argsstring></argsstring>
+        <name>m_signalHandlerMap</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="383" column="1" bodyfile="src/Application.hh" bodystart="383" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classxtd_1_1Application_1a3da92b7f6543aa1dd26aee2d886d8135" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>xtd::Application::Application</definition>
+        <argsstring>(bool p_disableExit=false, bool p_disableCatch=false)</argsstring>
+        <name>Application</name>
+        <param>
+          <type>bool</type>
+          <declname>p_disableExit</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>p_disableCatch</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+<para>Constructor. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_disableExit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, throws exception instead of exiting on error </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_disableCatch</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, exception are not caught at top level </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="exception"><parameteritem>
+<parameternamelist>
+<parametername>std::runtime_error</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="141" column="1" bodyfile="src/Application.cc" bodystart="24" bodyend="59"/>
+        <references refid="classxtd_1_1Application_1a24fee41865f36ba29f20bfb075563b51" compoundref="Application_8cc" startline="225" endline="255">addOption</references>
+        <references refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7a334c4a4c42fdb79d7ebc3e73b517e6f8">none</references>
+        <references refid="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24ad57c24f3fe52d16e7169b912dd647f0d">optional</references>
+        <references refid="classxtd_1_1Application_1a00f6aed6c376028a79492b04e8325968">bindCallback</references>
+        <references refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7ac5e3b9675d114c21ad3367d318f6aa95">mandatory</references>
+        <references refid="classxtd_1_1Application_1aaa0388f1c96893a26cfe5522b0804dd9">bindValues</references>
+        <references refid="classxtd_1_1Application_1a3f815061d81aa12974b2b6ee48b9f5e9" compoundref="src_2Application_8hh" startline="370">m_logLevel</references>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1ace70733e6288117e582edbd71a903140" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type></type>
+        <definition>xtd::Application::~Application</definition>
+        <argsstring>(void)</argsstring>
+        <name>~Application</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Destructor. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="146" column="1" bodyfile="src/Application.cc" bodystart="61" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int xtd::Application::execute</definition>
+        <argsstring>(int p_argc, const char *const p_argv[])</argsstring>
+        <name>execute</name>
+        <param>
+          <type>int</type>
+          <declname>p_argc</declname>
+        </param>
+        <param>
+          <type>const char *const</type>
+          <declname>p_argv</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+<para>main entry point, usually called with <ref refid="formatter_8cc_1a2c3f6775325c30275d11c6abee2db6a0" kindref="member">main(int,char**)</ref>&apos;s arguments </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_argc</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>argument count </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_argv</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>argument list (first is binary name) </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>depends on <ref refid="classxtd_1_1Application_1ac97ed38310d0543ff63a67e4f48860b6" kindref="member">Application::process</ref> implementation, usually 0 if process succeed </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="155" column="1" bodyfile="src/Application.cc" bodystart="130" bodyend="178"/>
+        <references refid="classxtd_1_1Application_1abdf4c6f863c5a7a4ee842906f546c458" compoundref="src_2Application_8hh" startline="369">m_binName</references>
+        <references refid="classxtd_1_1Application_1a810c6c1924f762fd453555cb91cb35f9">error_nohelp</references>
+        <references refid="namespacextd_1_1log_1a77d7eeda9f5c08df15ef96dcc3591dda" compoundref="helpers_8cc" startline="74" endline="79">xtd::log::getRoot</references>
+        <references refid="classxtd_1_1log_1_1RootLogger_1a5855e74b37f083b902cec1d3fd398973" compoundref="Logger_8cc" startline="87" endline="92">xtd::log::RootLogger::initialize</references>
+        <references refid="namespacextd_1_1log_1ad2faa1c59d15e7c19c73f42954f60ec8a5888c6a8bb862595985926d16c7dcf13">xtd::log::crit</references>
+        <references refid="classxtd_1_1Application_1a8684d1d061027893f91580106a821d88" compoundref="src_2Application_8hh" startline="164" endline="164">parseConfig</references>
+        <references refid="classxtd_1_1Application_1a3c63f070ac7baaea43a32b3064d0030b" compoundref="src_2Application_8hh" startline="169" endline="169">checkOptions</references>
+        <references refid="classxtd_1_1log_1_1RootLogger_1ae62752c15b444a84ccc4303da003b280" compoundref="Logger_8cc" startline="154" endline="162">xtd::log::RootLogger::setAllLevels</references>
+        <references refid="namespacextd_1_1log_1ad62a7ffe75fe416cf648c34acf201324" compoundref="helpers_8cc" startline="33" endline="38">xtd::log::from</references>
+        <references refid="classxtd_1_1Application_1a3f815061d81aa12974b2b6ee48b9f5e9" compoundref="src_2Application_8hh" startline="370">m_logLevel</references>
+        <references refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</references>
+        <references refid="classxtd_1_1Application_1ac97ed38310d0543ff63a67e4f48860b6" compoundref="Application_8cc" startline="219" endline="222">process</references>
+        <references refid="classxtd_1_1Application_1a8559a4b6b31d68e47e80c3a27031b6cf" compoundref="src_2Application_8hh" startline="374">m_disableCatch</references>
+        <references refid="logtypes_8hh_1a3fe03e23176f4fe277d1d3b41f3d3d06" compoundref="logtypes_8hh" startline="16">HERE</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="classxtd_1_1Application_1a8684d1d061027893f91580106a821d88" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void xtd::Application::parseConfig</definition>
+        <argsstring>(void)</argsstring>
+        <name>parseConfig</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Parse application configuration, (default nothing) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="164" column="1" bodyfile="src/Application.hh" bodystart="164" bodyend="164"/>
+        <referencedby refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" compoundref="Application_8cc" startline="130" endline="178">execute</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a3c63f070ac7baaea43a32b3064d0030b" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void xtd::Application::checkOptions</definition>
+        <argsstring>(void)</argsstring>
+        <name>checkOptions</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Check read options, (default nothing) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="169" column="1" bodyfile="src/Application.hh" bodystart="169" bodyend="169"/>
+        <referencedby refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" compoundref="Application_8cc" startline="130" endline="178">execute</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void xtd::Application::initialize</definition>
+        <argsstring>(void)</argsstring>
+        <name>initialize</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>initialize application, (default nothing) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="174" column="1" bodyfile="src/Application.hh" bodystart="174" bodyend="174"/>
+        <references refid="classxtd_1_1Application_1ac97ed38310d0543ff63a67e4f48860b6" compoundref="Application_8cc" startline="219" endline="222">process</references>
+        <references refid="classxtd_1_1Application_1aad6cb9d52d7553ee1287e3222cb1e417" compoundref="Application_8cc" startline="208" endline="216">addSignalHandler</references>
+        <references refid="classxtd_1_1Application_1ac4fda3519ac27c48509536f189d2b060" compoundref="Application_8cc" startline="66" endline="69">getVersion</references>
+        <references refid="classxtd_1_1Application_1a24fee41865f36ba29f20bfb075563b51" compoundref="Application_8cc" startline="225" endline="255">addOption</references>
+        <references refid="classxtd_1_1Application_1af187eb955972b9101e411bfa724aa317" compoundref="Application_8cc" startline="350" endline="366">isOptionGiven</references>
+        <references refid="classxtd_1_1Application_1af5c614abf5e5a9bfe39c978bb0703d2c" compoundref="Application_8cc" startline="429" endline="434">addHelpMsg</references>
+        <references refid="classxtd_1_1Application_1a6277c4956209f6a672fdcde25b6cad5a" compoundref="Application_8cc" startline="84" endline="92">bindDir</references>
+        <references refid="classxtd_1_1Application_1a6505bf904c26aa16009cbb5ec3d7ed05" compoundref="Application_8cc" startline="73" endline="81">bindFile</references>
+        <references refid="classxtd_1_1Application_1af6cfc525aa349dd9b261b692b505e7ea" compoundref="Application_8cc" startline="120" endline="126">bindGiven</references>
+        <references refid="classxtd_1_1Application_1a836bab561132a06f617577112905c27b" compoundref="Application_8cc" startline="110" endline="116">bindString</references>
+        <references refid="classxtd_1_1Application_1ac9739b519e6000b0d783c6a79ca9f8c1" compoundref="Application_8cc" startline="95" endline="106">bindRegex</references>
+        <references refid="classxtd_1_1Application_1a00f6aed6c376028a79492b04e8325968">bindCallback</references>
+        <references refid="classxtd_1_1Application_1a2415acb66badb368e726173fb884097c">bindValueIfGiven</references>
+        <references refid="classxtd_1_1Application_1ae5fd6c9b1d2ad5225f9d624f63df4173">bindNumber</references>
+        <references refid="classxtd_1_1Application_1aaa0388f1c96893a26cfe5522b0804dd9">bindValues</references>
+        <references refid="classxtd_1_1Application_1a3d10e863bb0116e7da11c552efc6b953">bindAccumulator</references>
+        <references refid="classxtd_1_1Application_1a810c6c1924f762fd453555cb91cb35f9">error_nohelp</references>
+        <references refid="classxtd_1_1Application_1adf84f52f1388bef1336d0fb5f6345563">error</references>
+        <references refid="classxtd_1_1Application_1a931877468f6b948909d596d91d60b7a2">warn</references>
+        <referencedby refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" compoundref="Application_8cc" startline="130" endline="178">execute</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1ac97ed38310d0543ff63a67e4f48860b6" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>int</type>
+        <definition>int xtd::Application::process</definition>
+        <argsstring>(void)</argsstring>
+        <name>process</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Main application process function, (default nothing) </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Up to the user, generally 0 in case of success </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="180" column="1" bodyfile="src/Application.cc" bodystart="219" bodyend="222"/>
+        <referencedby refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" compoundref="Application_8cc" startline="130" endline="178">execute</referencedby>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1aad6cb9d52d7553ee1287e3222cb1e417" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool xtd::Application::addSignalHandler</definition>
+        <argsstring>(int p_signalNumber, t_sig_handler p_handler)</argsstring>
+        <name>addSignalHandler</name>
+        <param>
+          <type>int</type>
+          <declname>p_signalNumber</declname>
+        </param>
+        <param>
+          <type><ref refid="classxtd_1_1Application_1a907b6fe8247636495890e668530863d6" kindref="member">t_sig_handler</ref></type>
+          <declname>p_handler</declname>
+        </param>
+        <briefdescription>
+<para>register a signal callback </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_signalNumber</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>signal ID (man signal 7) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_handler</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>handling callback </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if signal registered correctly, false if signal was already registered </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="192" column="1" bodyfile="src/Application.cc" bodystart="208" bodyend="216"/>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1ac4fda3519ac27c48509536f189d2b060" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const string &amp;</type>
+        <definition>const string &amp; xtd::Application::getVersion</definition>
+        <argsstring>(void) const </argsstring>
+        <name>getVersion</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get RCSID identity informations. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="197" column="1" bodyfile="src/Application.cc" bodystart="66" bodyend="69"/>
+        <references refid="classxtd_1_1Application_1ad820953bc15b729ce010f422595d3a3f" compoundref="src_2Application_8hh" startline="372">m_rcsid</references>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a24fee41865f36ba29f20bfb075563b51" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void xtd::Application::addOption</definition>
+        <argsstring>(const char p_shortOpt, const string &amp;p_longOpt, const argument p_argType, const requirement p_status, const string &amp;p_description, t_callback p_callback)</argsstring>
+        <name>addOption</name>
+        <param>
+          <type>const char</type>
+          <declname>p_shortOpt</declname>
+        </param>
+        <param>
+          <type>const string &amp;</type>
+          <declname>p_longOpt</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7" kindref="member">argument</ref></type>
+          <declname>p_argType</declname>
+        </param>
+        <param>
+          <type>const <ref refid="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24" kindref="member">requirement</ref></type>
+          <declname>p_status</declname>
+        </param>
+        <param>
+          <type>const string &amp;</type>
+          <declname>p_description</declname>
+        </param>
+        <param>
+          <type>t_callback</type>
+          <declname>p_callback</declname>
+        </param>
+        <briefdescription>
+<para>Register an option to parser. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_shortOpt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>short form, single character </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_longOpt</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>long form, not starting with dash </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_argType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>shall we expect an argument </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_status</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>should the option be given by user </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_description</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>usage help description </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_callback</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>functor to call when option is encountered</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+Option must :<itemizedlist>
+<listitem><para>a unique short form</para></listitem><listitem><para>a unique long form</para></listitem><listitem><para>short and long forms must not start by a dash (-)</para></listitem></itemizedlist>
+</para><para>Programs logs and exit in case of error. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="220" column="1" bodyfile="src/Application.cc" bodystart="225" bodyend="255"/>
+        <references refid="classxtd_1_1Application_1adf84f52f1388bef1336d0fb5f6345563">error</references>
+        <references refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7a334c4a4c42fdb79d7ebc3e73b517e6f8">none</references>
+        <references refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7ac5e3b9675d114c21ad3367d318f6aa95">mandatory</references>
+        <references refid="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24ad57c24f3fe52d16e7169b912dd647f0d">optional</references>
+        <references refid="classxtd_1_1Application_1a7651fd3849530cdded556187a6b42c25" compoundref="src_2Application_8hh" startline="371">m_remainingArgs</references>
+        <referencedby refid="classxtd_1_1Application_1a3da92b7f6543aa1dd26aee2d886d8135" compoundref="Application_8cc" startline="24" endline="59">Application</referencedby>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1af187eb955972b9101e411bfa724aa317" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool xtd::Application::isOptionGiven</definition>
+        <argsstring>(const string &amp;p_optionName) const </argsstring>
+        <name>isOptionGiven</name>
+        <param>
+          <type>const string &amp;</type>
+          <declname>p_optionName</declname>
+        </param>
+        <briefdescription>
+<para>Tells if given option was given on command line. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_optionName</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>long-form or short-form of the option </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>true if option was given </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="232" column="1" bodyfile="src/Application.cc" bodystart="350" bodyend="366"/>
+        <references refid="classxtd_1_1Application_1abdf4c6f863c5a7a4ee842906f546c458" compoundref="src_2Application_8hh" startline="369">m_binName</references>
+        <references refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7a334c4a4c42fdb79d7ebc3e73b517e6f8">none</references>
+        <references refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7ac5e3b9675d114c21ad3367d318f6aa95">mandatory</references>
+        <references refid="classxtd_1_1Application_1a1d6a2f25f2864137bfd1d775e7e9c98b" compoundref="src_2Application_8hh" startline="373">m_disableExit</references>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1af5c614abf5e5a9bfe39c978bb0703d2c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void xtd::Application::addHelpMsg</definition>
+        <argsstring>(const string &amp;p_helpMessage)</argsstring>
+        <name>addHelpMsg</name>
+        <param>
+          <type>const string &amp;</type>
+          <declname>p_helpMessage</declname>
+        </param>
+        <briefdescription>
+<para>Add additional usage line to display on help or errors. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_helpMessage</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Message line to add </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="238" column="1" bodyfile="src/Application.cc" bodystart="429" bodyend="434"/>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a6277c4956209f6a672fdcde25b6cad5a" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>t_callback</type>
+        <definition>Application::t_callback xtd::Application::bindDir</definition>
+        <argsstring>(string &amp;p_target) const </argsstring>
+        <name>bindDir</name>
+        <param>
+          <type>string &amp;</type>
+          <declname>p_target</declname>
+        </param>
+        <briefdescription>
+<para>Bind option&apos;s parameter to a directory. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference variable to store the option&apos;s value </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>generated option callback </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="248" column="1" bodyfile="src/Application.cc" bodystart="84" bodyend="92"/>
+        <references refid="classxtd_1_1Application_1adf84f52f1388bef1336d0fb5f6345563">error</references>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a6505bf904c26aa16009cbb5ec3d7ed05" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>t_callback</type>
+        <definition>Application::t_callback xtd::Application::bindFile</definition>
+        <argsstring>(string &amp;p_target, bool p_readable=true) const </argsstring>
+        <name>bindFile</name>
+        <param>
+          <type>string &amp;</type>
+          <declname>p_target</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>p_readable</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+<para>Bind option&apos;s parameter to a file name. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference variable to store the option&apos;s value </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_readable</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>If true, check that given file name exists and is readable </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>generated option callback </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="256" column="1" bodyfile="src/Application.cc" bodystart="73" bodyend="81"/>
+        <references refid="classxtd_1_1Application_1adf84f52f1388bef1336d0fb5f6345563">error</references>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1af6cfc525aa349dd9b261b692b505e7ea" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>t_callback</type>
+        <definition>Application::t_callback xtd::Application::bindGiven</definition>
+        <argsstring>(bool &amp;p_target) const </argsstring>
+        <name>bindGiven</name>
+        <param>
+          <type>bool &amp;</type>
+          <declname>p_target</declname>
+        </param>
+        <briefdescription>
+<para>Set targeted variable to true if option is given on command line. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference variable </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>generated option callback </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="263" column="1" bodyfile="src/Application.cc" bodystart="120" bodyend="126"/>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a836bab561132a06f617577112905c27b" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>t_callback</type>
+        <definition>Application::t_callback xtd::Application::bindString</definition>
+        <argsstring>(string &amp;p_target) const </argsstring>
+        <name>bindString</name>
+        <param>
+          <type>string &amp;</type>
+          <declname>p_target</declname>
+        </param>
+        <briefdescription>
+<para>Set targeted variable to option&apos;s parameter. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference variable </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>generated option callback </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="270" column="1" bodyfile="src/Application.cc" bodystart="110" bodyend="116"/>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1ac9739b519e6000b0d783c6a79ca9f8c1" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>t_callback</type>
+        <definition>Application::t_callback xtd::Application::bindRegex</definition>
+        <argsstring>(string &amp;p_target) const </argsstring>
+        <name>bindRegex</name>
+        <param>
+          <type>string &amp;</type>
+          <declname>p_target</declname>
+        </param>
+        <briefdescription>
+<para>Set targeted variable to option&apos;s parameter regex. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference variable </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>generated option callback </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="277" column="1" bodyfile="src/Application.cc" bodystart="95" bodyend="106"/>
+        <references refid="classxtd_1_1Application_1adf84f52f1388bef1336d0fb5f6345563">error</references>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a00f6aed6c376028a79492b04e8325968" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>t_callback</type>
+        <definition>t_callback xtd::Application::bindCallback</definition>
+        <argsstring>(T p_action) const </argsstring>
+        <name>bindCallback</name>
+        <param>
+          <type>T</type>
+          <declname>p_action</declname>
+        </param>
+        <briefdescription>
+<para>Associate option to given generic callback. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_action</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>function compatible with<programlisting><codeline><highlight class="normal">std::function&lt;void(void)&gt;<sp/></highlight></codeline>
+</programlisting> signature </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>generated option callback </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="285" column="1"/>
+        <referencedby refid="classxtd_1_1Application_1a3da92b7f6543aa1dd26aee2d886d8135" compoundref="Application_8cc" startline="24" endline="59">Application</referencedby>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a2415acb66badb368e726173fb884097c" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>t_callback</type>
+        <definition>t_callback xtd::Application::bindValueIfGiven</definition>
+        <argsstring>(T &amp;p_target, const T &amp;p_value) const </argsstring>
+        <name>bindValueIfGiven</name>
+        <param>
+          <type>T &amp;</type>
+          <declname>p_target</declname>
+        </param>
+        <param>
+          <type>const T &amp;</type>
+          <declname>p_value</declname>
+        </param>
+        <briefdescription>
+<para>Set given value to referenced variable if option is given. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference variable </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Value to set to p_target </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>generated option callback </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="294" column="1"/>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1ae5fd6c9b1d2ad5225f9d624f63df4173" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>t_callback</type>
+        <definition>t_callback xtd::Application::bindNumber</definition>
+        <argsstring>(T &amp;p_target, T p_min=std::numeric_limits&lt; T &gt;::min(), T p_max=std::numeric_limits&lt; T &gt;::max()) const </argsstring>
+        <name>bindNumber</name>
+        <param>
+          <type>T &amp;</type>
+          <declname>p_target</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>p_min</declname>
+          <defval>std::numeric_limits&lt; T &gt;::min()</defval>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>p_max</declname>
+          <defval>std::numeric_limits&lt; T &gt;::max()</defval>
+        </param>
+        <briefdescription>
+<para>Bind option&apos;s paramter as number to referenced variable. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference variable </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_min</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Minimum parameter value [inclusive] </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_max</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum parameter value [inclusive] </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>generated option callback</para></simplesect>
+Will led to an error if input parameter :<itemizedlist>
+<listitem><para>not lexically convertible to T</para></listitem><listitem><para>is lower than p_min</para></listitem><listitem><para>is greater than p_max </para></listitem></itemizedlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="309" column="1"/>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1aaa0388f1c96893a26cfe5522b0804dd9" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+          <param>
+            <type>class Iterable</type>
+          </param>
+        </templateparamlist>
+        <type>t_callback</type>
+        <definition>t_callback xtd::Application::bindValues</definition>
+        <argsstring>(T &amp;p_target, const Iterable &amp;p_values) const </argsstring>
+        <name>bindValues</name>
+        <param>
+          <type>T &amp;</type>
+          <declname>p_target</declname>
+        </param>
+        <param>
+          <type>const Iterable &amp;</type>
+          <declname>p_values</declname>
+        </param>
+        <briefdescription>
+<para>Bind option&apos;s parameter to target variable and checks among authorized values. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference variable </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Iterable container of authorized option&apos;s values </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>generated option callback </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="321" column="1"/>
+        <referencedby refid="classxtd_1_1Application_1a3da92b7f6543aa1dd26aee2d886d8135" compoundref="Application_8cc" startline="24" endline="59">Application</referencedby>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a3d10e863bb0116e7da11c552efc6b953" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class TCollection</type>
+          </param>
+        </templateparamlist>
+        <type>t_callback</type>
+        <definition>t_callback xtd::Application::bindAccumulator</definition>
+        <argsstring>(TCollection &amp;p_target) const </argsstring>
+        <name>bindAccumulator</name>
+        <param>
+          <type>TCollection &amp;</type>
+          <declname>p_target</declname>
+        </param>
+        <briefdescription>
+<para>Append option&apos;s parameter to target container for each command line hit. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference variable container </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>generated option callback </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="330" column="1"/>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a810c6c1924f762fd453555cb91cb35f9" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Arguments</declname>
+            <defname>Arguments</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void xtd::Application::error_nohelp</definition>
+        <argsstring>(int p_code, const string &amp;p_format, Arguments &amp;&amp;...p_args) const </argsstring>
+        <name>error_nohelp</name>
+        <param>
+          <type>int</type>
+          <declname>p_code</declname>
+        </param>
+        <param>
+          <type>const string &amp;</type>
+          <declname>p_format</declname>
+        </param>
+        <param>
+          <type>Arguments &amp;&amp;...</type>
+          <declname>p_args</declname>
+        </param>
+        <briefdescription>
+<para>Prints error on standard error and exit. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>exit code </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>error message format (boost::format compatible) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template variadic arguments to format </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="343" column="1"/>
+        <referencedby refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" compoundref="Application_8cc" startline="130" endline="178">execute</referencedby>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1adf84f52f1388bef1336d0fb5f6345563" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Arguments</declname>
+            <defname>Arguments</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void xtd::Application::error</definition>
+        <argsstring>(int p_code, const string &amp;p_format, Arguments &amp;&amp;...p_args) const </argsstring>
+        <name>error</name>
+        <param>
+          <type>int</type>
+          <declname>p_code</declname>
+        </param>
+        <param>
+          <type>const string &amp;</type>
+          <declname>p_format</declname>
+        </param>
+        <param>
+          <type>Arguments &amp;&amp;...</type>
+          <declname>p_args</declname>
+        </param>
+        <briefdescription>
+<para>Prints error and usage on standard error and exit. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_code</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>exit code </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>error message format (boost::format compatible) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template variadic arguments to format </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="352" column="1"/>
+        <referencedby refid="classxtd_1_1Application_1a6505bf904c26aa16009cbb5ec3d7ed05" compoundref="Application_8cc" startline="73" endline="81">bindFile</referencedby>
+        <referencedby refid="classxtd_1_1Application_1a6277c4956209f6a672fdcde25b6cad5a" compoundref="Application_8cc" startline="84" endline="92">bindDir</referencedby>
+        <referencedby refid="classxtd_1_1Application_1ac9739b519e6000b0d783c6a79ca9f8c1" compoundref="Application_8cc" startline="95" endline="106">bindRegex</referencedby>
+        <referencedby refid="classxtd_1_1Application_1a24fee41865f36ba29f20bfb075563b51" compoundref="Application_8cc" startline="225" endline="255">addOption</referencedby>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a931877468f6b948909d596d91d60b7a2" prot="protected" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Arguments</declname>
+            <defname>Arguments</defname>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void xtd::Application::warn</definition>
+        <argsstring>(const string &amp;p_format, Arguments &amp;&amp;...p_args) const </argsstring>
+        <name>warn</name>
+        <param>
+          <type>const string &amp;</type>
+          <declname>p_format</declname>
+        </param>
+        <param>
+          <type>Arguments &amp;&amp;...</type>
+          <declname>p_args</declname>
+        </param>
+        <briefdescription>
+<para>Prints a warning on standard error. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_format</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>error message format (boost::format compatible) </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_args</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Template variadic arguments to format </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="360" column="1"/>
+        <referencedby refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" compoundref="src_2Application_8hh" startline="174" endline="174">initialize</referencedby>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classxtd_1_1Application_1a7bfada339485bcd40f11a0bbc5ae49ad" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void xtd::Application::readArgs</definition>
+        <argsstring>(int p_argc, const char *const p_argv[])</argsstring>
+        <name>readArgs</name>
+        <param>
+          <type>int</type>
+          <declname>p_argc</declname>
+        </param>
+        <param>
+          <type>const char *const</type>
+          <declname>p_argv</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><orderedlist>
+<listitem><para>Reset getopt_long internal global variable. </para></listitem></orderedlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="364" column="1" bodyfile="src/Application.cc" bodystart="262" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a7e4850a35190e921fee99e47a95a10f7" prot="private" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void xtd::Application::usage</definition>
+        <argsstring>(std::ostream &amp;p_stream=std::cerr) const </argsstring>
+        <name>usage</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>p_stream</declname>
+          <defval>std::cerr</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="365" column="1" bodyfile="src/Application.cc" bodystart="370" bodyend="426"/>
+      </memberdef>
+      <memberdef kind="function" id="classxtd_1_1Application_1a9fc6bc8a3109ddaca0a1b835d97c3e3e" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void xtd::Application::handleSignal</definition>
+        <argsstring>(const boost::system::error_code &amp;p_error, int p_signalNumber)</argsstring>
+        <name>handleSignal</name>
+        <param>
+          <type>const boost::system::error_code &amp;</type>
+          <declname>p_error</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>p_signalNumber</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><orderedlist>
+<listitem><para>Mysteriously appeared here. Commented until any bug pops back. </para></listitem></orderedlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/Application.hh" line="366" column="1" bodyfile="src/Application.cc" bodystart="186" bodyend="205"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Parses arguments from <ref refid="formatter_8cc_1a2c3f6775325c30275d11c6abee2db6a0" kindref="member">main(int,char**)</ref> function. </para>    </briefdescription>
+    <detaileddescription>
+<para><itemizedlist>
+<listitem><para><ref refid="classxtd_1_1Application_1sec_intro" kindref="member">Introcution</ref></para></listitem><listitem><para><ref refid="classxtd_1_1Application_1sec_howto" kindref="member">How to use</ref></para></listitem><listitem><para><ref refid="classxtd_1_1Application_1sec_execution_flow" kindref="member">Execution flow</ref></para></listitem><listitem><para><ref refid="classxtd_1_1Application_1sec_binding_options" kindref="member">Bindind options</ref></para></listitem></itemizedlist>
+</para><sect1 id="classxtd_1_1Application_1sec_intro">
+<title>Introcution</title>
+<para>This object provides a default application skeleton including :<itemizedlist>
+<listitem><para>user-friendly wrapping of argument parsing (on top of C&apos;s getopt_long)</para></listitem><listitem><para>usage generator for declared options</para></listitem><listitem><para>default options : <ndash/>help and <ndash/>log-level</para></listitem><listitem><para>default logging facility</para></listitem><listitem><para>signal handling on a separate thread</para></listitem><listitem><para>binary RCS identity tracking, usually generated by xtd compile-time dependency tracking system</para></listitem></itemizedlist>
+</para></sect1>
+<sect1 id="classxtd_1_1Application_1sec_howto">
+<title>How to use</title>
+<para><orderedlist>
+<listitem><para>Inherit your class from <ref refid="classxtd_1_1Application" kindref="compound">Application</ref></para></listitem><listitem><para>Define the mandatory method <ref refid="classxtd_1_1Application_1ac97ed38310d0543ff63a67e4f48860b6" kindref="member">Application::process</ref></para></listitem><listitem><para>Declare your program arguments in your constructor</para></listitem><listitem><para>Optionaly parse your configuration, check your parameters and initialize your application in the dedicated methods</para></listitem><listitem><para>Instantiate your class in <ref refid="formatter_8cc_1a2c3f6775325c30275d11c6abee2db6a0" kindref="member">main(int,char**)</ref> function and all <ref refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" kindref="member">Application::execute</ref> method</para></listitem></orderedlist>
+</para><para>Typical example : <programlisting><codeline><highlight class="keyword">namespace<sp/></highlight><highlight class="normal"><ref refid="namespacextd" kindref="compound">xtd</ref><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">MyApp<sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classxtd_1_1Application_1a3da92b7f6543aa1dd26aee2d886d8135" kindref="member">Application</ref></highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>MyApp(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)<sp/>:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classxtd_1_1Application_1a3da92b7f6543aa1dd26aee2d886d8135" kindref="member">Application</ref>()</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classxtd_1_1Application_1a24fee41865f36ba29f20bfb075563b51" kindref="member">addOption</ref>(</highlight><highlight class="charliteral">&apos;i&apos;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;input-file&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7ac5e3b9675d114c21ad3367d318f6aa95" kindref="member">argument::mandatory</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24ac5e3b9675d114c21ad3367d318f6aa95" kindref="member">requirement::mandatory</ref>,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;process<sp/>given<sp/>file&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classxtd_1_1Application_1a6505bf904c26aa16009cbb5ec3d7ed05" kindref="member">Application::bindFile</ref>(m_inputFile,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">));</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classxtd_1_1Application_1ac97ed38310d0543ff63a67e4f48860b6" kindref="member">process</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;given<sp/>readable<sp/>file<sp/>:<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>m_inputFile<sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>do<sp/>some<sp/>stuff</highlight><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(l_success)<sp/>?<sp/>0<sp/>:<sp/>1;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>std::string<sp/>m_inputFile;</highlight></codeline>
+<codeline><highlight class="normal">};</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="exemple1_8cc_1a2c3f6775325c30275d11c6abee2db6a0" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>p_argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>p_argv)</highlight></codeline>
+<codeline><highlight class="normal">{</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>MyApp<sp/>l_app;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>l_app.execute(p_argc,<sp/>p_argv);</highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+<codeline><highlight class="normal"></highlight></codeline>
+<codeline><highlight class="normal">}</highlight></codeline>
+</programlisting></para></sect1>
+<sect1 id="classxtd_1_1Application_1sec_execution_flow">
+<title>Execution flow</title>
+<para><plantuml>
+(*) --&gt; initialize default logging (level::crit)
+    --&gt; read arguments from argc &amp; argv
+    --&gt; parseConfig()
+        note right: User may redefine this function
+    --&gt; checkOptions()
+    --&gt; initialize logging with parsed level
+        note right: User may redefine this function
+    --&gt; initialize()
+        note right: User may redefine this function
+    --&gt; ===B1===
+        --&gt; start signal thread
+        --&gt; stop &amp; join signal thread
+        --&gt; ===B2===
+   ===B1=== --&gt; process()
+        note left: User &lt;b&gt;must&lt;/b&gt; re-define this function
+        --&gt; ===B2===
+    --&gt; (*)
+</plantuml>
+</para></sect1>
+<sect1 id="classxtd_1_1Application_1sec_binding_options">
+<title>Bindind options</title>
+<para><itemizedlist>
+<listitem><para><ref refid="classxtd_1_1Application_1a6277c4956209f6a672fdcde25b6cad5a" kindref="member">bindDir</ref> : Bind option&apos;s parameter to a directory.</para></listitem><listitem><para><ref refid="classxtd_1_1Application_1a6505bf904c26aa16009cbb5ec3d7ed05" kindref="member">bindFile</ref> : Bind option&apos;s parameter to a file name.</para></listitem><listitem><para><ref refid="classxtd_1_1Application_1af6cfc525aa349dd9b261b692b505e7ea" kindref="member">bindGiven</ref> : Set targeted variable to true if option is given on command line.</para></listitem><listitem><para><ref refid="classxtd_1_1Application_1a836bab561132a06f617577112905c27b" kindref="member">bindString</ref> : Set targeted variable to option&apos;s parameter.</para></listitem><listitem><para><ref refid="classxtd_1_1Application_1a00f6aed6c376028a79492b04e8325968" kindref="member">bindCallback</ref> : Associate option to given generic callback.</para></listitem><listitem><para><ref refid="classxtd_1_1Application_1a2415acb66badb368e726173fb884097c" kindref="member">bindValueIfGiven</ref> : Set given value to referenced variable if option is given.</para></listitem><listitem><para><ref refid="classxtd_1_1Application_1ae5fd6c9b1d2ad5225f9d624f63df4173" kindref="member">bindNumber</ref> : Bind option&apos;s paramter as number to referenced variable.</para></listitem><listitem><para><ref refid="classxtd_1_1Application_1aaa0388f1c96893a26cfe5522b0804dd9" kindref="member">bindValues</ref> : Bind option&apos;s parameter to target variable and checks among authorized values.</para></listitem><listitem><para><ref refid="classxtd_1_1Application_1a3d10e863bb0116e7da11c552efc6b953" kindref="member">bindAccumulator</ref> : Append option&apos;s parameter to target container for each command line hit. </para></listitem></itemizedlist>
+</para></sect1>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="125">
+        <label>vector&lt; string &gt;</label>
+      </node>
+      <node id="123">
+        <label>xtd::Application</label>
+        <link refid="classxtd_1_1Application"/>
+        <childnode refid="124" relation="usage">
+          <edgelabel>m_logLevel</edgelabel>
+        </childnode>
+        <childnode refid="125" relation="usage">
+          <edgelabel>m_remainingArgs</edgelabel>
+        </childnode>
+        <childnode refid="126" relation="usage">
+          <edgelabel>m_rcsid</edgelabel>
+          <edgelabel>m_binName</edgelabel>
+        </childnode>
+      </node>
+      <node id="126">
+        <label>string</label>
+      </node>
+      <node id="124">
+        <label>uint32_t</label>
+      </node>
+    </collaborationgraph>
+    <location file="src/Application.hh" line="88" column="1" bodyfile="src/Application.hh" bodystart="87" bodyend="384"/>
+    <listofallmembers>
+      <member refid="classxtd_1_1Application_1ababa551c7b2c0b9e81acaac6e7791736" prot="public" virt="non-virtual"><scope>xtd::Application</scope><name>::TestApplication</name></member>
+      <member refid="classxtd_1_1Application_1af5c614abf5e5a9bfe39c978bb0703d2c" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>addHelpMsg</name></member>
+      <member refid="classxtd_1_1Application_1a24fee41865f36ba29f20bfb075563b51" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>addOption</name></member>
+      <member refid="classxtd_1_1Application_1aad6cb9d52d7553ee1287e3222cb1e417" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>addSignalHandler</name></member>
+      <member refid="classxtd_1_1Application_1a3da92b7f6543aa1dd26aee2d886d8135" prot="public" virt="non-virtual"><scope>xtd::Application</scope><name>Application</name></member>
+      <member refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>argument</name></member>
+      <member refid="classxtd_1_1Application_1a3d10e863bb0116e7da11c552efc6b953" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>bindAccumulator</name></member>
+      <member refid="classxtd_1_1Application_1a00f6aed6c376028a79492b04e8325968" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>bindCallback</name></member>
+      <member refid="classxtd_1_1Application_1a6277c4956209f6a672fdcde25b6cad5a" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>bindDir</name></member>
+      <member refid="classxtd_1_1Application_1a6505bf904c26aa16009cbb5ec3d7ed05" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>bindFile</name></member>
+      <member refid="classxtd_1_1Application_1af6cfc525aa349dd9b261b692b505e7ea" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>bindGiven</name></member>
+      <member refid="classxtd_1_1Application_1ae5fd6c9b1d2ad5225f9d624f63df4173" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>bindNumber</name></member>
+      <member refid="classxtd_1_1Application_1ac9739b519e6000b0d783c6a79ca9f8c1" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>bindRegex</name></member>
+      <member refid="classxtd_1_1Application_1a836bab561132a06f617577112905c27b" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>bindString</name></member>
+      <member refid="classxtd_1_1Application_1a2415acb66badb368e726173fb884097c" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>bindValueIfGiven</name></member>
+      <member refid="classxtd_1_1Application_1aaa0388f1c96893a26cfe5522b0804dd9" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>bindValues</name></member>
+      <member refid="classxtd_1_1Application_1a3c63f070ac7baaea43a32b3064d0030b" prot="protected" virt="virtual"><scope>xtd::Application</scope><name>checkOptions</name></member>
+      <member refid="classxtd_1_1Application_1adf84f52f1388bef1336d0fb5f6345563" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>error</name></member>
+      <member refid="classxtd_1_1Application_1a810c6c1924f762fd453555cb91cb35f9" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>error_nohelp</name></member>
+      <member refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" prot="public" virt="non-virtual"><scope>xtd::Application</scope><name>execute</name></member>
+      <member refid="classxtd_1_1Application_1ac4fda3519ac27c48509536f189d2b060" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>getVersion</name></member>
+      <member refid="classxtd_1_1Application_1a9fc6bc8a3109ddaca0a1b835d97c3e3e" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>handleSignal</name></member>
+      <member refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" prot="protected" virt="virtual"><scope>xtd::Application</scope><name>initialize</name></member>
+      <member refid="classxtd_1_1Application_1af187eb955972b9101e411bfa724aa317" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>isOptionGiven</name></member>
+      <member refid="classxtd_1_1Application_1abdf4c6f863c5a7a4ee842906f546c458" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>m_binName</name></member>
+      <member refid="classxtd_1_1Application_1a8559a4b6b31d68e47e80c3a27031b6cf" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>m_disableCatch</name></member>
+      <member refid="classxtd_1_1Application_1a1d6a2f25f2864137bfd1d775e7e9c98b" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>m_disableExit</name></member>
+      <member refid="classxtd_1_1Application_1af5fd841d5c408ada5da58fc02e41b0e1" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>m_helpText</name></member>
+      <member refid="classxtd_1_1Application_1a653309319aa3e9fcc8dee7e5cade810f" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>m_ioService</name></member>
+      <member refid="classxtd_1_1Application_1a3f815061d81aa12974b2b6ee48b9f5e9" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>m_logLevel</name></member>
+      <member refid="classxtd_1_1Application_1a172e7346007a9c9c415676dc20448c05" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>m_optionList</name></member>
+      <member refid="classxtd_1_1Application_1ad820953bc15b729ce010f422595d3a3f" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>m_rcsid</name></member>
+      <member refid="classxtd_1_1Application_1a7651fd3849530cdded556187a6b42c25" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>m_remainingArgs</name></member>
+      <member refid="classxtd_1_1Application_1aa26b372f33d11dcb19fce8b1893df5c5" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>m_runThread</name></member>
+      <member refid="classxtd_1_1Application_1a096f6f3a0f526c0744fd59f096f743e8" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>m_signalHandlerMap</name></member>
+      <member refid="classxtd_1_1Application_1a75a6b93ec5f607c08f3d337ccaf498cc" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>m_signals</name></member>
+      <member refid="classxtd_1_1Application_1a6bd57141044477f115c88780084bfedd" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>m_work</name></member>
+      <member refid="classxtd_1_1Application_1a8684d1d061027893f91580106a821d88" prot="protected" virt="virtual"><scope>xtd::Application</scope><name>parseConfig</name></member>
+      <member refid="classxtd_1_1Application_1ac97ed38310d0543ff63a67e4f48860b6" prot="protected" virt="virtual"><scope>xtd::Application</scope><name>process</name></member>
+      <member refid="classxtd_1_1Application_1a7bfada339485bcd40f11a0bbc5ae49ad" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>readArgs</name></member>
+      <member refid="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>requirement</name></member>
+      <member refid="classxtd_1_1Application_1a8a1a6cf1d4d2d29394e9ee260dce02fe" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>t_callback</name></member>
+      <member refid="classxtd_1_1Application_1a9f8c4bd162a47570ae60cf529e8d3447" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>t_option_list</name></member>
+      <member refid="classxtd_1_1Application_1a907b6fe8247636495890e668530863d6" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>t_sig_handler</name></member>
+      <member refid="classxtd_1_1Application_1a7e4850a35190e921fee99e47a95a10f7" prot="private" virt="non-virtual"><scope>xtd::Application</scope><name>usage</name></member>
+      <member refid="classxtd_1_1Application_1a931877468f6b948909d596d91d60b7a2" prot="protected" virt="non-virtual"><scope>xtd::Application</scope><name>warn</name></member>
+      <member refid="classxtd_1_1Application_1ace70733e6288117e582edbd71a903140" prot="public" virt="virtual"><scope>xtd::Application</scope><name>~Application</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,668 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.8.11">
+  <compound refid="classxtd_1_1log_1_1Appender" kind="class"><name>xtd::log::Appender</name>
+    <member refid="classxtd_1_1log_1_1Appender_1ad42cef1c39dae7acad6157f68214d88a" kind="typedef"><name>t_filter</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1a4f9998439fd7ded96b4ef27c5b4ba756" kind="typedef"><name>t_filters</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1a03447c4d3aa025d601a1263cbf8d97c0" kind="variable"><name>m_formatter</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1a948baf2da617f1484ff731411105420b" kind="variable"><name>m_filters</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1a19163861464cffb0490bbb5b49f3e826" kind="function"><name>Appender</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1a4f331a83031d146d3c388518e8817c9d" kind="function"><name>~Appender</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1acc23157f21e2c8fab210e2f66d6b91da" kind="function"><name>setFormatter</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1a634b3294fd23cc15ffdbc1086e157fda" kind="function"><name>addFilter</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1a5fea162e43ef20076c4d7645652eb5f0" kind="function"><name>clearFilters</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1a3512b42b7296baa772f9f4454fb73aab" kind="function"><name>clearFormatter</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1a0c05248f33880983c21b636a7aa980f1" kind="function"><name>log</name></member>
+    <member refid="classxtd_1_1log_1_1Appender_1a5e2b696aa1bf2bd70305ea9586c8e4b5" kind="function"><name>print</name></member>
+  </compound>
+  <compound refid="classxtd_1_1Application" kind="class"><name>xtd::Application</name>
+    <member refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7" kind="enum"><name>argument</name></member>
+    <member refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7ac5e3b9675d114c21ad3367d318f6aa95" kind="enumvalue"><name>mandatory</name></member>
+    <member refid="classxtd_1_1Application_1a672c075ed901e463609077d571a714c7a334c4a4c42fdb79d7ebc3e73b517e6f8" kind="enumvalue"><name>none</name></member>
+    <member refid="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24" kind="enum"><name>requirement</name></member>
+    <member refid="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24ad57c24f3fe52d16e7169b912dd647f0d" kind="enumvalue"><name>optional</name></member>
+    <member refid="classxtd_1_1Application_1a49c0397e9fd22067e3a536443a17fe24ac5e3b9675d114c21ad3367d318f6aa95" kind="enumvalue"><name>mandatory</name></member>
+    <member refid="classxtd_1_1Application_1a907b6fe8247636495890e668530863d6" kind="typedef"><name>t_sig_handler</name></member>
+    <member refid="classxtd_1_1Application_1a8a1a6cf1d4d2d29394e9ee260dce02fe" kind="typedef"><name>t_callback</name></member>
+    <member refid="classxtd_1_1Application_1a9f8c4bd162a47570ae60cf529e8d3447" kind="typedef"><name>t_option_list</name></member>
+    <member refid="classxtd_1_1Application_1ababa551c7b2c0b9e81acaac6e7791736" kind="friend"><name>::TestApplication</name></member>
+    <member refid="classxtd_1_1Application_1abdf4c6f863c5a7a4ee842906f546c458" kind="variable"><name>m_binName</name></member>
+    <member refid="classxtd_1_1Application_1a3f815061d81aa12974b2b6ee48b9f5e9" kind="variable"><name>m_logLevel</name></member>
+    <member refid="classxtd_1_1Application_1a7651fd3849530cdded556187a6b42c25" kind="variable"><name>m_remainingArgs</name></member>
+    <member refid="classxtd_1_1Application_1ad820953bc15b729ce010f422595d3a3f" kind="variable"><name>m_rcsid</name></member>
+    <member refid="classxtd_1_1Application_1a1d6a2f25f2864137bfd1d775e7e9c98b" kind="variable"><name>m_disableExit</name></member>
+    <member refid="classxtd_1_1Application_1a8559a4b6b31d68e47e80c3a27031b6cf" kind="variable"><name>m_disableCatch</name></member>
+    <member refid="classxtd_1_1Application_1a172e7346007a9c9c415676dc20448c05" kind="variable"><name>m_optionList</name></member>
+    <member refid="classxtd_1_1Application_1af5fd841d5c408ada5da58fc02e41b0e1" kind="variable"><name>m_helpText</name></member>
+    <member refid="classxtd_1_1Application_1aa26b372f33d11dcb19fce8b1893df5c5" kind="variable"><name>m_runThread</name></member>
+    <member refid="classxtd_1_1Application_1a653309319aa3e9fcc8dee7e5cade810f" kind="variable"><name>m_ioService</name></member>
+    <member refid="classxtd_1_1Application_1a6bd57141044477f115c88780084bfedd" kind="variable"><name>m_work</name></member>
+    <member refid="classxtd_1_1Application_1a75a6b93ec5f607c08f3d337ccaf498cc" kind="variable"><name>m_signals</name></member>
+    <member refid="classxtd_1_1Application_1a096f6f3a0f526c0744fd59f096f743e8" kind="variable"><name>m_signalHandlerMap</name></member>
+    <member refid="classxtd_1_1Application_1a3da92b7f6543aa1dd26aee2d886d8135" kind="function"><name>Application</name></member>
+    <member refid="classxtd_1_1Application_1ace70733e6288117e582edbd71a903140" kind="function"><name>~Application</name></member>
+    <member refid="classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c" kind="function"><name>execute</name></member>
+    <member refid="classxtd_1_1Application_1a8684d1d061027893f91580106a821d88" kind="function"><name>parseConfig</name></member>
+    <member refid="classxtd_1_1Application_1a3c63f070ac7baaea43a32b3064d0030b" kind="function"><name>checkOptions</name></member>
+    <member refid="classxtd_1_1Application_1ab8e835ba678494c42e12c4613958d18a" kind="function"><name>initialize</name></member>
+    <member refid="classxtd_1_1Application_1ac97ed38310d0543ff63a67e4f48860b6" kind="function"><name>process</name></member>
+    <member refid="classxtd_1_1Application_1aad6cb9d52d7553ee1287e3222cb1e417" kind="function"><name>addSignalHandler</name></member>
+    <member refid="classxtd_1_1Application_1ac4fda3519ac27c48509536f189d2b060" kind="function"><name>getVersion</name></member>
+    <member refid="classxtd_1_1Application_1a24fee41865f36ba29f20bfb075563b51" kind="function"><name>addOption</name></member>
+    <member refid="classxtd_1_1Application_1af187eb955972b9101e411bfa724aa317" kind="function"><name>isOptionGiven</name></member>
+    <member refid="classxtd_1_1Application_1af5c614abf5e5a9bfe39c978bb0703d2c" kind="function"><name>addHelpMsg</name></member>
+    <member refid="classxtd_1_1Application_1a6277c4956209f6a672fdcde25b6cad5a" kind="function"><name>bindDir</name></member>
+    <member refid="classxtd_1_1Application_1a6505bf904c26aa16009cbb5ec3d7ed05" kind="function"><name>bindFile</name></member>
+    <member refid="classxtd_1_1Application_1af6cfc525aa349dd9b261b692b505e7ea" kind="function"><name>bindGiven</name></member>
+    <member refid="classxtd_1_1Application_1a836bab561132a06f617577112905c27b" kind="function"><name>bindString</name></member>
+    <member refid="classxtd_1_1Application_1ac9739b519e6000b0d783c6a79ca9f8c1" kind="function"><name>bindRegex</name></member>
+    <member refid="classxtd_1_1Application_1a00f6aed6c376028a79492b04e8325968" kind="function"><name>bindCallback</name></member>
+    <member refid="classxtd_1_1Application_1a2415acb66badb368e726173fb884097c" kind="function"><name>bindValueIfGiven</name></member>
+    <member refid="classxtd_1_1Application_1ae5fd6c9b1d2ad5225f9d624f63df4173" kind="function"><name>bindNumber</name></member>
+    <member refid="classxtd_1_1Application_1aaa0388f1c96893a26cfe5522b0804dd9" kind="function"><name>bindValues</name></member>
+    <member refid="classxtd_1_1Application_1a3d10e863bb0116e7da11c552efc6b953" kind="function"><name>bindAccumulator</name></member>
+    <member refid="classxtd_1_1Application_1a810c6c1924f762fd453555cb91cb35f9" kind="function"><name>error_nohelp</name></member>
+    <member refid="classxtd_1_1Application_1adf84f52f1388bef1336d0fb5f6345563" kind="function"><name>error</name></member>
+    <member refid="classxtd_1_1Application_1a931877468f6b948909d596d91d60b7a2" kind="function"><name>warn</name></member>
+    <member refid="classxtd_1_1Application_1a7bfada339485bcd40f11a0bbc5ae49ad" kind="function"><name>readArgs</name></member>
+    <member refid="classxtd_1_1Application_1a7e4850a35190e921fee99e47a95a10f7" kind="function"><name>usage</name></member>
+    <member refid="classxtd_1_1Application_1a9fc6bc8a3109ddaca0a1b835d97c3e3e" kind="function"><name>handleSignal</name></member>
+  </compound>
+  <compound refid="classxtd_1_1tty_1_1attrs" kind="class"><name>xtd::tty::attrs</name>
+    <member refid="classxtd_1_1tty_1_1attrs_1a9d837bd0ffe921da5d9120a92b6a866d" kind="enum"><name>s</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a9d837bd0ffe921da5d9120a92b6a866da86266ee937d97f812a8e57d22b62ee29" kind="enumvalue"><name>reset</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a9d837bd0ffe921da5d9120a92b6a866da69dcab4a73aeec2113f69b61e6263da8" kind="enumvalue"><name>bold</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a9d837bd0ffe921da5d9120a92b6a866da563728df0fdd90631ac1e51258e2857d" kind="enumvalue"><name>dim</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a9d837bd0ffe921da5d9120a92b6a866da53d8b12f5a04c848b57a2d303a1ded53" kind="enumvalue"><name>underlined</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a9d837bd0ffe921da5d9120a92b6a866da40652ee9ae143f1c1c830f01a5449ecb" kind="enumvalue"><name>blink</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a9d837bd0ffe921da5d9120a92b6a866da4d9c2073afa3c2abb817dceb22c34de6" kind="enumvalue"><name>reverse</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a9d837bd0ffe921da5d9120a92b6a866da662f707d5491e9bce8238a6c0be92190" kind="enumvalue"><name>hidden</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a55f5a4c467d906e947b9d1b58cb5c6cc" kind="variable"><name>unset</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1abe0cf01e65f7adb91f9bb9ed474a6368" kind="variable"><name>reset</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a88363636d6649382e58f05833f3fc990" kind="variable"><name>dim</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a11158efc737e96795bd80ce03056bf54" kind="variable"><name>bold</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a6c7f88ccb1a791d99d895065f0b65366" kind="variable"><name>underlined</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a8e9dccb48cf1b6009cd74cddb2d6ed81" kind="variable"><name>blink</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a9287a27d80fad28ec61491a7479a557c" kind="variable"><name>reverse</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1af3445240d4b5defe16edc7723b8d4307" kind="variable"><name>hidden</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a552683b0bdb35c978cd78871f9780343" kind="variable"><name>m_attrs</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a8410fc4065ce7d991ddf225dc1407700" kind="function"><name>attrs</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a48f377e1d80feb58b85dd656f0012c5f" kind="function"><name>attrs</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1ae173052fd395fa7baed14def344b23c3" kind="function"><name>from_string</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a08ea8d35436115a5f063328cc8bc95d1" kind="function"><name>to_string</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1ad4a32611857bd41e7a4e91589d9e572a" kind="function"><name>operator|</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1af9f72f699d7ce063254f38e323b7cdc1" kind="function"><name>operator|=</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a91b9a096cabcce9e3ad7fb5e6a081dfd" kind="function"><name>operator==</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a7a4abd71027ba7f9d9e9ad4db68a31d2" kind="function"><name>getValues</name></member>
+    <member refid="classxtd_1_1tty_1_1attrs_1a38a61ce5c943abe5e2228a45e5aa3f66" kind="function"><name>isSet</name></member>
+  </compound>
+  <compound refid="structxtd_1_1log_1_1AutoWidth" kind="struct"><name>xtd::log::AutoWidth</name>
+    <member refid="structxtd_1_1log_1_1AutoWidth_1a95be8c8eaf42497b3dfb257cf0d49122" kind="variable"><name>m_widths</name></member>
+    <member refid="structxtd_1_1log_1_1AutoWidth_1ad43712c673989b1a8592b80d63d3174b" kind="variable"><name>m_fields</name></member>
+    <member refid="structxtd_1_1log_1_1AutoWidth_1a2defd346a87c9f113de9d905b1997ed7" kind="function"><name>AutoWidth</name></member>
+    <member refid="structxtd_1_1log_1_1AutoWidth_1a059066d5e74f62e3a00d667270c300a0" kind="function"><name>AutoWidth</name></member>
+    <member refid="structxtd_1_1log_1_1AutoWidth_1aacba91f292ae1827cac432c168f67d08" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="classxtd_1_1mixins_1_1Cloneable" kind="class"><name>xtd::mixins::Cloneable</name>
+    <member refid="classxtd_1_1mixins_1_1Cloneable_1a2b24b30532001b70c0277f31a0ed1f4b" kind="typedef"><name>Parent</name></member>
+    <member refid="classxtd_1_1mixins_1_1Cloneable_1abe0842228a70e434032e268b29382126" kind="function"><name>Cloneable</name></member>
+    <member refid="classxtd_1_1mixins_1_1Cloneable_1a06841805ba2f551f91e0a469694bec42" kind="function"><name>~Cloneable</name></member>
+    <member refid="classxtd_1_1mixins_1_1Cloneable_1a9b91d136b7c3c189d0cdd486d453c3f0" kind="function"><name>clone</name></member>
+  </compound>
+  <compound refid="classxtd_1_1mixins_1_1CloneableBase" kind="class"><name>xtd::mixins::CloneableBase</name>
+    <member refid="classxtd_1_1mixins_1_1CloneableBase_1ab773a7510d8d1c7fd63339408e9f9b4c" kind="typedef"><name>Parent</name></member>
+    <member refid="classxtd_1_1mixins_1_1CloneableBase_1aa9a70a814905198d58b7aff8212fae08" kind="function"><name>clone</name></member>
+  </compound>
+  <compound refid="classxtd_1_1tty_1_1color" kind="class"><name>xtd::tty::color</name>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5c" kind="enum"><name>c</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5cae2181b5014a67159cc230c8fe0d6c5b6" kind="enumvalue"><name>unset</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5ca1ffd9e753c8054cc61456ac7fac1ac89" kind="enumvalue"><name>black</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5cabda9643ac6601722a28f238714274da4" kind="enumvalue"><name>red</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5ca9f27410725ab8cc8854a2769c7a516b8" kind="enumvalue"><name>green</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5cad487dd0b55dfcacdd920ccbdaeafa351" kind="enumvalue"><name>yellow</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5ca48d6215903dff56238e52e8891380c8f" kind="enumvalue"><name>blue</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5ca4c2a4a7078da0ac6733464eacfd00f86" kind="enumvalue"><name>magenta</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5ca6411532ba4971f378391776a9db629d3" kind="enumvalue"><name>cyan</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5cacda7a650c5856cf2f6738072447d7825" kind="enumvalue"><name>gray</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5cafea087517c26fadd409bd4b9dc642555" kind="enumvalue"><name>normal</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5ca748c3b9ce7fdf223173a1a009fdade33" kind="enumvalue"><name>lblack</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5caf57c976f340387e34160279f2db2e231" kind="enumvalue"><name>lred</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5ca19e1641e9c41659e6bca9e65942b38e2" kind="enumvalue"><name>lgreen</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5ca32bcfa282a6617b8b5f1f8851d0847f9" kind="enumvalue"><name>lyellow</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5ca98249706f2732969eb6eec2d420bae02" kind="enumvalue"><name>lblue</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5caa3540fe9b6879e2995d1f4fc9d232f80" kind="enumvalue"><name>lmagenta</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5cab048d692d809f9681af8a77215e1bf82" kind="enumvalue"><name>lcyan</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5caccc99151e828d80ebfa8693f174da951" kind="enumvalue"><name>lgray</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6f84e443bc6c0d0c7bbd257d0e022d5cad508fe45cecaf653904a0e774084bb5c" kind="enumvalue"><name>white</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a723345f28d1cf4326d20c692595784ef" kind="variable"><name>unset</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1adb04636b7eacdcf4fac65b985d172d28" kind="variable"><name>normal</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1ad7dab6a756802ad23aadd7a34875d704" kind="variable"><name>black</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1aaa63008e912dcb368faa1e195f902a2c" kind="variable"><name>red</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1ac23027944bde6492373c06556851fec6" kind="variable"><name>green</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1afc54d8f79787175b8ee05c20a09010b1" kind="variable"><name>yellow</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a048cc5cd2161cd56dd7f5dae92cfa906" kind="variable"><name>blue</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a395afcf993fbdbee1a0ee0b0710e7a40" kind="variable"><name>magenta</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a51381c65c5a86082eb6edc69b0dce48e" kind="variable"><name>cyan</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1af0919342cd448958367c474fe976eac5" kind="variable"><name>gray</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a03396cbe831c50d743aee3c0b753e3c9" kind="variable"><name>lblack</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a7ab78dfae20aa5ec72f53f3151d37329" kind="variable"><name>lred</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1afe06db03b10274b2af95d5f00ee34991" kind="variable"><name>lgreen</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a5c8d0d0cf355518aa468cc98cde706fb" kind="variable"><name>lyellow</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a69f82eb1e102bc81a74c0e1191745ff2" kind="variable"><name>lblue</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1af7d207bcc38cc26e2a00fbc2661c15e3" kind="variable"><name>lmagenta</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a0355d5398129b6c012c90f9d66b1cbad" kind="variable"><name>lcyan</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a0f6ca03f59489e600503ca761d9adbc4" kind="variable"><name>lgray</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a5cabae6ba8f06fafdb460217b744cbe8" kind="variable"><name>white</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a584fbc1cf9d926161e38d3f52f45bfca" kind="variable"><name>m_value</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a994b17961687fa295528cf57f7eaabdd" kind="variable"><name>m_extended</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1abfc2d416a4add566eb35b95662f55dd9" kind="function"><name>color</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1ab81a060b71cb277d10c908a2e58ee555" kind="function"><name>color</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a1fe7a92e745cfe23dc612832e80a5795" kind="function"><name>operator==</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1ad5e9d999a14651c9bda587a6bb43cc45" kind="function"><name>isExtended</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a1d02a971140e58ca0459851cfa59dc98" kind="function"><name>getValue</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a8097b5ea86dc7d2fa2e4203c7b454893" kind="function"><name>isSet</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1a6cb6f66fda2247737c5e1930b7674f74" kind="function"><name>from_string</name></member>
+    <member refid="classxtd_1_1tty_1_1color_1ac611dd8916ad58ce6414f5a43154f391" kind="function"><name>to_string</name></member>
+  </compound>
+  <compound refid="classxtd_1_1log_1_1ColoredFormatter" kind="class"><name>xtd::log::ColoredFormatter</name>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1ac36cd4ce4bc1c4033290924f768b5626" kind="typedef"><name>t_styles</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1a92165f0adad51b67299d24b6fe2111db" kind="typedef"><name>t_style_modifier</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1a9955ed43ad70918dd7b3bdcb8d14a53b" kind="friend"><name>ConfLoader</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1af2133e0d29432ec92bc1b18d57cd88ce" kind="friend"><name>::TestColoredFormatter</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1a64d3d07d15b2c1aa2cbaca958a8891a2" kind="variable"><name>m_fieldStyles</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1a206906818cca13abba9b83194a144e86" kind="variable"><name>m_styleModifiers</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1a85f584841680a65e909065fdb474fb6b" kind="function"><name>ColoredFormatter</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1af0c54606c4c8dff95e4c7443e00b6d6f" kind="function"><name>ColoredFormatter</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1ad03e67f6b98bb51701a178874e3dd2c0" kind="function"><name>~ColoredFormatter</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1a8b060e7f732c9859b151192521c95b9f" kind="function"><name>setAttrs</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1a8d4f81235542fb1fac2fa1b09bf2f847" kind="function"><name>setFgColor</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1a6f2b28bab49aad9e8a6a50e28b63ecd7" kind="function"><name>setBgColor</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1ac1723051968880b2b8a99843439279a3" kind="function"><name>setStyle</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1ad607a2738a0dec97ea1c97704e859a7a" kind="function"><name>setStyle</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1ae62298e29ca0f7eb5ecd7e3d245baece" kind="function"><name>setStyles</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1a0197ce4dd02d3f8c3609c8d0e33e18df" kind="function"><name>addStyleModifier</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1aefce642fe50d79917560883c08bb5940" kind="function"><name>create</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1af96f719d459e8b0463919752c424295c" kind="function"><name>createFields</name></member>
+    <member refid="classxtd_1_1log_1_1ColoredFormatter_1af22f3dfdc499abdc154a931ff93e5256" kind="function"><name>getFulllog</name></member>
+  </compound>
+  <compound refid="classxtd_1_1log_1_1ConfLoader" kind="class"><name>xtd::log::ConfLoader</name>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1ab89ac656e6cfdd4f094f1607731ebfde" kind="typedef"><name>t_properties</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1ac9aa847f461aa4b8d2ae86d5ae1b9d37" kind="typedef"><name>t_appender_constructor</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1ad8eff8d8bbc9641691a591ac1a4f9473" kind="typedef"><name>t_formatter_constructor</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1ab7b079daa0bcfa40bab1ba3357d8c54b" kind="friend"><name>::TestConfLoader</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1a4ea73eda1fcddacc304f8ccd05bdfb1f" kind="variable"><name>m_appenders</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1a664cec72a1469b2393b182f7ff5361d0" kind="variable"><name>m_formatters</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1a3ad30dc46ec07c2abb1788c1aedd72e4" kind="variable"><name>m_appenderConstructors</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1a43e439d3a5a38f7cc03e4055b22d3153" kind="variable"><name>m_formatterConstructors</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1a7a63a5cade515540a0733d782722281e" kind="function"><name>configure</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1a1ce88378f988c49d4e465428c7b32059" kind="function"><name>registerAppender</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1ad0f17e4ed0fea56aa8e6ce08f2daaaac" kind="function"><name>registerFormatter</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1a7905d0b63b1823a8db54c0537ea0b601" kind="function"><name>getFormatter</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1ac941b2a1374b04064e3c153428594094" kind="function"><name>getAppender</name></member>
+    <member refid="classxtd_1_1log_1_1ConfLoader_1abc3317e1a9bf2e32faf0fe77ee567405" kind="function"><name>createLogger</name></member>
+  </compound>
+  <compound refid="classxtd_1_1error" kind="class"><name>xtd::error</name>
+    <member refid="classxtd_1_1error_1aa5469e78c700426f0bf56e3f04b72c44" kind="variable"><name>m_message</name></member>
+    <member refid="classxtd_1_1error_1a4663571e50d7bcf512b353660b897a55" kind="function"><name>error</name></member>
+    <member refid="classxtd_1_1error_1abeceaf42dfbad136014dc3921696e26f" kind="function"><name>~error</name></member>
+    <member refid="classxtd_1_1error_1a463ff8177561abd418c1f00aa2bcd154" kind="function"><name>what</name></member>
+  </compound>
+  <compound refid="structxtd_1_1log_1_1Fields" kind="class"><name>xtd::log::Fields</name>
+    <member refid="structxtd_1_1log_1_1Fields_1a370ffd6aacb0efa29933384c2ccce29f" kind="typedef"><name>this_type</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a5d7e0e70933ae7ef9b9d5fd20d48ae36" kind="variable"><name>m_name</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a8491f3f41fd5f1ae6a64579560f62707" kind="variable"><name>m_module</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1af16b131f39604598369dbd1bed9bc629" kind="variable"><name>m_threadid</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a70fdd9fd4485b3d1d0d1cff59b366b93" kind="variable"><name>m_slevel</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a04d678cef7fe6116e2a64d69757f35ef" kind="variable"><name>m_ilevel</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a1d3b7bbac0b9da73743e6c88359b3f5e" kind="variable"><name>m_message</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a5fc07ae667b629cf6873c7c15510c094" kind="variable"><name>m_filename</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1ae5c0c9fd72e877e62a01d956834b25c3" kind="variable"><name>m_line</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1aaa0849ac7b5258685c02811c7334532b" kind="variable"><name>m_function</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a74e37bfe0718f67fcee6bd7eb94beaee" kind="variable"><name>m_location</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a29bd5097fbc0c4d84167690833c4aecd" kind="variable"><name>m_time</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a21c6593f72707e5955d8d501c6db5063" kind="variable"><name>m_fulllog</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a1f185fa52552ca7e42d84c06e9cd06f7" kind="variable"><name>m_pid</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a99ae9961dec9e9aa6f29c8eb5711214f" kind="variable"><name>m_ppid</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a4f62ed4ff08e91961cda67f2655c5ac8" kind="variable"><name>m_functors</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a951a360484d0512f086cd5c46b9ad16b" kind="function"><name>Fields</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a360c4cb09fd7b362281f5dddde9e1b18" kind="function"><name>get</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a3efdfb6810ea649c5a7862e50b76959a" kind="function"><name>exists</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1a9b306ca261f5bcb42c866699d2481f90" kind="function"><name>get</name></member>
+    <member refid="structxtd_1_1log_1_1Fields_1ac0a58b7534140d7860657f92e02c0d05" kind="function"><name>set</name></member>
+  </compound>
+  <compound refid="structxtd_1_1format" kind="struct"><name>xtd::format</name>
+    <member refid="structxtd_1_1format_1ad79f6228711836733597c19a1cb2c316" kind="function"><name>vargs</name></member>
+    <member refid="structxtd_1_1format_1acf0ea99074a605c9436c4ef0e458cb3c" kind="function"><name>vargs</name></member>
+    <member refid="structxtd_1_1format_1abc080894e313e8df73d57888c04469a6" kind="function"><name>vargs_noexcept</name></member>
+  </compound>
+  <compound refid="structxtd_1_1log_1_1FormattedRecord" kind="struct"><name>xtd::log::FormattedRecord</name>
+    <member refid="structxtd_1_1log_1_1FormattedRecord_1affecf95353022f089fd50b5ce5425295" kind="variable"><name>m_hasLoc</name></member>
+    <member refid="structxtd_1_1log_1_1FormattedRecord_1ab6a4adbeedb818c9a0ab9afcf649c470" kind="variable"><name>m_fulllog</name></member>
+    <member refid="structxtd_1_1log_1_1FormattedRecord_1a7c4a74d0a13d64bde8903d18fedd5957" kind="variable"><name>m_message</name></member>
+    <member refid="structxtd_1_1log_1_1FormattedRecord_1aed23a107d2fd15c24bd6e1b6aa4f3f5d" kind="variable"><name>m_function</name></member>
+    <member refid="structxtd_1_1log_1_1FormattedRecord_1a7d7f694cd9b0441ba3c78c9bcdc5b3c0" kind="variable"><name>m_filename</name></member>
+    <member refid="structxtd_1_1log_1_1FormattedRecord_1a1729b8f12fefea41898293c68b61ecbe" kind="variable"><name>m_line</name></member>
+    <member refid="structxtd_1_1log_1_1FormattedRecord_1a908ca37b489b778b5b160ae22ef40ba4" kind="function"><name>FormattedRecord</name></member>
+    <member refid="structxtd_1_1log_1_1FormattedRecord_1a103bda6e20124b48e61b768f38f2055f" kind="function"><name>FormattedRecord</name></member>
+  </compound>
+  <compound refid="classxtd_1_1log_1_1Formatter" kind="class"><name>xtd::log::Formatter</name>
+    <member refid="classxtd_1_1log_1_1Formatter_1a9a90cd2dcb5c7aadd92a695350a6ac61" kind="typedef"><name>t_formats</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1ad78cd0e052b3c0c4b769d1ecccc9b356" kind="typedef"><name>t_format_modifier</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a9955ed43ad70918dd7b3bdcb8d14a53b" kind="friend"><name>ConfLoader</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a27a56c86f356132f7c3c7539e23a89fe" kind="friend"><name>::TestFormatter</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a0f4cc938fea2226b79f001c35f1b6ccd" kind="variable"><name>m_fmt</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a0d181790fc2f124d5796bf47c5b3473f" kind="variable"><name>m_locFmt</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1aad54c827f145b77bda1cabbd44188acf" kind="variable"><name>m_timeFmt</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1af3caa8f18b4c023e937b0404b28ae916" kind="variable"><name>m_fieldFormats</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1ad81da8f8c98a3a54e35d2bb31e77dcd1" kind="variable"><name>m_formatModifiers</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1af056dc33479e3a0b1dedbc501f8c0092" kind="function"><name>Formatter</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a5bd4cb3b42e0a391d513ac4e2fe1768e" kind="function"><name>Formatter</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1ad18ab879d28a5f7eb51abd3c59facf08" kind="function"><name>~Formatter</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a906770a330ec66756306d2e97245560a" kind="function"><name>setLayout</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a42088b47363218fa2d9f7641651ca0cd" kind="function"><name>setLayouts</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a04f0e52d7d5d29d8fe0e56f593764f7e" kind="function"><name>setFieldFormat</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1aeefc07bef8ef73b5d6be462ad3a03d3d" kind="function"><name>setFieldFormats</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a1dbe717ca7898ad63543b5e70a449b4e" kind="function"><name>addFormatModifier</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1abbcd2b8c6fd1996fec44e68d0ae5ea79" kind="function"><name>format</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a365477ddddf1d5f9400ca200a1c83039" kind="function"><name>create</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a364c26192677bc4f748626aeb790b5bd" kind="function"><name>createFields</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1a989f7e1efe0bb7733ef6ee63b2451974" kind="function"><name>getFulllog</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1ad5747c5e72bc157cd82ce964f075c159" kind="function"><name>resolveLayout</name></member>
+    <member refid="classxtd_1_1log_1_1Formatter_1ab36202b08245b27bea582289de44ff46" kind="function"><name>resolveTime</name></member>
+  </compound>
+  <compound refid="classxtd_1_1log_1_1log__error" kind="class"><name>xtd::log::log_error</name>
+  </compound>
+  <compound refid="classxtd_1_1log_1_1Logger" kind="class"><name>xtd::log::Logger</name>
+    <member refid="classxtd_1_1log_1_1Logger_1a30319e7ba0a6371dbbecf26bf34ab731" kind="typedef"><name>t_appenders</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1ae37f3ca373fc88722ea49a22f5446169" kind="friend"><name>::TestLogger</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a99b95dab82f6e02b5878314643194e8f" kind="variable"><name>m_module</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1ad6ae8509dab4079dd5e8509826c22004" kind="variable"><name>m_name</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a2f22737f82a6d636e248efa8ceaa2600" kind="variable"><name>m_level</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a0c64b5f4c340e5d5eccf5552f5a8503a" kind="variable"><name>m_appenders</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a7c2b6272ac55674968dac001ea45b0ac" kind="variable"><name>m_mutex</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1ac4b4b7909aea31312158297f69e79894" kind="function"><name>Logger</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a133624f9af80b4a2a5520844e2f5a9af" kind="function"><name>Logger</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a2e3192ebfef35a88b45dd2042b3bc136" kind="function"><name>Logger</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a14ba9192f1b6740327010f192b56c95c" kind="function"><name>~Logger</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a2f5b808b4be6fce60334b32969751f70" kind="function"><name>getName</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a4e0fe79c7c072a899d9be70f723f357a" kind="function"><name>getLevel</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1ad2144be152776e562e05d42eb9d503fc" kind="function"><name>setName</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a97fca3b06b4cf02e23e268873799140a" kind="function"><name>setLevel</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a0527c0cdbbeb688e15267b7f3428c6be" kind="function"><name>addAppender</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a335aea1ddce63493987a35668583d6f0" kind="function"><name>clearAppenders</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a839adae0042f91f81127b41a4e7250ab" kind="function"><name>emerg</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a94fa3637c34e797ecd6773263db9f6d7" kind="function"><name>alert</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a0a806b5056ba5ff88661398fd4b368a0" kind="function"><name>crit</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a1ba8e9c68f1748a531c54b626a79f394" kind="function"><name>err</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a3da8c5c376e3651c60ddcd0bbf871019" kind="function"><name>warning</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1abf6008317da5a6e604c8c82999a97a25" kind="function"><name>notice</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a36b331305693833f87dda51d903123a8" kind="function"><name>info</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1adedf0fbd70e8a0495dc0e741dc7cee81" kind="function"><name>debug</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a63c8996ca7aaef37d1969bf5f328018e" kind="function"><name>log</name></member>
+    <member refid="classxtd_1_1log_1_1Logger_1a087f037cbabe5421fafc39c3654d27b9" kind="function"><name>getAppenders</name></member>
+  </compound>
+  <compound refid="classxtd_1_1log_1_1MemoryAppender" kind="class"><name>xtd::log::MemoryAppender</name>
+    <member refid="classxtd_1_1log_1_1MemoryAppender_1a9955ed43ad70918dd7b3bdcb8d14a53b" kind="friend"><name>ConfLoader</name></member>
+    <member refid="classxtd_1_1log_1_1MemoryAppender_1ac1267de880f52adf1f03f5843f68f5a0" kind="friend"><name>::TestMemoryAppender</name></member>
+    <member refid="classxtd_1_1log_1_1MemoryAppender_1a2fef779ade22a63a3e3e782ed03f2ef4" kind="variable"><name>m_maxRecords</name></member>
+    <member refid="classxtd_1_1log_1_1MemoryAppender_1aa542446c46254badb9028f4b35a018f9" kind="variable"><name>m_records</name></member>
+    <member refid="classxtd_1_1log_1_1MemoryAppender_1aafe3c08fe2ce8f7888a5df38f24fe645" kind="variable"><name>m_mutex</name></member>
+    <member refid="classxtd_1_1log_1_1MemoryAppender_1aff7db5987dfd8acc1643ba86d2d08b9c" kind="function"><name>MemoryAppender</name></member>
+    <member refid="classxtd_1_1log_1_1MemoryAppender_1abe9a6e36e309f87ff0a146a8967a0829" kind="function"><name>~MemoryAppender</name></member>
+    <member refid="classxtd_1_1log_1_1MemoryAppender_1a73f309bcb60706c4db27f213e521c39e" kind="function"><name>copyRecords</name></member>
+    <member refid="classxtd_1_1log_1_1MemoryAppender_1a1e8b9cc2401dc63833db92c57b97c08f" kind="function"><name>print</name></member>
+    <member refid="classxtd_1_1log_1_1MemoryAppender_1a4059457a460a109f54f6e5e0add715bc" kind="function"><name>create</name></member>
+  </compound>
+  <compound refid="classxtd_1_1config_1_1parse__error" kind="class"><name>xtd::config::parse_error</name>
+  </compound>
+  <compound refid="classxtd_1_1config_1_1Parser" kind="class"><name>xtd::config::Parser</name>
+    <member refid="classxtd_1_1config_1_1Parser_1aae75e245ee218dc56546110d02fbbb17" kind="typedef"><name>t_refs</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1ad8ded2a3979be522972ca8033cc0d385" kind="typedef"><name>t_data</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a1d6fe8dae27efe52a8258d9b94b9a817" kind="typedef"><name>t_result</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a12d1da44db89007f9a766b1ac240cf8e" kind="variable"><name>m_data</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a67c811e814c75c84403bac60c57f1a48" kind="variable"><name>m_params</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a0cec11ca233daa86b52e62178ba92c27" kind="function"><name>Parser</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1ac20d4eb205c1d19710c7d9b58413e16b" kind="function"><name>Parser</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a1d12a4199ef5ca1eea1a48f10b935612" kind="function"><name>Parser</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1af305f4af7fa9be92f45bd6b7e122735d" kind="function"><name>get</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1aaa9ca76a385958f384de4142104a618c" kind="function"><name>get</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1ab0dc2a0796e274f4cd9b9da731a15ed3" kind="function"><name>get</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1ae5681685420658008e4d49383771bc68" kind="function"><name>get</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a2202789ee8b1c41eb33a45b8b375123e" kind="function"><name>get_default</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a67ae8956ff42b959b2f81665a8914de8" kind="function"><name>parse</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a420d7e461b5c3e97a12245d176a0f287" kind="function"><name>parse</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a0e54f7a7098b05e7f0f7c4651361b576" kind="function"><name>parse</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1ab624038c8b509b7e30c5f1c9fbb554d0" kind="function"><name>search</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1aa8a7ff096075ffefa066b3277c3bd92d" kind="function"><name>translate</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a38f52ed81d7ccb985e3831e594881e9d" kind="function"><name>resolveExt</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1acf0fbd114ea39cf916c6a678a8062d88" kind="function"><name>resolveRefs</name></member>
+    <member refid="classxtd_1_1config_1_1Parser_1a20cb2c4b6a8c96692d9df8d4a29b1c1c" kind="function"><name>extractKey</name></member>
+  </compound>
+  <compound refid="classxtd_1_1mixins_1_1PureCloneableBase" kind="class"><name>xtd::mixins::PureCloneableBase</name>
+    <member refid="classxtd_1_1mixins_1_1PureCloneableBase_1adfa47f26b709e3caf6a6143c696bb5cf" kind="typedef"><name>Parent</name></member>
+    <member refid="classxtd_1_1mixins_1_1PureCloneableBase_1a50a0ec65eb7b25dfeb867215f582db1f" kind="function"><name>clone</name></member>
+  </compound>
+  <compound refid="structxtd_1_1log_1_1Record" kind="struct"><name>xtd::log::Record</name>
+    <member refid="structxtd_1_1log_1_1Record_1a22238414d5b1213d4baf960a0d342747" kind="variable"><name>m_name</name></member>
+    <member refid="structxtd_1_1log_1_1Record_1ac47a7986b68cbeeee9e1a163e89f2447" kind="variable"><name>m_module</name></member>
+    <member refid="structxtd_1_1log_1_1Record_1a17801cd316a9842f1a2db29d683cbb6b" kind="variable"><name>m_level</name></member>
+    <member refid="structxtd_1_1log_1_1Record_1a42d6434bd64bd3e48db6820630549e79" kind="variable"><name>m_format</name></member>
+    <member refid="structxtd_1_1log_1_1Record_1aef24e32ac8f2817382050452a4e05267" kind="variable"><name>m_time</name></member>
+    <member refid="structxtd_1_1log_1_1Record_1a5149c8f97d9d4c9e73ce45b10af05ef0" kind="variable"><name>m_threadID</name></member>
+    <member refid="structxtd_1_1log_1_1Record_1a690b3067eb2098e0febca62abae7640d" kind="variable"><name>m_pid</name></member>
+    <member refid="structxtd_1_1log_1_1Record_1aa6ec206b7f8f9f514f0c1e08932eef8e" kind="variable"><name>m_ppid</name></member>
+    <member refid="structxtd_1_1log_1_1Record_1ac4093f816d72361251d99a385c74c9fc" kind="function"><name>Record</name></member>
+  </compound>
+  <compound refid="classxtd_1_1log_1_1RootLogger" kind="class"><name>xtd::log::RootLogger</name>
+    <member refid="classxtd_1_1log_1_1RootLogger_1a1d3657e1ce4b05fbdde3c7cd348ec07c" kind="typedef"><name>t_loggers</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1aa7d06267cf8749be78d66afd0e772be5" kind="typedef"><name>t_levels</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1ae37f3ca373fc88722ea49a22f5446169" kind="friend"><name>::TestLogger</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1a99343b1df9b360b64848b12f1604889b" kind="variable"><name>m_loggers</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1ac7def0be0d2a221a6fab918973da74db" kind="variable"><name>m_mutex</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1acee0ee7395f8e068d63daf31b117e25e" kind="function"><name>RootLogger</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1abf11af191562073d81ee79c5d3e68619" kind="function"><name>RootLogger</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1a65eaae686994b81f83dc27db4a3bac28" kind="function"><name>get</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1ac7363a3260ed92c6806ce002a8737f39" kind="function"><name>getLevels</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1a5855e74b37f083b902cec1d3fd398973" kind="function"><name>initialize</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1ae62752c15b444a84ccc4303da003b280" kind="function"><name>setAllLevels</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1a83191f4ff079812194d8d3b344d86473" kind="function"><name>setAllValueLevels</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1a8f76312c3c7cb7c9dadf721a9b45b9ba" kind="function"><name>updateLevels</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1af5ea8db8e1e4f60c39a7d95e9073c227" kind="function"><name>getLevelTo</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1ae2102a57be10e62aefd95b5b0b822c04" kind="function"><name>setLevelTo</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1acbc776cc057effd4984cd7d72ffa42bf" kind="function"><name>emergTo</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1a5497d13814164442faadd6c997baf395" kind="function"><name>alertTo</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1af73678b4803a92c89c4331edc8e85457" kind="function"><name>critTo</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1aac4fbeb3912300e30e841bc8b0109e50" kind="function"><name>errTo</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1ab57ef3f731c29a62e5028c8e4fb13533" kind="function"><name>warningTo</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1afd04ae84b21c97f1e15ef312efe0c256" kind="function"><name>infoTo</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1a1a279bd6a076282d8f33429bfff8f34e" kind="function"><name>noticeTo</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1a31fa20452e18ec40d4eb6979865c9e1c" kind="function"><name>debugTo</name></member>
+    <member refid="classxtd_1_1log_1_1RootLogger_1a8279db6590ee261e8b49822127ff838d" kind="function"><name>getClosestParent</name></member>
+  </compound>
+  <compound refid="classxtd_1_1mixins_1_1Singleton" kind="class"><name>xtd::mixins::Singleton</name>
+    <member refid="classxtd_1_1mixins_1_1Singleton_1ad21046e030a5e9ef205fcbda01e4e84a" kind="variable"><name>ms_instance</name></member>
+    <member refid="classxtd_1_1mixins_1_1Singleton_1a6f10ba34b51db94753bc738ac2dccbf4" kind="function"><name>Singleton</name></member>
+    <member refid="classxtd_1_1mixins_1_1Singleton_1afa20ab6dce75a91e54d4500032f7ef7a" kind="function"><name>Singleton</name></member>
+    <member refid="classxtd_1_1mixins_1_1Singleton_1af6b402696c41b8d50f1931d10b1f8ea8" kind="function"><name>get</name></member>
+  </compound>
+  <compound refid="classxtd_1_1log_1_1Stream" kind="class"><name>xtd::log::Stream</name>
+    <member refid="classxtd_1_1log_1_1Stream_1a34a37c4875c4e7fa097962a8cdeb49b2" kind="variable"><name>m_ref</name></member>
+    <member refid="classxtd_1_1log_1_1Stream_1a9a512ca565eaf18d7bd9574ac49ae446" kind="variable"><name>m_stream</name></member>
+    <member refid="classxtd_1_1log_1_1Stream_1a3a4fde9d36a3f35406c216c450326346" kind="variable"><name>ms_mutex</name></member>
+    <member refid="classxtd_1_1log_1_1Stream_1aa2ecc8ed2ac62c3616e291c2ef446672" kind="function"><name>Stream</name></member>
+    <member refid="classxtd_1_1log_1_1Stream_1afdef997dc29530e786ff875c01eb504e" kind="function"><name>Stream</name></member>
+    <member refid="classxtd_1_1log_1_1Stream_1a3b62f0f8f65023f3f585bac75ce1a252" kind="function"><name>flush</name></member>
+    <member refid="classxtd_1_1log_1_1Stream_1ad5e3099d5419af9b0bc144482dd55316" kind="function"><name>operator&lt;&lt;</name></member>
+  </compound>
+  <compound refid="classxtd_1_1log_1_1StreamAppender" kind="class"><name>xtd::log::StreamAppender</name>
+    <member refid="classxtd_1_1log_1_1StreamAppender_1a9955ed43ad70918dd7b3bdcb8d14a53b" kind="friend"><name>ConfLoader</name></member>
+    <member refid="classxtd_1_1log_1_1StreamAppender_1a1e1ea9ffb164fedf20986cd8f7a243d7" kind="friend"><name>::TestStreamAppender</name></member>
+    <member refid="classxtd_1_1log_1_1StreamAppender_1a2a9b8777a71cfad887e51238cc59f5a2" kind="variable"><name>m_stream</name></member>
+    <member refid="classxtd_1_1log_1_1StreamAppender_1a330324f6138e366b94cdcf67adba7dbc" kind="function"><name>StreamAppender</name></member>
+    <member refid="classxtd_1_1log_1_1StreamAppender_1a6aa36c7815b6df8c5430240d011966a5" kind="function"><name>StreamAppender</name></member>
+    <member refid="classxtd_1_1log_1_1StreamAppender_1a9583ef98a31724dc4edb435a13dff33e" kind="function"><name>~StreamAppender</name></member>
+    <member refid="classxtd_1_1log_1_1StreamAppender_1a99a5b0101b684121e655a4c817ba3d1b" kind="function"><name>create</name></member>
+    <member refid="classxtd_1_1log_1_1StreamAppender_1ae4eac1c6b9fa604090f3c83e9cabf828" kind="function"><name>print</name></member>
+  </compound>
+  <compound refid="structxtd_1_1tty_1_1style" kind="struct"><name>xtd::tty::style</name>
+    <member refid="structxtd_1_1tty_1_1style_1a47de71307ed5766fd7464b3540569ce0" kind="variable"><name>m_fg</name></member>
+    <member refid="structxtd_1_1tty_1_1style_1adfcf7d7b349d192a90673b369d553bda" kind="variable"><name>m_bg</name></member>
+    <member refid="structxtd_1_1tty_1_1style_1a73801f276ee34147865f9d1fdb10e776" kind="variable"><name>m_attrs</name></member>
+    <member refid="structxtd_1_1tty_1_1style_1aca1fbba9ebb41a08dec9fd3622cd0c2f" kind="function"><name>style</name></member>
+    <member refid="structxtd_1_1tty_1_1style_1aa5fc09d0d1ef75211f861614966ae5e8" kind="function"><name>style</name></member>
+    <member refid="structxtd_1_1tty_1_1style_1a6b3ef296797f4ca4234ab40d7485c52a" kind="function"><name>getFgColor</name></member>
+    <member refid="structxtd_1_1tty_1_1style_1a22454b76096847a6e60af288f974c2b9" kind="function"><name>getBgColor</name></member>
+    <member refid="structxtd_1_1tty_1_1style_1aad6e5cdb06ec35ee47d87d556a2789b7" kind="function"><name>getAttrs</name></member>
+    <member refid="structxtd_1_1tty_1_1style_1ad1bdffd0925c46de0681b2538a7b19b8" kind="function"><name>setFgColor</name></member>
+    <member refid="structxtd_1_1tty_1_1style_1a82f283adc14d45cb81ec490ad2c9a3cb" kind="function"><name>setBgColor</name></member>
+    <member refid="structxtd_1_1tty_1_1style_1a7ce05696208a09a05246773ebe1d90f4" kind="function"><name>setAttrs</name></member>
+  </compound>
+  <compound refid="structxtd_1_1log_1_1StyleByLevel" kind="struct"><name>xtd::log::StyleByLevel</name>
+    <member refid="structxtd_1_1log_1_1StyleByLevel_1a19d52d684e8ab225cfe5f0b1748c008f" kind="variable"><name>m_conds</name></member>
+    <member refid="structxtd_1_1log_1_1StyleByLevel_1a0244dfd2b644b4bc625c47daa7db0cd8" kind="function"><name>StyleByLevel</name></member>
+    <member refid="structxtd_1_1log_1_1StyleByLevel_1aa385742cb62a504b4648fdaa6979487d" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="structxtd_1_1log_1_1StyleMatch" kind="struct"><name>xtd::log::StyleMatch</name>
+    <member refid="structxtd_1_1log_1_1StyleMatch_1a00a2cd9242a14b655e7bc9cc2247f012" kind="variable"><name>m_match</name></member>
+    <member refid="structxtd_1_1log_1_1StyleMatch_1ae4a44750c49ce540075c7c5963bff1c1" kind="variable"><name>m_style</name></member>
+    <member refid="structxtd_1_1log_1_1StyleMatch_1ae9a2270d20bb15b995cacb9a2364a31b" kind="function"><name>StyleMatch</name></member>
+    <member refid="structxtd_1_1log_1_1StyleMatch_1af0cae3d8973e3051d8700aff8cbc4151" kind="function"><name>operator()</name></member>
+  </compound>
+  <compound refid="classxtd_1_1log_1_1SyslogAppender" kind="class"><name>xtd::log::SyslogAppender</name>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1a9955ed43ad70918dd7b3bdcb8d14a53b" kind="friend"><name>ConfLoader</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1a06e6481b00810a3612442764bffd6bfd" kind="friend"><name>::TestSyslogAppender</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1adac2270eb4c1cb861964f619d2bb38ea" kind="variable"><name>m_opts</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1a9b49f62ea29c6b18a5a429d7ef9e71ad" kind="variable"><name>m_facility</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1ac25b9264024136644344599cc14de977" kind="variable"><name>ms_instances</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1a830fedf047adac19d3eb0094e7880478" kind="variable"><name>ms_mutex</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1a9f8a3580dfee03d1ba0f297de0e589e7" kind="function"><name>SyslogAppender</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1ad18e48afd40cab127485e13ba2a3819a" kind="function"><name>~SyslogAppender</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1a90a195f73cdc8bd15a043c79fe83fda4" kind="function"><name>to_facility</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1a74d247b5818a7d888f50b9a11aa2b093" kind="function"><name>to_option</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1a0c661e21036645ae29cc243df54c5207" kind="function"><name>create</name></member>
+    <member refid="classxtd_1_1log_1_1SyslogAppender_1a23e3ac72a469017a2338e332c97a44af" kind="function"><name>print</name></member>
+  </compound>
+  <compound refid="structxtd_1_1Application_1_1t__option" kind="struct"><name>xtd::Application::t_option</name>
+    <member refid="structxtd_1_1Application_1_1t__option_1a74f46755b278edcf6d3b07531bb1d9f0" kind="variable"><name>m_shortOpt</name></member>
+    <member refid="structxtd_1_1Application_1_1t__option_1a028a65ae9ae83b5302726f70dfd4893b" kind="variable"><name>m_longOpt</name></member>
+    <member refid="structxtd_1_1Application_1_1t__option_1a53cc01265ab04897008c7dcb27e89d4b" kind="variable"><name>m_description</name></member>
+    <member refid="structxtd_1_1Application_1_1t__option_1a592a9fca5f2d9634259ba1f5aa831f28" kind="variable"><name>m_argumentType</name></member>
+    <member refid="structxtd_1_1Application_1_1t__option_1af55ca16ca4cc96c6a0e2f30467712090" kind="variable"><name>m_callback</name></member>
+    <member refid="structxtd_1_1Application_1_1t__option_1a2abcf020edd37389ef7fbe75ecbc43e1" kind="variable"><name>m_status</name></member>
+    <member refid="structxtd_1_1Application_1_1t__option_1a2726359acde22afbbbb1a8fbf11267bb" kind="variable"><name>m_given</name></member>
+  </compound>
+  <compound refid="classxtd_1_1tty_1_1Text" kind="class"><name>xtd::tty::Text</name>
+    <member refid="classxtd_1_1tty_1_1Text_1abb84dcf065a4eba28b0b951c1e21f4b0" kind="variable"><name>m_str</name></member>
+    <member refid="classxtd_1_1tty_1_1Text_1a452ed3428bbb7f5ef5334d38af4b338f" kind="variable"><name>m_style</name></member>
+    <member refid="classxtd_1_1tty_1_1Text_1a01261418071f31cc9ef51a0175daa410" kind="function"><name>Text</name></member>
+    <member refid="classxtd_1_1tty_1_1Text_1a8493afceca94b6e651b668c1a9a631d4" kind="function"><name>Text</name></member>
+    <member refid="classxtd_1_1tty_1_1Text_1a526a45fa6690eb89797327efbee558a7" kind="function"><name>Text</name></member>
+    <member refid="classxtd_1_1tty_1_1Text_1a04a521ccea6d75b3ce7a963c7c81f17e" kind="function"><name>str</name></member>
+    <member refid="classxtd_1_1tty_1_1Text_1ac62baba8f9a5faddc3b7c6bf555b1b25" kind="function"><name>operator string</name></member>
+  </compound>
+  <compound refid="structxtd_1_1log_1_1Logger_1_1thread__counter" kind="struct"><name>xtd::log::Logger::thread_counter</name>
+    <member refid="structxtd_1_1log_1_1Logger_1_1thread__counter_1a6c53529a02340d6134c48619df218206" kind="variable"><name>ms_ids</name></member>
+    <member refid="structxtd_1_1log_1_1Logger_1_1thread__counter_1a1e93fc7788985195d8e0c7ef3d4c75d3" kind="variable"><name>ms_mutex</name></member>
+    <member refid="structxtd_1_1log_1_1Logger_1_1thread__counter_1a4b0af1c4be15d2f9610c12f5fa18067a" kind="variable"><name>ms_mainID</name></member>
+    <member refid="structxtd_1_1log_1_1Logger_1_1thread__counter_1abfcba396ae8095241ff3bd749762f6c2" kind="function"><name>get_id</name></member>
+  </compound>
+  <compound refid="classxtd_1_1text_1_1xml" kind="class"><name>xtd::text::xml</name>
+    <member refid="classxtd_1_1text_1_1xml_1a6b6fd12ee7b110343634686b94d53edf" kind="typedef"><name>t_entity</name></member>
+    <member refid="classxtd_1_1text_1_1xml_1a9b3918b7ebded616690be19640cdba21" kind="typedef"><name>t_data</name></member>
+    <member refid="classxtd_1_1text_1_1xml_1a767f42dc9e5c40f7021bf41c17292902" kind="variable"><name>ms_entityList</name></member>
+    <member refid="classxtd_1_1text_1_1xml_1ab53ec8f1cf407b142479fa90b4d41bdb" kind="function"><name>encode</name></member>
+    <member refid="classxtd_1_1text_1_1xml_1a75c4caafbada294ca593a907b9ad1e00" kind="function"><name>encode_copy</name></member>
+    <member refid="classxtd_1_1text_1_1xml_1a358995dad405fbcd3734f8e555f84ee1" kind="function"><name>initialize</name></member>
+  </compound>
+  <compound refid="namespacextd" kind="namespace"><name>xtd</name>
+    <member refid="namespacextd_1a68ed4fe8e9c11116b68efe5b102aec50" kind="enum"><name>status</name></member>
+    <member refid="namespacextd_1a68ed4fe8e9c11116b68efe5b102aec50a444bcb3a3fcf8389296c49467f27e1d6" kind="enumvalue"><name>ok</name></member>
+    <member refid="namespacextd_1a68ed4fe8e9c11116b68efe5b102aec50acb5e100e5a9a3e7f6d1fd97512215282" kind="enumvalue"><name>error</name></member>
+    <member refid="namespacextd_1a68ed4fe8e9c11116b68efe5b102aec50a90272dda245ae1fb3cf197e91a8689dc" kind="enumvalue"><name>timeout</name></member>
+    <member refid="namespacextd_1a68ed4fe8e9c11116b68efe5b102aec50ac2adf6ecc220f2711801d6e466340183" kind="enumvalue"><name>notfound</name></member>
+    <member refid="namespacextd_1a68ed4fe8e9c11116b68efe5b102aec50ad0cab90d8d20d57e2f2b9be52f7dd25d" kind="enumvalue"><name>next</name></member>
+    <member refid="namespacextd_1a64e8a4920a0547028d9f6661dbb634a0" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="namespacextd_1a518b0ddcbf87f6c21175d2760f4fbe21" kind="function"><name>valueof</name></member>
+    <member refid="namespacextd_1a35112a77d0ca3d54cbda672eeaebc073" kind="function"><name>to_enum</name></member>
+  </compound>
+  <compound refid="namespacextd_1_1config" kind="namespace"><name>xtd::config</name>
+    <member refid="namespacextd_1_1config_1aca7460120bc3957684d6a6777f707ea2" kind="function"><name>xtd_error_class</name></member>
+  </compound>
+  <compound refid="namespacextd_1_1config_1_1impl" kind="namespace"><name>xtd::config::impl</name>
+  </compound>
+  <compound refid="namespacextd_1_1log" kind="namespace"><name>xtd::log</name>
+    <member refid="namespacextd_1_1log_1ad2faa1c59d15e7c19c73f42954f60ec8" kind="enum"><name>level</name></member>
+    <member refid="namespacextd_1_1log_1ad2faa1c59d15e7c19c73f42954f60ec8ae6cb8d153a4c27be572a177366bd7abc" kind="enumvalue"><name>emerg</name></member>
+    <member refid="namespacextd_1_1log_1ad2faa1c59d15e7c19c73f42954f60ec8a7ed21143076d0cca420653d4345baa2f" kind="enumvalue"><name>alert</name></member>
+    <member refid="namespacextd_1_1log_1ad2faa1c59d15e7c19c73f42954f60ec8a5888c6a8bb862595985926d16c7dcf13" kind="enumvalue"><name>crit</name></member>
+    <member refid="namespacextd_1_1log_1ad2faa1c59d15e7c19c73f42954f60ec8a56bd7107802ebe56c6918992f0608ec6" kind="enumvalue"><name>err</name></member>
+    <member refid="namespacextd_1_1log_1ad2faa1c59d15e7c19c73f42954f60ec8a7b83d3f08fa392b79e3f553b585971cd" kind="enumvalue"><name>warning</name></member>
+    <member refid="namespacextd_1_1log_1ad2faa1c59d15e7c19c73f42954f60ec8aefd2af60c8501931cb9c736b5ad74f65" kind="enumvalue"><name>notice</name></member>
+    <member refid="namespacextd_1_1log_1ad2faa1c59d15e7c19c73f42954f60ec8acaf9b6b99962bf5c2264824231d7a40c" kind="enumvalue"><name>info</name></member>
+    <member refid="namespacextd_1_1log_1ad2faa1c59d15e7c19c73f42954f60ec8aad42f6697b035b7580e4fef93be20b4d" kind="enumvalue"><name>debug</name></member>
+    <member refid="namespacextd_1_1log_1ad62a7ffe75fe416cf648c34acf201324" kind="function"><name>from</name></member>
+    <member refid="namespacextd_1_1log_1a7e96a9e8106038b82ee576e7642450c1" kind="function"><name>from</name></member>
+    <member refid="namespacextd_1_1log_1ad2efc26287edf8534ae7b46b22907c02" kind="function"><name>to_value</name></member>
+    <member refid="namespacextd_1_1log_1a1bf454914ef30636b604ead4f3c0ca7b" kind="function"><name>to_string</name></member>
+    <member refid="namespacextd_1_1log_1ac843dc7585be48789f5b3fa33dcf40d4" kind="function"><name>is_valid</name></member>
+    <member refid="namespacextd_1_1log_1a30a04ba66fbfa45d812491c81b2a343d" kind="function"><name>is_valid</name></member>
+    <member refid="namespacextd_1_1log_1a77d7eeda9f5c08df15ef96dcc3591dda" kind="function"><name>getRoot</name></member>
+    <member refid="namespacextd_1_1log_1a3d1f9133760aa358dbad8e4d26c9071d" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="namespacextd_1_1log_1a53756d118af449c5384411b8e925b334" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="namespacextd_1_1log_1a6c16b9221ef7e6d34b054c5bf92764bf" kind="function"><name>emerg</name></member>
+    <member refid="namespacextd_1_1log_1a62a910300752c86189bc100723a9a089" kind="function"><name>alert</name></member>
+    <member refid="namespacextd_1_1log_1a3129473b80d98dd083f45b6990569812" kind="function"><name>crit</name></member>
+    <member refid="namespacextd_1_1log_1ae95e2feee4ac0e68e4e72b88f091c218" kind="function"><name>err</name></member>
+    <member refid="namespacextd_1_1log_1a27f1b6edc502ee943cb54e28900fbf90" kind="function"><name>warning</name></member>
+    <member refid="namespacextd_1_1log_1ab9c90d1126cd3254cafc0071de892d72" kind="function"><name>info</name></member>
+    <member refid="namespacextd_1_1log_1afd634ba35097d67f74250835bb8161b9" kind="function"><name>notice</name></member>
+    <member refid="namespacextd_1_1log_1ac18f1c986885a421e323ee8d9e56dabe" kind="function"><name>debug</name></member>
+    <member refid="namespacextd_1_1log_1ae50fd2a27d60849c033bccd7022d5862" kind="function"><name>raise</name></member>
+    <member refid="namespacextd_1_1log_1aa6da6c5b70e289274ec0ee7e9f261f38" kind="function"><name>xtd_error_class</name></member>
+  </compound>
+  <compound refid="namespacextd_1_1log_1_1_0D21" kind="namespace"><name>xtd::log::@21</name>
+  </compound>
+  <compound refid="namespacextd_1_1mixins" kind="namespace"><name>xtd::mixins</name>
+  </compound>
+  <compound refid="namespacextd_1_1text" kind="namespace"><name>xtd::text</name>
+  </compound>
+  <compound refid="namespacextd_1_1tty" kind="namespace"><name>xtd::tty</name>
+    <member refid="namespacextd_1_1tty_1af0d94e4d7489d88a4fd2854da6e062a7" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="namespacextd_1_1tty_1a328b4586a6229454ca5b603742e35506" kind="function"><name>operator&lt;&lt;</name></member>
+    <member refid="namespacextd_1_1tty_1a4f54fa5e1658dcb9ac8e0d00c2de3a39" kind="function"><name>operator&lt;&lt;</name></member>
+  </compound>
+  <compound refid="config_8hh" kind="file"><name>config.hh</name>
+  </compound>
+  <compound refid="core_8hh" kind="file"><name>core.hh</name>
+  </compound>
+  <compound refid="exemple1_8cc" kind="file"><name>exemple1.cc</name>
+    <member refid="exemple1_8cc_1a2c3f6775325c30275d11c6abee2db6a0" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="formatter_8cc" kind="file"><name>formatter.cc</name>
+    <member refid="formatter_8cc_1a2c3f6775325c30275d11c6abee2db6a0" kind="function"><name>main</name></member>
+  </compound>
+  <compound refid="Application_8cc" kind="file"><name>Application.cc</name>
+    <member refid="Application_8cc_1a69f59503b72db9ae6ac36f5f5deaeb80" kind="variable"><name>rcsid</name></member>
+  </compound>
+  <compound refid="src_2Application_8hh" kind="file"><name>Application.hh</name>
+  </compound>
+  <compound refid="doc_2example_2Application_8hh" kind="file"><name>Application.hh</name>
+  </compound>
+  <compound refid="Grammar_8cc" kind="file"><name>Grammar.cc</name>
+  </compound>
+  <compound refid="Grammar_8hh" kind="file"><name>Grammar.hh</name>
+  </compound>
+  <compound refid="Parser_8cc" kind="file"><name>Parser.cc</name>
+  </compound>
+  <compound refid="Parser_8hh" kind="file"><name>Parser.hh</name>
+  </compound>
+  <compound refid="config_2types_8hh" kind="file"><name>types.hh</name>
+  </compound>
+  <compound refid="types_8hh" kind="file"><name>types.hh</name>
+    <member refid="types_8hh_1a0deadff6cb131411a35e7230fcf48f0c" kind="typedef"><name>sptr</name></member>
+    <member refid="types_8hh_1ae2dda9097f7ad5b232a4cef8f198a34d" kind="typedef"><name>fn</name></member>
+  </compound>
+  <compound refid="error_8hh" kind="file"><name>error.hh</name>
+    <member refid="error_8hh_1a6c0e8fc1790e2dbe2749e32c390f0ab3" kind="define"><name>xtd_error_class</name></member>
+  </compound>
+  <compound refid="format_8hh" kind="file"><name>format.hh</name>
+  </compound>
+  <compound refid="src_2log_8hh" kind="file"><name>log.hh</name>
+  </compound>
+  <compound refid="doc_2log_8hh" kind="file"><name>log.hh</name>
+  </compound>
+  <compound refid="Appender_8cc" kind="file"><name>Appender.cc</name>
+  </compound>
+  <compound refid="Appender_8hh" kind="file"><name>Appender.hh</name>
+  </compound>
+  <compound refid="ColoredFormatter_8cc" kind="file"><name>ColoredFormatter.cc</name>
+  </compound>
+  <compound refid="ColoredFormatter_8hh" kind="file"><name>ColoredFormatter.hh</name>
+  </compound>
+  <compound refid="ConfLoader_8cc" kind="file"><name>ConfLoader.cc</name>
+  </compound>
+  <compound refid="ConfLoader_8hh" kind="file"><name>ConfLoader.hh</name>
+    <member refid="ConfLoader_8hh_1af39e4d3c2e671093b359c5470e1cb32b" kind="define"><name>XTD_CORE_LOG_REGISTER_APPENDER</name></member>
+    <member refid="ConfLoader_8hh_1afd1491007c8a0ec00071a89d21bda393" kind="define"><name>XTD_CORE_LOG_REGISTER_FORMATTER</name></member>
+  </compound>
+  <compound refid="Fields_8hh" kind="file"><name>Fields.hh</name>
+  </compound>
+  <compound refid="FormatModifiers_8cc" kind="file"><name>FormatModifiers.cc</name>
+  </compound>
+  <compound refid="FormatModifiers_8hh" kind="file"><name>FormatModifiers.hh</name>
+  </compound>
+  <compound refid="Formatter_8cc" kind="file"><name>Formatter.cc</name>
+  </compound>
+  <compound refid="Formatter_8hh" kind="file"><name>Formatter.hh</name>
+  </compound>
+  <compound refid="fwd_8hh" kind="file"><name>fwd.hh</name>
+  </compound>
+  <compound refid="helpers_8cc" kind="file"><name>helpers.cc</name>
+  </compound>
+  <compound refid="helpers_8hh" kind="file"><name>helpers.hh</name>
+  </compound>
+  <compound refid="Logger_8cc" kind="file"><name>Logger.cc</name>
+  </compound>
+  <compound refid="Logger_8hh" kind="file"><name>Logger.hh</name>
+  </compound>
+  <compound refid="logtypes_8hh" kind="file"><name>logtypes.hh</name>
+    <member refid="logtypes_8hh_1a3fe03e23176f4fe277d1d3b41f3d3d06" kind="define"><name>HERE</name></member>
+  </compound>
+  <compound refid="MemoryAppender_8cc" kind="file"><name>MemoryAppender.cc</name>
+  </compound>
+  <compound refid="MemoryAppender_8hh" kind="file"><name>MemoryAppender.hh</name>
+  </compound>
+  <compound refid="Stream_8cc" kind="file"><name>Stream.cc</name>
+  </compound>
+  <compound refid="Stream_8hh" kind="file"><name>Stream.hh</name>
+  </compound>
+  <compound refid="StreamAppender_8cc" kind="file"><name>StreamAppender.cc</name>
+  </compound>
+  <compound refid="StreamAppender_8hh" kind="file"><name>StreamAppender.hh</name>
+  </compound>
+  <compound refid="SyslogAppender_8cc" kind="file"><name>SyslogAppender.cc</name>
+  </compound>
+  <compound refid="SyslogAppender_8hh" kind="file"><name>SyslogAppender.hh</name>
+  </compound>
+  <compound refid="cloneable_8hh" kind="file"><name>cloneable.hh</name>
+  </compound>
+  <compound refid="singleton_8hh" kind="file"><name>singleton.hh</name>
+  </compound>
+  <compound refid="text_8cc" kind="file"><name>text.cc</name>
+  </compound>
+  <compound refid="text_8hh" kind="file"><name>text.hh</name>
+  </compound>
+  <compound refid="tty_8cc" kind="file"><name>tty.cc</name>
+  </compound>
+  <compound refid="src_2tty_8hh" kind="file"><name>tty.hh</name>
+  </compound>
+  <compound refid="doc_2tty_8hh" kind="file"><name>tty.hh</name>
+  </compound>
+  <compound refid="types_8cc" kind="file"><name>types.cc</name>
+  </compound>
+  <compound refid="core_config" kind="page"><name>core_config</name>
+  </compound>
+  <compound refid="core_log" kind="page"><name>core_log</name>
+  </compound>
+  <compound refid="core_tty" kind="page"><name>core_tty</name>
+  </compound>
+  <compound refid="todo" kind="page"><name>todo</name>
+  </compound>
+  <compound refid="dir_e42f922d127a3065d1ce8eed20cac6f9" kind="dir"><name>/home/psyco/dev/xtdcpp/core/src/config</name>
+  </compound>
+  <compound refid="dir_4270bfced15e0e73154b13468c7c9ad9" kind="dir"><name>/home/psyco/dev/xtdcpp/core</name>
+  </compound>
+  <compound refid="dir_de2a3975874a7e699a44796a679e8f58" kind="dir"><name>/home/psyco/dev/xtdcpp/core/doc</name>
+  </compound>
+  <compound refid="dir_9212318c8f9feacbb95b0177a3b87547" kind="dir"><name>/home/psyco/dev/xtdcpp/core/doc/example</name>
+  </compound>
+  <compound refid="dir_a44144ad7ac92a9d83514ca693dca004" kind="dir"><name>/home/psyco/dev/xtdcpp/core/src/log</name>
+  </compound>
+  <compound refid="dir_26a4d07005f4f7d11a98eb2748fa9d8c" kind="dir"><name>/home/psyco/dev/xtdcpp/core/doc/example/log</name>
+  </compound>
+  <compound refid="dir_dbc54a3124b7feec5f43bc8013c58eca" kind="dir"><name>/home/psyco/dev/xtdcpp/core/src/mixins</name>
+  </compound>
+  <compound refid="dir_90fd98a0ba30abf7a6068a44995d2d6b" kind="dir"><name>/home/psyco/dev/xtdcpp/core/src</name>
+  </compound>
+  <compound refid="indexpage" kind="page"><name>index</name>
+  </compound>
+</doxygenindex>

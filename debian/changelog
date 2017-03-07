@@ -1,4 +1,18 @@
-coverxygen (1.2.0ppa1~xenial) trusty; urgency=medium
+coverxygen (1.3.0ppa1~xenial) xenial; urgency=medium
+
+  * strengthen and sanitize code
+  * replaces --json option by --format
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Tue, 07 Mar 2017 00:21:55 +0100
+
+coverxygen (1.3.0ppa1~trusty) trusty; urgency=medium
+
+  * strengthen and sanitize code
+  * replaces --json option by --format
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Tue, 07 Mar 2017 00:21:33 +0100
+
+coverxygen (1.2.0ppa1~xenial) xenial; urgency=medium
 
   * compatibility with doxygen strip path
 
