@@ -67,7 +67,7 @@ python -m coverxygen --xml-path <path_to_doxygen_xml_dir> --output doc-coverage.
 
 Full usage :
 ```
-usage: coverxygen [-h] [--version] [--verbose] [--json JSON] [--format FORMAT] --xml-dir XML_DIR --output OUTPUT --root-dir ROOT_DIR [--prefix PREFIX] [--scope SCOPE] [--kind KIND]
+usage: coverxygen [-h] [--version] [--verbose] [--json JSON] [--format FORMAT] --xml-dir XML_DIR --output OUTPUT --src-dir ROOT_DIR [--prefix PREFIX] [--scope SCOPE] [--kind KIND]
 
 optional arguments:
   -h, --help           show this help message and exit
@@ -80,7 +80,7 @@ optional arguments:
                        lcov        : simpler json format
   --xml-dir XML_DIR    path to generated doxygen XML directory
   --output OUTPUT      destination output file (- for stdout)
-  --root-dir ROOT_DIR  root source directory used to match prefix forrelative path generated files
+  --src-dir ROOT_DIR   root source directory used to match prefix forrelative path generated files
   --prefix PREFIX      keep only file matching given path prefix
   --scope SCOPE        comma-separated list of items' scope to include : 
                         - public    : public member elements
