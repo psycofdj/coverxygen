@@ -223,7 +223,7 @@ class Coverxygen(object):
       for c_item in c_data:
         l_value = 1
         if not c_item["documented"]:
-          l_value = -1
+          l_value = 0
         p_stream.write("DA:%d,%d\n" % (c_item["line"], l_value))
       p_stream.write("end_of_record\n")
 
