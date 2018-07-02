@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 
 __author__       = "Xavier MARCELET <xavier@marcelet.com>"
 __copyright__    = "Copyright (C) 2016 Xavier MARCELET"
-__version__      = "1.3.0"
+__version__      = "1.3.1"
 __description__  = "Generate doxygen's documentation coverage report"
 __url__          = "https://github.com/psycofdj/coverxygen"
 __download_url__ = "https://github.com/psycofdj/coverxygen/tarball/%s" % __version__
