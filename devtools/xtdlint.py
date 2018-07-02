@@ -7,6 +7,8 @@ __author__    = "Xavier MARCELET <xavier@marcelet.com>"
 
 #------------------------------------------------------------------#
 
+
+
 import os
 import sys
 import pylint
@@ -75,6 +77,10 @@ class JsonReporter(BaseReporter):
 
 
   def _display(self, layout):
+    """Don't do nothing."""
+
+  def display_messages(self, layout):
+    self.m_linter._report_evaluation()
     print(json.dumps({
       "report"   : {
         "cloc" : {
@@ -103,7 +109,7 @@ class JsonReporter(BaseReporter):
         "errors" : self._getStats()
       },
       "errors" : self.m_data
-    }))
+    }), file=self.out)
 
 
 class XtdLint(PyLinter):
