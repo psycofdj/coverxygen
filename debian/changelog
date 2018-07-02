@@ -1,3 +1,15 @@
+coverxygen (1.3.1ppa1~xenial) xenial; urgency=medium
+
+  * fix generated value when item is undocumented
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Mon, 02 Jul 2018 13:26:17 +0200
+
+coverxygen (1.3.1ppa1~trusty) xenial; urgency=medium
+
+  * fix generated value when item is undocumented
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Mon, 02 Jul 2018 13:26:17 +0200
+
 coverxygen (1.3.0ppa1~xenial) xenial; urgency=medium
 
   * strengthen and sanitize code
