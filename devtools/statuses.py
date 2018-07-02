@@ -212,7 +212,7 @@ class StatusHelper:
     print("Running pylint     ")
     print("-------------------")
 
-    l_proc = subprocess.Popen(["python3", "./devtools/xtdlint.py", "--rcfile", ".pylintrc", "-j", "4", "coverxygen" ], stdout=subprocess.PIPE)
+    l_proc = subprocess.Popen(["python3", "./devtools/xtdlint.py", "--rcfile", ".pylintrc", "-j", "4", "coverxygen", "-r", "yes", "-s", "yes" ], stdout=subprocess.PIPE)
     l_proc.wait()
     try:
       l_lines      = l_proc.stdout.read().decode("utf-8")
