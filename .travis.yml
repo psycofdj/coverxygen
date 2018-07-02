@@ -4,12 +4,14 @@ cache:
   - pip
 
 install:
-  - sudo apt-get install graphviz debhelper python-all python-setuptools python3-all python3-setuptools python3-pip lintian
+  - sudo apt-get install graphviz debhelper python-all python-setuptools python3-all python3-setuptools python3-pip lintian fakeroot
 
+  
 script:
   - export PATH=/usr/bin:${PATH}
   - sudo -H python3 -m pip install --upgrade pip
-  - sudo -H python3 -m pip install -rrequirements.dev.txt --upgrade
+  - sudo -H python3 -m pip install --ignore-installed six urllib3
+  - sudo -H python3 -m pip install --ignore-installed -rrequirements.dev.txt --upgrade
   - python3 ./devtools/statuses.py --commit=${TRAVIS_COMMIT} --build-id=${TRAVIS_BUILD_ID} --token=${token} --pull-id=${TRAVIS_PULL_REQUEST}
   - ./devtools/coverage.sh python3
   - dpkg-buildpackage -uc -us

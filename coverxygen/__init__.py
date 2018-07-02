@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 
 __author__       = "Xavier MARCELET <xavier@marcelet.com>"
 __copyright__    = "Copyright (C) 2016 Xavier MARCELET"
-__version__      = "1.3.0"
+__version__      = "1.3.1"
 __description__  = "Generate doxygen's documentation coverage report"
 __url__          = "https://github.com/psycofdj/coverxygen"
 __download_url__ = "https://github.com/psycofdj/coverxygen/tarball/%s" % __version__
@@ -86,6 +86,7 @@ class Coverxygen(object):
     elif l_id is not None :
       return l_id
     Coverxygen.error("unable to deduce name from node %s", ET.tostring(p_node))
+    return None
 
   @staticmethod
   def extract_documented(p_node):
@@ -93,7 +94,7 @@ class Coverxygen(object):
       l_node = p_node.find("./%s" % c_key)
       if l_node is not None:
         l_content = "".join(l_node.itertext()).strip()
-        if len(l_content):
+        if l_content:
           return True
     return False
 
@@ -145,7 +146,7 @@ class Coverxygen(object):
   @staticmethod
   def merge_symbols(p_results, p_symbols):
     for c_symbol in p_symbols:
-      if not len(c_symbol):
+      if not c_symbol:
         continue
       l_file = c_symbol["file"]
       if not l_file in p_results:
@@ -223,7 +224,7 @@ class Coverxygen(object):
       for c_item in c_data:
         l_value = 1
         if not c_item["documented"]:
-          l_value = -1
+          l_value = 0
         p_stream.write("DA:%d,%d\n" % (c_item["line"], l_value))
       p_stream.write("end_of_record\n")
 
