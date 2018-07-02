@@ -9,6 +9,7 @@ install:
 script:
   - export PATH=/usr/bin:${PATH}
   - sudo -H python3 -m pip install --upgrade pip
+  - sudo -H python3 -m pip install --ignore-installed six
   - sudo -H python3 -m pip install -rrequirements.dev.txt --upgrade
   - python3 ./devtools/statuses.py --commit=${TRAVIS_COMMIT} --build-id=${TRAVIS_BUILD_ID} --token=${token} --pull-id=${TRAVIS_PULL_REQUEST}
   - ./devtools/coverage.sh python3
