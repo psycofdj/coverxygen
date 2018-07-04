@@ -77,7 +77,7 @@ optional arguments:
   --format FORMAT      output file format : 
                        lcov        : lcov compatible format (default)
                        json-legacy : legacy json format
-                       lcov        : simpler json format
+                       json        : simpler json format
   --xml-dir XML_DIR    path to generated doxygen XML directory
   --output OUTPUT      destination output file (- for stdout)
   --src-dir ROOT_DIR   root source directory used to match prefix forrelative path generated files
