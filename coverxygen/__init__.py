@@ -33,9 +33,9 @@ class Coverxygen(object):
     self.m_output  = p_output
     self.m_scope   = p_scope
     self.m_kind    = p_kind
-    self.m_prefix  = p_prefix
+    self.m_prefix  = os.path.abspath(p_prefix)
     self.m_format  = p_format
-    self.m_rootDir = p_rootDir
+    self.m_rootDir = os.path.abspath(p_rootDir)
     self.m_verbose = p_verbose
 
   @staticmethod
@@ -118,7 +118,7 @@ class Coverxygen(object):
   @staticmethod
   def get_absolute_path(p_file, p_rootDir):
     l_path = p_file
-    if not p_file.startswith("/"):
+    if not os.path.isabs(p_file):
       l_path = os.path.join(p_rootDir, p_file)
     return os.path.abspath(l_path)
 
