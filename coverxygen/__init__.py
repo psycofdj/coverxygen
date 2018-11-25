@@ -110,7 +110,9 @@ class Coverxygen(object):
         Coverxygen.error("unable to extract location from file %s, node : %s",
                          p_file, ET.tostring(p_node))
       l_line = int(l_line)
-    l_file = Coverxygen.get_absolute_path(l_file, p_rootDir)
+      l_file = Coverxygen.get_absolute_path(l_file, p_rootDir)
+    else:
+      l_file = os.path.abspath(l_file)
     return l_file, l_line
 
   @staticmethod
