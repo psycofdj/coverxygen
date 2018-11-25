@@ -74,12 +74,16 @@ class CoverxygenTest(unittest.TestCase):
   </node2>
   <node3 id="id3"/>
   <node4 tag="mytag"/>
+  <node5 id="id5">
+    <compoundname>CompoundName</compoundname>
+  </node5>
 </data>
     """
     l_doc = ET.fromstring(l_data)
-    self.assertEqual("def",  Coverxygen.extract_name(l_doc.find("./node1")))
-    self.assertEqual("name", Coverxygen.extract_name(l_doc.find("./node2")))
-    self.assertEqual("id3",  Coverxygen.extract_name(l_doc.find("./node3")))
+    self.assertEqual("def",          Coverxygen.extract_name(l_doc.find("./node1")))
+    self.assertEqual("name",         Coverxygen.extract_name(l_doc.find("./node2")))
+    self.assertEqual("id3",          Coverxygen.extract_name(l_doc.find("./node3")))
+    self.assertEqual("CompoundName", Coverxygen.extract_name(l_doc.find("./node5")))
     with self.assertRaisesRegex(RuntimeError, "mytag"):
       Coverxygen.extract_name(l_doc.find("./node4"))
 
@@ -193,19 +197,28 @@ class CoverxygenTest(unittest.TestCase):
     self.assertEqual(True,  l_obj.should_filter_out(l_doc.find("./node1"), "/other/file.hh", 1))
 
   def test_process_symbol(self):
-    l_doc    = ET.parse(self.get_data_path("real.xml"))
-    l_scopes = ["private",  "protected", "public"]
-    l_kinds  = ["function", "class", "enum"]
-    l_node   = l_doc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a672c075ed901e463609077d571a714c7']")
-    l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
-    l_data   = l_obj.process_symbol(l_node, "/opt/file.hh")
-    l_expect = {'documented': True, 'line': 102, 'symbol': 'argument', 'file': '/opt/src/Application.hh'}
+    l_classDoc = ET.parse(self.get_data_path("class.xml"))
+    l_scopes   = ["private",  "protected", "public"]
+    l_kinds    = ["function", "class", "enum", "namespace"]
+
+    l_node     = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a672c075ed901e463609077d571a714c7']")
+    l_obj      = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
+    l_data     = l_obj.process_symbol(l_node, "/opt/file.hh")
+    l_expect   = {'documented': True, 'line': 102, 'symbol': 'argument', 'file': '/opt/src/Application.hh'}
     self.assertDictEqual(l_expect, l_data)
 
-    l_node   = l_doc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a907b6fe8247636495890e668530863d6']")
-    l_data   = l_obj.process_symbol(l_node, "/opt/file.hh")
-    l_expect = {}
+    l_node     = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a907b6fe8247636495890e668530863d6']")
+    l_data     = l_obj.process_symbol(l_node, "/opt/file.hh")
+    l_expect   = {}
     self.assertDictEqual(l_expect, l_data)
+
+    l_namesapceDoc = ET.parse(self.get_data_path("namespace.xml"))
+    l_node         = l_namesapceDoc.find("./compounddef[@id='namespace_my_namespace']")
+    l_obj          = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
+    l_data         = l_obj.process_symbol(l_node, "/opt/file.hh")
+    l_expect       = {'documented': True, 'line': 5, 'symbol': 'MyNamespace', 'file': os.path.abspath('/opt/src/MyNamespace.hh')}
+    self.assertDictEqual(l_expect, l_data)
+
 
 
   def test_merge_symbol(self):
@@ -267,7 +280,7 @@ class CoverxygenTest(unittest.TestCase):
 
 
   def test_process_file(self):
-    l_file   = self.get_data_path("real.xml")
+    l_file   = self.get_data_path("class.xml")
     l_scopes = ["private",  "protected", "public"]
     l_kinds  = ["enum"]
     l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
@@ -279,7 +292,7 @@ class CoverxygenTest(unittest.TestCase):
     self.assertEqual(2, len(l_res[l_name]))
     self.assertEqual(2, len([x for x in l_res[l_name] if x['documented']]))
 
-    l_file   = self.get_data_path("real.xml")
+    l_file   = self.get_data_path("class.xml")
     l_scopes = ["private",  "protected", "public"]
     l_kinds  = ["class"]
     l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
