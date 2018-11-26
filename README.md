@@ -97,6 +97,7 @@ optional arguments:
                         - slot      : Qt slot definitions
                         - class     : class definitions
                         - struct    : struct definitions
+                        - union     : union definitions
                         - define    : define definitions
                         - file      : file definitions
                         - namespace : namespace definitions
