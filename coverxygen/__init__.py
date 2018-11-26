@@ -124,11 +124,20 @@ class Coverxygen(object):
     l_scope  = p_node.get('prot')
     l_kind   = p_node.get('kind')
     if l_kind == 'friend':
-      l_friendTypeNode = p_node.find('type')
-      if l_friendTypeNode is not None:
-        l_friendType = l_friendTypeNode.text
-        if (l_friendType != 'friend class') and (l_friendType != 'friend struct') and (l_friendType != 'friend'):
-          l_kind = 'function'
+      l_isDefinition = (p_node.get('inline') == 'yes' or p_node.find('initializer') is not None)
+      if l_isDefinition:
+        l_friendTypeNode = p_node.find('type')
+        if l_friendTypeNode is not None:
+          l_friendType = l_friendTypeNode.text
+          if l_friendType == 'friend class':
+            l_kind = 'class'
+          elif l_friendType == 'friend struct':
+            l_kind = 'struct'
+          elif l_friendType == 'friend union':
+            l_kind = 'union'
+          else:
+            l_kind = 'function'
+
     if (not l_scope in self.m_scope) or (not l_kind in self.m_kind):
       return True
     if not p_file.startswith(self.m_prefix):
