@@ -200,17 +200,17 @@ class CoverxygenTest(unittest.TestCase):
     l_classDoc = ET.parse(self.get_data_path("class.xml"))
     l_scopes   = ["private",  "protected", "public", "namespace"]
     l_kinds    = ["function", "class", "enum"]
-    
+
     l_node   = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a672c075ed901e463609077d571a714c7']")
     l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
     l_data   = l_obj.process_symbol(l_node, "/opt/file.hh")
     l_expect = {'documented': True, 'line': 102, 'symbol': 'argument', 'file': os.path.abspath('/opt/src/Application.hh')}
     self.assertDictEqual(l_expect, l_data)
 
-	l_node   = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a907b6fe8247636495890e668530863d6']")
-	l_data   = l_obj.process_symbol(l_node, "/opt/file.hh")
-	l_expect = {}
-	self.assertDictEqual(l_expect, l_data)
+    l_node   = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a907b6fe8247636495890e668530863d6']")
+    l_data   = l_obj.process_symbol(l_node, "/opt/file.hh")
+    l_expect = {}
+    self.assertDictEqual(l_expect, l_data)
 
     l_namesapceDoc = ET.parse(self.get_data_path("namespace.xml"))
     l_node         = l_namesapceDoc.find("./compounddef[@id='namespace_my_namespace']")
