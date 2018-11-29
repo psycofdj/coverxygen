@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef id="namespace_my_namespace" kind="namespace" language="C++">
+    <compoundname>MyNamespace</compoundname>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespace_my_namespace_1a1b01e0e8a0d73cf16edb334b85de735d" prot="public" static="no" strong="no">
+        <type></type>
+        <name>MyEnum</name>
+        <enumvalue id="namespace_my_namespace_1a1b01e0e8a0d73cf16edb334b85de735da1614ee1b4e7b8ccca48bd133463d67ac" prot="public">
+          <name>Enum_Value_1</name>
+          <briefdescription>
+<para>Value 1 </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespace_my_namespace_1a1b01e0e8a0d73cf16edb334b85de735da37fbb210b9a35f9c6e7973222dfc6bf1" prot="public">
+          <name>Enum_Value_2</name>
+          <briefdescription>
+<para>Value 2 </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Defines special values. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/MyNamespace.hpp" line="12" column="1" bodyfile="MyNamespace.hh" bodystart="11" bodyend="15"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_my_namespace_8hpp_1a407ec6e26fa4393b8813e3f538c830a8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>QByteArray</type>
+        <definition>static QByteArray MyNamespace::myNamespaceFunc</definition>
+        <argsstring>()</argsstring>
+        <name>myNamespaceFunc</name>
+        <briefdescription>
+<para>A namespace function. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="src/MyNamespace.hh" line="20" column="1" bodyfile="src/MyNamespace.hh" bodystart="20" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Namespace documentation. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="src/MyNamespace.hh" line="5" column="1"/>
+  </compounddef>
+</doxygen>

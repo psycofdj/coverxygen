@@ -76,14 +76,17 @@ class Coverxygen(object):
 
   @staticmethod
   def extract_name(p_node):
-    l_id  = p_node.get("id")
-    l_def = p_node.find("./definition")
-    l_nam = p_node.find("./name")
+    l_id       = p_node.get("id")
+    l_def      = p_node.find("./definition")
+    l_nam      = p_node.find("./name")
+    l_compName = p_node.find("./compoundname")
     if l_def is not None:
       return l_def.text
     if l_nam is not None:
       return l_nam.text
-    elif l_id is not None :
+    if l_compName is not None:
+      return l_compName.text
+    if l_id is not None :
       return l_id
     Coverxygen.error("unable to deduce name from node %s", ET.tostring(p_node))
     return None
@@ -116,13 +119,17 @@ class Coverxygen(object):
   @staticmethod
   def get_absolute_path(p_file, p_rootDir):
     l_path = p_file
-    if not p_file.startswith("/"):
+    if not os.path.isabs(p_file):
       l_path = os.path.join(p_rootDir, p_file)
     return os.path.abspath(l_path)
 
   def should_filter_out(self, p_node, p_file, p_line):
     l_scope  = p_node.get('prot')
     l_kind   = p_node.get('kind')
+    
+    if l_scope is None:
+      l_scope = "public"
+    
     if l_kind == 'friend':
       l_isDefinition = (p_node.get('inline') == 'yes' or p_node.find('initializer') is not None)
       if l_isDefinition:
@@ -186,7 +193,7 @@ class Coverxygen(object):
       l_refid = c_entry.get("refid")
       if not l_kind:
         self.error("missing kind attribute on compound element : %s", str(c_entry))
-      if not l_kind:
+      if not l_refid:
         self.error("missing refid attribute on compound element : %s", str(c_entry))
       if l_kind == "dir":
         continue
