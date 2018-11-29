@@ -198,8 +198,8 @@ class CoverxygenTest(unittest.TestCase):
 
   def test_process_symbol(self):
     l_classDoc = ET.parse(self.get_data_path("class.xml"))
-    l_scopes   = ["private",  "protected", "public", "namespace"]
-    l_kinds    = ["function", "class", "enum"]
+    l_scopes   = ["private",  "protected", "public"]
+    l_kinds    = ["function", "class", "enum", "namespace"]
 
     l_node   = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a672c075ed901e463609077d571a714c7']")
     l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
