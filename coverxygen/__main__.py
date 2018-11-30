@@ -64,15 +64,19 @@ def main():
   l_parser.add_argument("--kind",
                         action="store",
                         help="comma-separated list of items' type to include : \n"
-                        " - enum      : enum definitions \n"
+                        " - enum      : enum definitions\n"
                         " - enumvalue : enumvalue definitions\n"
                         "               Note: a single undocumented enumvalue will mark\n"
                         "               the containing enum as undocumented\n"
+                        " - friend	: friend declarations\n"
                         " - typedef   : typedef definitions\n"
                         " - variable  : variable definitions\n"
                         " - function  : function definitions\n"
+                        " - signal    : Qt signal definitions\n"
+                        " - slot      : Qt slot definitions\n"
                         " - class     : class definitions\n"
                         " - struct    : struct definitions\n"
+                        " - union     : union definitions\n"
                         " - define    : define definitions\n"
                         " - file      : file definitions\n"
                         " - namespace : namespace definitions\n"
@@ -84,7 +88,7 @@ def main():
   if l_result.scope == "all":
     l_result.scope = "public,protected,private"
   if l_result.kind == "all":
-    l_result.kind = "enum,enumvalue,typedef,variable,function,class,struct,define,file,namespace,page"
+    l_result.kind = "enum,enumvalue,friend,typedef,variable,function,signal,slot,class,struct,union,define,file,namespace,page"
 
   l_result.scope = l_result.scope.split(",")
   l_result.kind  = l_result.kind.split(",")
