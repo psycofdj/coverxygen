@@ -85,7 +85,7 @@ def main():
   if l_result.scope == "all":
     l_result.scope = "public,protected,private"
   if l_result.kind == "all":
-    l_result.kind = "enum,typedef,variable,function,signal,slot,class,struct,union,define,file,namespace,page"
+    l_result.kind = "enum,friend,typedef,variable,function,signal,slot,class,struct,union,define,file,namespace,page"
 
   l_result.scope = l_result.scope.split(",")
   l_result.kind  = l_result.kind.split(",")
