@@ -278,11 +278,11 @@ class Coverxygen(object):
       for c_item in c_data:
         l_line = c_item["line"]
         if not c_item["documented"]:
-          l_line[l_line] = 0
+          l_lines[l_line] = 0
         elif not l_line in l_lines:
           l_lines[l_line] = 1
-      for c_line, c_lineValue in l_lines:
-        p_stream.write("DA:%d,%d\n" % (c_line, c_lineValue))
+      for c_line in l_lines:
+        p_stream.write("DA:%d,%d\n" % (c_line, l_lines[c_line]))
       p_stream.write("end_of_record\n")
 
 # Local Variables:
