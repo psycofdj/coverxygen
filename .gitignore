@@ -89,7 +89,13 @@ ENV/
 .ropeproject
 .pybuild
 
+# Eclipse
+.project
+.pydevproject
+.settings/
 
+# Visual Studio Code
+.vscode/
 
 
 debian/debhelper-build-stamp

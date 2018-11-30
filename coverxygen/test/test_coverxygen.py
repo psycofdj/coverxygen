@@ -183,18 +183,30 @@ class CoverxygenTest(unittest.TestCase):
       <node3 prot="s1" kind="k3"/>
       <node4 prot="s3" kind="k1"/>
       <node5 prot="s3" kind="k3"/>
+      <node6 prot="s1" kind="friend">
+        <type>friend class</type>
+      </node6>
+      <node7 prot="s1" kind="friend">
+        <type>friend class</type>
+        <initializer>{
+	public:
+		Foo() {}
+	}</initializer>
+      </node7>
     </data>
     """
     l_doc    = ET.fromstring(l_xml)
     l_scopes = ["s1", "s2"]
-    l_kinds  = ["k1", "k2"]
+    l_kinds  = ["k1", "k2", "friend"]
     l_obj = Coverxygen(None, None, l_scopes, l_kinds, "/p", None, None, False)
     self.assertFalse(l_obj.should_filter_out(l_doc.find("./node1"), os.path.abspath("/p/file.hh"),     1))
     self.assertFalse(l_obj.should_filter_out(l_doc.find("./node2"), os.path.abspath("/p/file.hh"),     1))
-    self.assertTrue(l_obj.should_filter_out(l_doc.find("./node3"), os.path.abspath("/p/file.hh"),     1))
-    self.assertTrue(l_obj.should_filter_out(l_doc.find("./node4"), os.path.abspath("/p/file.hh"),     1))
-    self.assertTrue(l_obj.should_filter_out(l_doc.find("./node5"), os.path.abspath("/p/file.hh"),     1))
-    self.assertTrue(l_obj.should_filter_out(l_doc.find("./node1"), os.path.abspath("/other/file.hh"), 1))
+    self.assertTrue( l_obj.should_filter_out(l_doc.find("./node3"), os.path.abspath("/p/file.hh"),     1))
+    self.assertTrue( l_obj.should_filter_out(l_doc.find("./node4"), os.path.abspath("/p/file.hh"),     1))
+    self.assertTrue( l_obj.should_filter_out(l_doc.find("./node5"), os.path.abspath("/p/file.hh"),     1))
+    self.assertTrue( l_obj.should_filter_out(l_doc.find("./node1"), os.path.abspath("/other/file.hh"), 1))
+    self.assertFalse(l_obj.should_filter_out(l_doc.find("./node6"), os.path.abspath("/p/file.hh"),     1))
+    self.assertTrue( l_obj.should_filter_out(l_doc.find("./node7"), os.path.abspath("/p/file.hh"),     1))
 
   def test_process_symbol(self):
     l_classDoc = ET.parse(self.get_data_path("class.xml"))

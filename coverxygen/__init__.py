@@ -128,8 +128,25 @@ class Coverxygen(object):
   def should_filter_out(self, p_node, p_file, p_line):
     l_scope  = p_node.get('prot')
     l_kind   = p_node.get('kind')
+    
     if l_scope is None:
       l_scope = "public"
+    
+    if l_kind == 'friend':
+      l_isDefinition = (p_node.get('inline') == 'yes' or p_node.find('initializer') is not None)
+      if l_isDefinition:
+        l_friendTypeNode = p_node.find('type')
+        if l_friendTypeNode is not None:
+          l_friendType = l_friendTypeNode.text
+          if l_friendType == 'friend class':
+            l_kind = 'class'
+          elif l_friendType == 'friend struct':
+            l_kind = 'struct'
+          elif l_friendType == 'friend union':
+            l_kind = 'union'
+          else:
+            l_kind = 'function'
+
     if (not l_scope in self.m_scope) or (not l_kind in self.m_kind):
       return True
     if not p_file.startswith(self.m_prefix):
