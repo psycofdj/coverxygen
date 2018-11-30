@@ -33,9 +33,9 @@ class Coverxygen(object):
     self.m_output  = p_output
     self.m_scope   = p_scope
     self.m_kind    = p_kind
-    self.m_prefix  = os.path.abspath(p_prefix) if p_prefix is not None else None
+    self.m_prefix  = os.path.abspath(p_prefix) if p_prefix is not None else ""
     self.m_format  = p_format
-    self.m_rootDir = os.path.abspath(p_rootDir) if p_rootDir is not None else None
+    self.m_rootDir = os.path.abspath(p_rootDir) if p_rootDir is not None else ""
     self.m_verbose = p_verbose
 
   @staticmethod
@@ -128,10 +128,10 @@ class Coverxygen(object):
   def should_filter_out(self, p_node, p_file, p_line):
     l_scope  = p_node.get('prot')
     l_kind   = p_node.get('kind')
-    
+
     if l_scope is None:
       l_scope = "public"
-    
+
     if l_kind == 'friend':
       l_isDefinition = (p_node.get('inline') == 'yes' or p_node.find('initializer') is not None)
       if l_isDefinition:
