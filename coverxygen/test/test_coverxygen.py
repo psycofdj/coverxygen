@@ -183,11 +183,21 @@ class CoverxygenTest(unittest.TestCase):
       <node3 prot="s1" kind="k3"/>
       <node4 prot="s3" kind="k1"/>
       <node5 prot="s3" kind="k3"/>
+      <node6 prot="s1" kind="friend">
+        <type>friend class</type>
+      </node6>
+      <node7 prot="s1" kind="friend">
+        <type>friend class</type>
+        <initializer>{
+	public:
+		Foo() {}
+	}</initializer>
+      </node7>
     </data>
     """
     l_doc    = ET.fromstring(l_xml)
     l_scopes = ["s1", "s2"]
-    l_kinds  = ["k1", "k2"]
+    l_kinds  = ["k1", "k2", "friend"]
     l_obj = Coverxygen(None, None, l_scopes, l_kinds, "/p", None, None, False)
     self.assertEqual(False, l_obj.should_filter_out(l_doc.find("./node1"), "/p/file.hh",     1))
     self.assertEqual(False, l_obj.should_filter_out(l_doc.find("./node2"), "/p/file.hh",     1))
@@ -195,6 +205,8 @@ class CoverxygenTest(unittest.TestCase):
     self.assertEqual(True,  l_obj.should_filter_out(l_doc.find("./node4"), "/p/file.hh",     1))
     self.assertEqual(True,  l_obj.should_filter_out(l_doc.find("./node5"), "/p/file.hh",     1))
     self.assertEqual(True,  l_obj.should_filter_out(l_doc.find("./node1"), "/other/file.hh", 1))
+    self.assertFalse(l_obj.should_filter_out(l_doc.find("./node6"), "/p/file.hh", 1))
+    self.assertTrue(l_obj.should_filter_out(l_doc.find("./node7"), "/p/file.hh", 1))
 
   def test_process_symbol(self):
     l_classDoc = ET.parse(self.get_data_path("class.xml"))

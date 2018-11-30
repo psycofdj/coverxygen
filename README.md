@@ -88,18 +88,24 @@ optional arguments:
                         - private   : private member elements
                         - all       : all above
   --kind KIND          comma-separated list of items' type to include : 
-                        - enum      : enum definitions 
+                        - enum      : enum definitions
+                        - friend    : friend declarations
                         - typedef   : typedef definitions
                         - variable  : variable definitions
                         - function  : function definitions
+                        - signal    : Qt signal definitions
+                        - slot      : Qt slot definitions
                         - class     : class definitions
                         - struct    : struct definitions
+                        - union     : union definitions
                         - define    : define definitions
                         - file      : file definitions
                         - namespace : namespace definitions
                         - page      : page definitions
                         - all       : all above
 ```
+
+
 
 ## Run lcov or genhtml
 
