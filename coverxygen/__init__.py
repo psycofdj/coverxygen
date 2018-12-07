@@ -5,6 +5,7 @@ import os
 import sys
 import json
 import xml.etree.ElementTree as ET
+from functools import reduce
 
 #------------------------------------------------------------------------------
 
@@ -94,6 +95,22 @@ class Coverxygen(object):
   @staticmethod
   def extract_kind(p_node):
     l_kind = p_node.get("kind")
+
+    if l_kind == 'friend':
+      l_isDefinition = (p_node.get('inline') == 'yes' or p_node.find('initializer') is not None)
+      if l_isDefinition:
+        l_friendTypeNode = p_node.find('type')
+        if l_friendTypeNode is not None:
+          l_friendType = l_friendTypeNode.text
+          if l_friendType == 'friend class':
+            l_kind = 'class'
+          elif l_friendType == 'friend struct':
+            l_kind = 'struct'
+          elif l_friendType == 'friend union':
+            l_kind = 'union'
+          else:
+            l_kind = 'function'
+
     return l_kind
 
   @staticmethod
@@ -131,25 +148,10 @@ class Coverxygen(object):
   def should_filter_out(self, p_node, p_file, p_line):
     l_scope  = p_node.get('prot')
     l_kind   = self.extract_kind(p_node)
-    
+
     if l_scope is None:
       l_scope = "public"
-    
-    if l_kind == 'friend':
-      l_isDefinition = (p_node.get('inline') == 'yes' or p_node.find('initializer') is not None)
-      if l_isDefinition:
-        l_friendTypeNode = p_node.find('type')
-        if l_friendTypeNode is not None:
-          l_friendType = l_friendTypeNode.text
-          if l_friendType == 'friend class':
-            l_kind = 'class'
-          elif l_friendType == 'friend struct':
-            l_kind = 'struct'
-          elif l_friendType == 'friend union':
-            l_kind = 'union'
-          else:
-            l_kind = 'function'
-    
+
     if (not l_scope in self.m_scope) or (not l_kind in self.m_kind):
       return True
     if not p_file.startswith(self.m_prefix):
@@ -163,6 +165,7 @@ class Coverxygen(object):
     l_enumValue = {
       "symbol"    : l_name,
       "documented": l_isDocumented,
+      "kind"      : "enumvalue",
       # enum values do not have location information, so we use the location
       # of the surrounding enum
       "line"      : p_enum["line"],
@@ -189,6 +192,7 @@ class Coverxygen(object):
     l_symbol = {
       "symbol"     : l_name,
       "documented" : l_isDocumented,
+      "kind"       : l_kind,
       "line"       : l_line,
       "file"       : l_file
     }
@@ -197,17 +201,7 @@ class Coverxygen(object):
       l_symbols.extend(self.process_enum(p_node, l_symbol))
     return l_symbols
 
-  @staticmethod
-  def merge_symbols(p_results, p_symbols):
-    for c_symbol in p_symbols:
-      if not c_symbol:
-        continue
-      l_file = c_symbol["file"]
-      if not l_file in p_results:
-        p_results[l_file] = []
-      p_results[l_file].append(c_symbol)
-
-  def process_file(self, p_filePath, p_results):
+  def process_file(self, p_filePath):
     self.verbose("processing file : %s", p_filePath)
     l_symbols   = []
     l_xmlDoc    = self.get_xmldoc_from_file(p_filePath)
@@ -215,10 +209,10 @@ class Coverxygen(object):
     l_xmlNodes += l_xmlDoc.findall("./compounddef")
     for c_def in l_xmlNodes:
       l_symbols.extend(self.process_symbol(c_def, p_filePath))
-    self.merge_symbols(p_results, l_symbols)
+    return l_symbols
 
   def process_index(self, p_xmlDoc):
-    l_results = {}
+    l_symbols = []
     for c_entry in p_xmlDoc.findall('compound'):
       l_kind  = c_entry.get("kind")
       l_refid = c_entry.get("refid")
@@ -229,25 +223,41 @@ class Coverxygen(object):
       if l_kind == "dir":
         continue
       l_filePath = self.get_file_path_from_root(self.m_root, l_refid)
-      self.process_file(l_filePath, l_results)
+      l_symbols.extend(self.process_file(l_filePath))
+    return l_symbols
+
+  @staticmethod
+  def group_symbols_by_file(p_symbols):
+    l_results = {}
+    for c_symbol in p_symbols:
+      if not c_symbol:
+        continue
+      l_file = c_symbol["file"]
+      if not l_file in l_results:
+        l_results[l_file] = []
+      l_results[l_file].append(c_symbol)
     return l_results
 
-  def output_results(self, p_results):
+  def output_results(self, p_symbols):
     l_outStream = self.output_get_stream(self.m_output)
-    if self.m_format == "json":
-      self.output_print_json(l_outStream, p_results)
-    elif self.m_format == "json-legacy":
-      self.output_print_json_legacy(l_outStream, p_results)
-    elif self.m_format == "lcov":
-      self.output_print_lcov(l_outStream, p_results)
+    if self.m_format == "summary":
+      self.output_print_summary(l_outStream, p_symbols)
     else:
-      self.error("invalid requested output format '%s'", self.m_format)
+      l_results = Coverxygen.group_symbols_by_file(p_symbols)
+      if self.m_format == "json":
+        self.output_print_json(l_outStream, l_results)
+      elif self.m_format == "json-legacy":
+        self.output_print_json_legacy(l_outStream, l_results)
+      elif self.m_format == "lcov":
+        self.output_print_lcov(l_outStream, l_results)
+      else:
+        self.error("invalid requested output format '%s'", self.m_format)
 
   def process(self):
     l_indexPath = self.get_index_path_from_root(self.m_root)
     l_xmlDoc    = self.get_xmldoc_from_file(l_indexPath)
-    l_results   = self.process_index(l_xmlDoc)
-    self.output_results(l_results)
+    l_symbols   = self.process_index(l_xmlDoc)
+    self.output_results(l_symbols)
 
   @staticmethod
   def output_get_stream(p_output):
@@ -284,6 +294,81 @@ class Coverxygen(object):
       for c_line in l_lines:
         p_stream.write("DA:%d,%d\n" % (c_line, l_lines[c_line]))
       p_stream.write("end_of_record\n")
+
+  @staticmethod
+  def count_symbols_by_kind(p_symbols):
+    l_symbolCounts = {}
+    for c_symbol in p_symbols:
+      l_symbolKind = c_symbol["kind"]
+      if not l_symbolKind in l_symbolCounts:
+        l_symbolCounts[l_symbolKind] = {
+          "documented": 0,
+          "total"     : 0
+        }
+      if c_symbol["documented"]:
+        l_symbolCounts[l_symbolKind]["documented"] += 1
+      l_symbolCounts[l_symbolKind]["total"] += 1
+    return l_symbolCounts
+
+  @staticmethod
+  def symbol_kind_to_string(p_kind):
+    l_mapping = {
+      "enum"     : "Enums",
+      "enumvalue": "Enum Values",
+      "friend"   : "Friends",
+      "typedef"  : "Typedefs",
+      "variable" : "Variables",
+      "function" : "Functions",
+      "signal"   : "Signals",
+      "slot"     : "Slots",
+      "class"    : "Classes",
+      "struct"   : "Structs",
+      "union"    : "Unions",
+      "define"   : "Defines",
+      "file"     : "Files",
+      "namespace": "Namespaces",
+      "page"     : "Pages"
+    }
+    return l_mapping[p_kind]
+
+  @staticmethod
+  def determine_first_column_width(p_symbolsCounts):
+    l_kindStringLengths = map(lambda c_symbolKindCount: len(c_symbolKindCount["kind"]), p_symbolsCounts)
+    l_longestKindStringLength = max(l_kindStringLengths, default=0)
+    return l_longestKindStringLength
+
+  @staticmethod
+  def symbol_kind_counts_dict_to_list(p_symbolKindCountsDict):
+    l_symbolCountsList = []
+    for c_symbolKind in p_symbolKindCountsDict:
+      l_symbolCountsList.append({
+        "kind": Coverxygen.symbol_kind_to_string(c_symbolKind),
+        "documented": p_symbolKindCountsDict[c_symbolKind]["documented"],
+        "total": p_symbolKindCountsDict[c_symbolKind]["total"]
+      })
+    return sorted(l_symbolCountsList, key=lambda obj: obj["kind"])
+
+  @staticmethod
+  def print_summary_line(p_stream, p_header, p_headerWidth, p_count, p_total):
+    l_percentage = (p_count / p_total) * 100.0
+    p_stream.write("%s: %5.1f%% (%d/%d)\n" % (("%%-%ds" % (p_headerWidth)) % p_header,
+                                                l_percentage, p_count, p_total))
+
+  @staticmethod
+  def output_print_summary(p_stream, p_symbols):
+    l_symbolKindCounts = Coverxygen.count_symbols_by_kind(p_symbols)
+    l_symbolKindCounts = Coverxygen.symbol_kind_counts_dict_to_list(l_symbolKindCounts)
+    l_totalDocumented = 0
+    l_total = 0
+    l_firstColumnWidth = Coverxygen.determine_first_column_width(l_symbolKindCounts)
+    for c_symbolCount in l_symbolKindCounts:
+      l_documentedKinds = c_symbolCount["documented"]
+      l_totalKinds = c_symbolCount["total"]
+      l_totalDocumented += l_documentedKinds
+      l_total += l_totalKinds
+      Coverxygen.print_summary_line(p_stream, c_symbolCount["kind"], l_firstColumnWidth, l_documentedKinds, l_totalKinds)
+    p_stream.write("%s\n" % ("-" * 35))
+    Coverxygen.print_summary_line(p_stream, "Total", l_firstColumnWidth, l_totalDocumented, l_total)
 
 # Local Variables:
 # ispell-local-dictionary: "en"

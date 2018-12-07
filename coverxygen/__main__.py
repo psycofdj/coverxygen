@@ -34,7 +34,8 @@ def main():
                         help="output file format : \n"
                         "lcov        : lcov compatible format (default)\n"
                         "json-legacy : legacy json format\n"
-                        "json        : simpler json format\n",
+                        "json        : simpler json format\n"
+                        "summary     : textual summary table format\n",
                         default="lcov")
   l_parser.add_argument("--xml-dir",
                         action="store",
