@@ -33,9 +33,9 @@ class Coverxygen(object):
     self.m_output  = p_output
     self.m_scope   = p_scope
     self.m_kind    = p_kind
-    self.m_prefix  = p_prefix
+    self.m_prefix  = os.path.abspath(p_prefix) if p_prefix is not None else ""
     self.m_format  = p_format
-    self.m_rootDir = p_rootDir
+    self.m_rootDir = os.path.abspath(p_rootDir) if p_rootDir is not None else ""
     self.m_verbose = p_verbose
 
   @staticmethod
@@ -118,7 +118,9 @@ class Coverxygen(object):
         Coverxygen.error("unable to extract location from file %s, node : %s",
                          p_file, ET.tostring(p_node))
       l_line = int(l_line)
-    l_file = Coverxygen.get_absolute_path(l_file, p_rootDir)
+      l_file = Coverxygen.get_absolute_path(l_file, p_rootDir)
+    else:
+      l_file = os.path.abspath(l_file)
     return l_file, l_line
 
   @staticmethod
@@ -131,10 +133,10 @@ class Coverxygen(object):
   def should_filter_out(self, p_node, p_file, p_line):
     l_scope  = p_node.get('prot')
     l_kind   = self.extract_kind(p_node)
-    
+
     if l_scope is None:
       l_scope = "public"
-    
+
     if l_kind == 'friend':
       l_isDefinition = (p_node.get('inline') == 'yes' or p_node.find('initializer') is not None)
       if l_isDefinition:
