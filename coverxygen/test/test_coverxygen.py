@@ -137,26 +137,26 @@ class CoverxygenTest(unittest.TestCase):
     l_doc  = ET.fromstring(l_data)
 
     l_line = 1
-    l_path = "file.hh"
-    l_file = "/tmp/file.hh"
+    l_path = "file.xml"
+    l_file = os.path.abspath(l_path)
     l_node = l_doc.find("./node1")
     self.assertEqual((l_file, l_line),  Coverxygen.extract_location(l_node, l_path, "/tmp"))
 
     l_line = 1
-    l_path = "/root/file.hh"
-    l_file = "/root/file.hh"
+    l_path = "/root/file.xml"
+    l_file = os.path.abspath(l_path)
     l_node = l_doc.find("./node1")
     self.assertEqual((l_file, l_line),  Coverxygen.extract_location(l_node, l_path, "/tmp"))
 
     l_line = 22
-    l_path = "/root/file.hh"
-    l_file = "/tmp/actual.hh"
+    l_path = "/root/file.xml"
+    l_file = os.path.abspath("/tmp/actual.hh")
     l_node = l_doc.find("./node2")
     self.assertEqual((l_file, l_line),  Coverxygen.extract_location(l_node, l_path, "/tmp"))
 
     l_line = 33
-    l_path = "/root/file.hh"
-    l_file = "/opt/actual.hh"
+    l_path = "/root/file.xml"
+    l_file = os.path.abspath("/opt/actual.hh")
     l_node = l_doc.find("./node3")
     self.assertEqual((l_file, l_line),  Coverxygen.extract_location(l_node, l_path, "/tmp"))
 
@@ -170,11 +170,11 @@ class CoverxygenTest(unittest.TestCase):
 
 
   def test_get_absolute_path(self):
-    self.assertEqual("/root/file.hh", Coverxygen.get_absolute_path("file.hh",      "/root"))
-    self.assertEqual("/root/file.hh", Coverxygen.get_absolute_path("./file.hh",    "/root"))
-    self.assertEqual("/tmp/file.hh",  Coverxygen.get_absolute_path("/tmp/file.hh", "/root"))
-    self.assertEqual("/file.hh",      Coverxygen.get_absolute_path("../file.hh",   "/root"))
-    self.assertEqual("/file.hh",      Coverxygen.get_absolute_path("/../file.hh",  "/root"))
+    self.assertEqual(os.path.abspath("/root/file.hh"), Coverxygen.get_absolute_path("file.hh",      "/root"))
+    self.assertEqual(os.path.abspath("/root/file.hh"), Coverxygen.get_absolute_path("./file.hh",    "/root"))
+    self.assertEqual(os.path.abspath("/tmp/file.hh"),  Coverxygen.get_absolute_path("/tmp/file.hh", "/root"))
+    self.assertEqual(os.path.abspath("/file.hh"),      Coverxygen.get_absolute_path("../file.hh",   "/root"))
+    self.assertEqual(os.path.abspath("/file.hh"),      Coverxygen.get_absolute_path("/../file.hh",  "/root"))
 
   def test_should_filter_out(self):
     l_xml = """
@@ -200,14 +200,14 @@ class CoverxygenTest(unittest.TestCase):
     l_scopes = ["s1", "s2"]
     l_kinds  = ["k1", "k2", "friend"]
     l_obj = Coverxygen(None, None, l_scopes, l_kinds, "/p", None, None, False)
-    self.assertEqual(False, l_obj.should_filter_out(l_doc.find("./node1"), "/p/file.hh",     1))
-    self.assertEqual(False, l_obj.should_filter_out(l_doc.find("./node2"), "/p/file.hh",     1))
-    self.assertEqual(True,  l_obj.should_filter_out(l_doc.find("./node3"), "/p/file.hh",     1))
-    self.assertEqual(True,  l_obj.should_filter_out(l_doc.find("./node4"), "/p/file.hh",     1))
-    self.assertEqual(True,  l_obj.should_filter_out(l_doc.find("./node5"), "/p/file.hh",     1))
-    self.assertEqual(True,  l_obj.should_filter_out(l_doc.find("./node1"), "/other/file.hh", 1))
-    self.assertFalse(l_obj.should_filter_out(l_doc.find("./node6"), "/p/file.hh", 1))
-    self.assertTrue(l_obj.should_filter_out(l_doc.find("./node7"), "/p/file.hh", 1))
+    self.assertFalse(l_obj.should_filter_out(l_doc.find("./node1"), os.path.abspath("/p/file.hh"),     1))
+    self.assertFalse(l_obj.should_filter_out(l_doc.find("./node2"), os.path.abspath("/p/file.hh"),     1))
+    self.assertTrue( l_obj.should_filter_out(l_doc.find("./node3"), os.path.abspath("/p/file.hh"),     1))
+    self.assertTrue( l_obj.should_filter_out(l_doc.find("./node4"), os.path.abspath("/p/file.hh"),     1))
+    self.assertTrue( l_obj.should_filter_out(l_doc.find("./node5"), os.path.abspath("/p/file.hh"),     1))
+    self.assertTrue( l_obj.should_filter_out(l_doc.find("./node1"), os.path.abspath("/other/file.hh"), 1))
+    self.assertFalse(l_obj.should_filter_out(l_doc.find("./node6"), os.path.abspath("/p/file.hh"),     1))
+    self.assertTrue( l_obj.should_filter_out(l_doc.find("./node7"), os.path.abspath("/p/file.hh"),     1))
 
   def test_process_symbol(self):
     l_classDoc = ET.parse(self.get_data_path("class.xml"))
@@ -240,7 +240,6 @@ class CoverxygenTest(unittest.TestCase):
                  {'documented': True, 'line': 466, 'symbol': 'Enum_Value_1', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
                  {'documented': False, 'line': 466, 'symbol': 'Enum_Value_2', 'file': os.path.abspath('/opt/MyEnumClass.hpp')}]
     self.assertEqual(l_expect, l_data)
-
 
 
   def test_group_symbols_by_file(self):
@@ -301,10 +300,10 @@ class CoverxygenTest(unittest.TestCase):
     l_kinds  = ["enum"]
     l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
     l_res    = {}
-    l_name   = "/opt/src/Application.hh"
+    l_name   = os.path.abspath("/opt/src/Application.hh")
     l_obj.process_file(l_file, l_res)
     self.assertEqual(1, len(l_res.keys()))
-    self.assertEqual(True, l_name in l_res)
+    self.assertIn(l_name, l_res)
     self.assertEqual(2, len(l_res[l_name]))
     self.assertEqual(2, len([x for x in l_res[l_name] if x['documented']]))
 
@@ -313,10 +312,10 @@ class CoverxygenTest(unittest.TestCase):
     l_kinds  = ["class"]
     l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
     l_res    = {}
-    l_name   = "/opt/src/Application.hh"
+    l_name   = os.path.abspath("/opt/src/Application.hh")
     l_obj.process_file(l_file, l_res)
     self.assertEqual(1, len(l_res.keys()))
-    self.assertEqual(True, l_name in l_res)
+    self.assertIn(l_name, l_res)
     self.assertEqual(1, len(l_res[l_name]))
     self.assertEqual(1, len([x for x in l_res[l_name] if x['documented']]))
 

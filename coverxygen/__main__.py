@@ -53,7 +53,7 @@ def main():
   l_parser.add_argument("--prefix",
                         action="store",
                         help ="keep only file matching given path prefix",
-                        default="")
+                        default=None)
   l_parser.add_argument("--scope",
                         action="store",
                         help="comma-separated list of items' scope to include : \n"
