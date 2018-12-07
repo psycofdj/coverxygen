@@ -217,7 +217,7 @@ class CoverxygenTest(unittest.TestCase):
     l_node   = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a672c075ed901e463609077d571a714c7']")
     l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
     l_data   = l_obj.process_symbol(l_node, "/opt/file.hh")
-    l_expect = [{'documented': True, 'line': 102, 'symbol': 'argument', 'file': os.path.abspath('/opt/src/Application.hh')}]
+    l_expect = [{'documented': True, 'line': 102, 'kind': 'enum', 'symbol': 'argument', 'file': os.path.abspath('/opt/src/Application.hh')}]
     self.assertEqual(l_expect, l_data)
 
     l_node     = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a907b6fe8247636495890e668530863d6']")
@@ -229,16 +229,16 @@ class CoverxygenTest(unittest.TestCase):
     l_node         = l_namesapceDoc.find("./compounddef[@id='namespace_my_namespace']")
     l_obj          = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
     l_data         = l_obj.process_symbol(l_node, "/opt/file.hh")
-    l_expect       = [{'documented': True, 'line': 5, 'symbol': 'MyNamespace', 'file': os.path.abspath('/opt/src/MyNamespace.hh')}]
+    l_expect       = [{'documented': True, 'line': 5, 'kind': 'namespace', 'symbol': 'MyNamespace', 'file': os.path.abspath('/opt/src/MyNamespace.hh')}]
     self.assertEqual(l_expect, l_data)
 
     l_enumDoc = ET.parse(self.get_data_path("enum.xml"))
     l_node    = l_enumDoc.find("./compounddef//memberdef[@id='class_my_enum_class_1a4bffd5affc2abeba8ed3af3c2fd81ff4']")
     l_obj     = Coverxygen(None, None, l_scopes, ["enum", "enumvalue"], "/opt", None, "/opt", False)
     l_data    = l_obj.process_symbol(l_node, "/opt/file.hh")
-    l_expect  = [{'documented': True, 'line': 466, 'symbol': 'MyEnum', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
-                 {'documented': True, 'line': 466, 'symbol': 'Enum_Value_1', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
-                 {'documented': False, 'line': 466, 'symbol': 'Enum_Value_2', 'file': os.path.abspath('/opt/MyEnumClass.hpp')}]
+    l_expect  = [{'documented': True, 'line': 466, 'kind': 'enum', 'symbol': 'MyEnum', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
+                 {'documented': True, 'line': 466, 'kind': 'enumvalue', 'symbol': 'Enum_Value_1', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
+                 {'documented': False, 'line': 466, 'kind': 'enumvalue', 'symbol': 'Enum_Value_2', 'file': os.path.abspath('/opt/MyEnumClass.hpp')}]
     self.assertEqual(l_expect, l_data)
 
 
@@ -278,7 +278,7 @@ class CoverxygenTest(unittest.TestCase):
       { "file" : "b", "key0" : 0 }
     ]
     l_expect = {
-      "b" : [{ "file" : "b", "key0" : 0 }, { "file" : "b", "key1" : 1 }],
+      "b" : [{ "file" : "b", "key1" : 1 }, { "file" : "b", "key0" : 0 }],
       "c" : [{ "file" : "c", "key2" : 2 }]
     }
     l_res = Coverxygen.group_symbols_by_file(l_syms)
@@ -295,29 +295,25 @@ class CoverxygenTest(unittest.TestCase):
 
 
   def test_process_file(self):
-    l_file   = self.get_data_path("class.xml")
+    l_testDataFile   = self.get_data_path("class.xml")
     l_scopes = ["private",  "protected", "public"]
     l_kinds  = ["enum"]
     l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
-    l_res    = {}
-    l_name   = os.path.abspath("/opt/src/Application.hh")
-    l_obj.process_file(l_file, l_res)
-    self.assertEqual(1, len(l_res.keys()))
-    self.assertIn(l_name, l_res)
-    self.assertEqual(2, len(l_res[l_name]))
-    self.assertEqual(2, len([x for x in l_res[l_name] if x['documented']]))
+    l_file   = os.path.abspath("/opt/src/Application.hh")
+    l_symbols = l_obj.process_file(l_testDataFile)
+    self.assertEqual(2, len(l_symbols))
+    self.assertEqual(2, len([x for x in l_symbols if x['file'] == l_file]))
+    self.assertEqual(2, len([x for x in l_symbols if x['documented']]))
 
-    l_file   = self.get_data_path("class.xml")
+    l_testDataFile   = self.get_data_path("class.xml")
     l_scopes = ["private",  "protected", "public"]
     l_kinds  = ["class"]
     l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
-    l_res    = {}
-    l_name   = os.path.abspath("/opt/src/Application.hh")
-    l_obj.process_file(l_file, l_res)
-    self.assertEqual(1, len(l_res.keys()))
-    self.assertIn(l_name, l_res)
-    self.assertEqual(1, len(l_res[l_name]))
-    self.assertEqual(1, len([x for x in l_res[l_name] if x['documented']]))
+    l_file   = os.path.abspath("/opt/src/Application.hh")
+    l_symbols = l_obj.process_file(l_testDataFile)
+    self.assertEqual(1, len(l_symbols))
+    self.assertEqual(1, len([x for x in l_symbols if x['file'] == l_file]))
+    self.assertEqual(1, len([x for x in l_symbols if x['documented']]))
 
 
   def test_output_print_lvoc(self):
