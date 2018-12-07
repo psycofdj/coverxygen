@@ -243,16 +243,15 @@ class CoverxygenTest(unittest.TestCase):
 
 
 
-  def test_merge_symbol(self):
-    l_syms   = [{ "file" : "a", "key1" : 1}]
-    l_res    = {}
-    l_expect = { "a" : [ { "file" : "a", "key1" : 1} ] }
-    Coverxygen.merge_symbols(l_res, l_syms)
+  def test_group_symbols_by_file(self):
+    l_syms   = [{ "file" : "a", "key1" : 1 }]
+    l_expect = { "a" : [ { "file" : "a", "key1" : 1 } ] }
+    l_res = Coverxygen.group_symbols_by_file(l_syms)
     self.assertDictEqual(l_expect, l_res)
 
     l_syms   = [
-      { "file" : "a", "key1" : 1},
-      { "file" : "a", "key2" : 2}
+      { "file" : "a", "key1" : 1 },
+      { "file" : "a", "key2" : 2 }
     ]
     l_expect = {
       "a" : [
@@ -260,44 +259,39 @@ class CoverxygenTest(unittest.TestCase):
         { "file" : "a", "key2" : 2 }
       ]
     }
-    l_res = {}
-    Coverxygen.merge_symbols(l_res, l_syms)
+    l_res = Coverxygen.group_symbols_by_file(l_syms)
     self.assertDictEqual(l_expect, l_res)
 
     l_syms   = [
-      { "file" : "b", "key1" : 1},
-      { "file" : "c", "key2" : 2}
+      { "file" : "b", "key1" : 1 },
+      { "file" : "c", "key2" : 2 }
     ]
     l_expect = {
       "b" : [{ "file" : "b", "key1" : 1 }],
       "c" : [{ "file" : "c", "key2" : 2 }]
     }
-    l_res = {}
-    Coverxygen.merge_symbols(l_res, l_syms)
+    l_res = Coverxygen.group_symbols_by_file(l_syms)
     self.assertDictEqual(l_expect, l_res)
 
     l_syms   = [
-      { "file" : "b", "key1" : 1},
-      { "file" : "c", "key2" : 2}
+      { "file" : "b", "key1" : 1 },
+      { "file" : "c", "key2" : 2 },
+      { "file" : "b", "key0" : 0 }
     ]
     l_expect = {
       "b" : [{ "file" : "b", "key0" : 0 }, { "file" : "b", "key1" : 1 }],
       "c" : [{ "file" : "c", "key2" : 2 }]
     }
-    l_res = {
-      "b" : [{ "file" : "b", "key0" : 0 }]
-    }
-    Coverxygen.merge_symbols(l_res, l_syms)
+    l_res = Coverxygen.group_symbols_by_file(l_syms)
     self.assertDictEqual(l_expect, l_res)
 
-    l_syms   = []
+    l_syms   = [
+      { "file" : "b", "key0" : 0 }
+    ]
     l_expect = {
       "b" : [{ "file" : "b", "key0" : 0 }],
     }
-    l_res = {
-      "b" : [{ "file" : "b", "key0" : 0 }]
-    }
-    Coverxygen.merge_symbols(l_res, l_syms)
+    l_res = Coverxygen.group_symbols_by_file(l_syms)
     self.assertDictEqual(l_expect, l_res)
 
 
@@ -337,7 +331,7 @@ class CoverxygenTest(unittest.TestCase):
                  {'documented': True, 'line': 17, 'symbol': 'MyOtherEnum', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')},
                  {'documented': True, 'line': 17, 'symbol': 'OtherEnum_Value_1', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')},
                  {'documented': True, 'line': 17, 'symbol': 'OtherEnum_Value_2', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')}]
-    l_obj.merge_symbols(l_results, l_symbols)
+    l_results = l_obj.group_symbols_by_file(l_symbols)
     l_obj.output_print_lcov(l_stream, l_results)
     l_outputResult = l_stream.getvalue()
     l_stream.close()
