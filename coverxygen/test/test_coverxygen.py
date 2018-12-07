@@ -320,12 +320,12 @@ class CoverxygenTest(unittest.TestCase):
     l_obj = Coverxygen(None, None, [], [], None, None, None, False)
     l_stream = StringIO()
     l_results = {}
-    l_symbols = [{'documented': True, 'line': 466, 'symbol': 'MyEnum', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
+    l_symbols = [{'documented': True,  'line': 466, 'symbol': 'MyEnum', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
                  {'documented': False, 'line': 466, 'symbol': 'Enum_Value_1', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
-                 {'documented': True, 'line': 466, 'symbol': 'Enum_Value_2', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
-                 {'documented': True, 'line': 17, 'symbol': 'MyOtherEnum', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')},
-                 {'documented': True, 'line': 17, 'symbol': 'OtherEnum_Value_1', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')},
-                 {'documented': True, 'line': 17, 'symbol': 'OtherEnum_Value_2', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')}]
+                 {'documented': True,  'line': 466, 'symbol': 'Enum_Value_2', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
+                 {'documented': True,  'line': 17,  'symbol': 'MyOtherEnum', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')},
+                 {'documented': True,  'line': 17,  'symbol': 'OtherEnum_Value_1', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')},
+                 {'documented': True,  'line': 17,  'symbol': 'OtherEnum_Value_2', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')}]
     l_results = l_obj.group_symbols_by_file(l_symbols)
     l_obj.output_print_lcov(l_stream, l_results)
     l_outputResult = l_stream.getvalue()
@@ -335,3 +335,20 @@ class CoverxygenTest(unittest.TestCase):
     self.assertNotIn("DA:466,1", l_outputResult)
     self.assertNotIn("DA:17,0", l_outputResult)
     self.assertIn("DA:17,1", l_outputResult)
+
+  def test_output_print_summary(self):
+    l_obj = Coverxygen(None, None, [], [], None, None, None, False)
+    l_stream = StringIO()
+    l_symbols = [{'documented': True,  'line': 466, 'kind': 'enum', 'symbol': 'MyEnum', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
+                 {'documented': False, 'line': 466, 'kind': 'enumvalue', 'symbol': 'Enum_Value_1', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
+                 {'documented': True,  'line': 466, 'kind': 'enumvalue', 'symbol': 'Enum_Value_2', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
+                 {'documented': True,  'line': 17,  'kind': 'enum', 'symbol': 'MyOtherEnum', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')},
+                 {'documented': True,  'line': 17,  'kind': 'enumvalue', 'symbol': 'OtherEnum_Value_1', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')},
+                 {'documented': True,  'line': 17,  'kind': 'enumvalue', 'symbol': 'OtherEnum_Value_2', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')}]
+    l_obj.output_print_summary(l_stream, l_symbols)
+    l_outputResult = l_stream.getvalue()
+    l_stream.close()
+
+    self.assertRegexpMatches(l_outputResult, r".*Enums\s*:\s+100\.0% \(2/2\).*")
+    self.assertRegexpMatches(l_outputResult, r".*Enum Values\s*:\s+75\.0% \(3/4\).*")
+    self.assertRegexpMatches(l_outputResult, r".*Total\s*:\s+83\.3% \(5/6\).*")
