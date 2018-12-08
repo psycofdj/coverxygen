@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.14">
+  <compounddef
+    id="class_my_enum_class"
+    kind="class" language="C++" prot="public" abstract="yes">
+    <compoundname>MyEnumClass
+    </compoundname>
+    <sectiondef kind="public-type">
+      <memberdef kind="enum"
+        id="class_my_enum_class_1a4bffd5affc2abeba8ed3af3c2fd81ff4"
+        prot="public" static="no" strong="no">
+        <type></type>
+        <name>MyEnum</name>
+        <enumvalue
+          id="class_my_enum_class_1a4bffd5affc2abeba8ed3af3c2fd81ff4a38a848620f5abd0aca2849e48869ebc1"
+          prot="public">
+          <name>Enum_Value_1</name>
+          <initializer>= 100</initializer>
+          <briefdescription>
+            <para>A documented enum value. </para>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue
+          id="class_my_enum_class_1a4bffd5affc2abeba8ed3af3c2fd81ff4a9f10ec475af2abef02c2eed24a376828"
+          prot="public">
+          <name>Enum_Value_2</name>
+          <initializer>= -1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+          <para>An enumeration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="MyEnumClass.hpp" line="466" column="1" bodyfile="MyEnumClass.hpp" bodystart="465" bodyend="475" />
+      </memberdef>
+    </sectiondef>
+  </compounddef>
+</doxygen>

@@ -92,6 +92,11 @@ class Coverxygen(object):
     return None
 
   @staticmethod
+  def extract_kind(p_node):
+    l_kind = p_node.get("kind")
+    return l_kind
+
+  @staticmethod
   def extract_documented(p_node):
     for c_key in ["briefdescription", "detaileddescription", "inbodydescription"]:
       l_node = p_node.find("./%s" % c_key)
@@ -127,7 +132,7 @@ class Coverxygen(object):
 
   def should_filter_out(self, p_node, p_file, p_line):
     l_scope  = p_node.get('prot')
-    l_kind   = p_node.get('kind')
+    l_kind   = self.extract_kind(p_node)
 
     if l_scope is None:
       l_scope = "public"
@@ -146,7 +151,7 @@ class Coverxygen(object):
             l_kind = 'union'
           else:
             l_kind = 'function'
-
+    
     if (not l_scope in self.m_scope) or (not l_kind in self.m_kind):
       return True
     if not p_file.startswith(self.m_prefix):
@@ -154,18 +159,45 @@ class Coverxygen(object):
     self.verbose("found symbol of type %s at %s:%d", l_kind, p_file, p_line)
     return False
 
+  def process_enumValue(self, p_node, p_enum):
+    l_name         = self.extract_name(p_node)
+    l_isDocumented = self.extract_documented(p_node)
+    l_enumValue = {
+      "symbol"    : l_name,
+      "documented": l_isDocumented,
+      # enum values do not have location information, so we use the location
+      # of the surrounding enum
+      "line"      : p_enum["line"],
+      "file"      : p_enum["file"]
+    }
+    return l_enumValue
+
+  def process_enum(self, p_node, p_enum):
+    if not 'enumvalue' in self.m_kind:
+      return []
+    l_enumValueNodes = p_node.findall("./enumvalue")
+    l_enumValues = []
+    for c_enumValueNode in l_enumValueNodes:
+      l_enumValues.append(self.process_enumValue(c_enumValueNode, p_enum))
+    return l_enumValues
+
   def process_symbol(self, p_node, p_filePath):
     l_name         = self.extract_name(p_node)
+    l_kind         = self.extract_kind(p_node)
     l_isDocumented = self.extract_documented(p_node)
     l_file, l_line = self.extract_location(p_node, p_filePath, self.m_rootDir)
     if self.should_filter_out(p_node, l_file, l_line):
-      return {}
-    return {
+      return []
+    l_symbol = {
       "symbol"     : l_name,
       "documented" : l_isDocumented,
       "line"       : l_line,
       "file"       : l_file
     }
+    l_symbols = [l_symbol]
+    if l_kind == 'enum':
+      l_symbols.extend(self.process_enum(p_node, l_symbol))
+    return l_symbols
 
   @staticmethod
   def merge_symbols(p_results, p_symbols):
@@ -184,8 +216,7 @@ class Coverxygen(object):
     l_xmlNodes  = l_xmlDoc.findall("./compounddef//memberdef")
     l_xmlNodes += l_xmlDoc.findall("./compounddef")
     for c_def in l_xmlNodes:
-      l_symbol = self.process_symbol(c_def, p_filePath)
-      l_symbols.append(l_symbol)
+      l_symbols.extend(self.process_symbol(c_def, p_filePath))
     self.merge_symbols(p_results, l_symbols)
 
   def process_index(self, p_xmlDoc):
@@ -245,11 +276,15 @@ class Coverxygen(object):
   def output_print_lcov(p_stream, p_results):
     for c_file, c_data in p_results.items():
       p_stream.write("SF:%s\n" % c_file)
+      l_lines = {}
       for c_item in c_data:
-        l_value = 1
+        l_line = c_item["line"]
         if not c_item["documented"]:
-          l_value = 0
-        p_stream.write("DA:%d,%d\n" % (c_item["line"], l_value))
+          l_lines[l_line] = 0
+        elif not l_line in l_lines:
+          l_lines[l_line] = 1
+      for c_line in l_lines:
+        p_stream.write("DA:%d,%d\n" % (c_line, l_lines[c_line]))
       p_stream.write("end_of_record\n")
 
 # Local Variables:

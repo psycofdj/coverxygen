@@ -89,6 +89,9 @@ optional arguments:
                         - all       : all above
   --kind KIND          comma-separated list of items' type to include : 
                         - enum      : enum definitions
+                        - enumvalue : enumvalue definitions
+                                      Note: a single undocumented enumvalue will mark
+                                      the containing enum as undocumented
                         - friend    : friend declarations
                         - typedef   : typedef definitions
                         - variable  : variable definitions

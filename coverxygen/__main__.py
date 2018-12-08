@@ -65,7 +65,10 @@ def main():
                         action="store",
                         help="comma-separated list of items' type to include : \n"
                         " - enum      : enum definitions\n"
-                        " - friend    : friend declarations\n"
+                        " - enumvalue : enumvalue definitions\n"
+                        "               Note: a single undocumented enumvalue will mark\n"
+                        "               the containing enum as undocumented\n"
+                        " - friend	: friend declarations\n"
                         " - typedef   : typedef definitions\n"
                         " - variable  : variable definitions\n"
                         " - function  : function definitions\n"
@@ -85,7 +88,7 @@ def main():
   if l_result.scope == "all":
     l_result.scope = "public,protected,private"
   if l_result.kind == "all":
-    l_result.kind = "enum,friend,typedef,variable,function,signal,slot,class,struct,union,define,file,namespace,page"
+    l_result.kind = "enum,enumvalue,friend,typedef,variable,function,signal,slot,class,struct,union,define,file,namespace,page"
 
   l_result.scope = l_result.scope.split(",")
   l_result.kind  = l_result.kind.split(",")
