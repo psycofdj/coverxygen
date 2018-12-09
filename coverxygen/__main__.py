@@ -56,21 +56,21 @@ def main():
                         default=None)
   l_parser.add_argument("--scope",
                         action="store",
-                        help="comma-separated list of items' scope to include : \n"
-                        " - public    : public member elements\n"
+                        help="comma-separated list of item scopes to include : \n"
+                        " - public    : public member and global elements\n"
                         " - protected : protected member elements\n"
                         " - private   : private member elements\n"
                         " - all       : all above\n",
                         default="all")
   l_parser.add_argument("--kind",
                         action="store",
-                        help="comma-separated list of items' type to include : \n"
+                        help="comma-separated list of item types to include : \n"
                         " - enum      : enum definitions\n"
-                        " - enumvalue : enumvalue definitions\n"
-                        "               Note: a single undocumented enumvalue will mark\n"
+                        " - enumvalue : enum value definitions\n"
+                        "               Note: a single undocumented enum value will mark\n"
                         "               the containing enum as undocumented\n"
-                        " - friend	: friend declarations\n"
-                        " - typedef   : typedef definitions\n"
+                        " - friend    : friend declarations\n"
+                        " - typedef   : type definitions\n"
                         " - variable  : variable definitions\n"
                         " - function  : function definitions\n"
                         " - signal    : Qt signal definitions\n"
@@ -79,9 +79,9 @@ def main():
                         " - struct    : struct definitions\n"
                         " - union     : union definitions\n"
                         " - define    : define definitions\n"
-                        " - file      : file definitions\n"
+                        " - file      : files\n"
                         " - namespace : namespace definitions\n"
-                        " - page      : page definitions\n"
+                        " - page      : documentation pages\n"
                         " - all       : all above\n",
                         default="all")
   l_result = l_parser.parse_args()
