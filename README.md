@@ -138,6 +138,10 @@ Special thanks to Alvaro Lopez Ortega <[alvaro@gnu.org](mailto:alvaro@gnu.org)> 
 
 You can find his work at [alobbs/doxy-coverage](https://github.com/alobbs/doxy-coverage)
 
+## Hall of Fame
+
+- [j-ulrich](https://github.com/j-ulrich) for his many contributions
+
 
 # Project status
 
