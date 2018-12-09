@@ -47,7 +47,7 @@ def main():
                         required=True)
   l_parser.add_argument("--src-dir",
                         action="store",
-                        help ="root source directory used to match prefix for"
+                        help ="root source directory used to match prefix for "
                         "relative path generated files",
                         required=True)
   l_parser.add_argument("--prefix",
