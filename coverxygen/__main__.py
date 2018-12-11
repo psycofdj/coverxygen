@@ -53,6 +53,18 @@ def main():
                         action="store",
                         help ="keep only file matching given path prefix",
                         default=None)
+  l_parser.add_argument("--exclude",
+                        action="append",
+                        help="exclude files whose absolute path matches a regular expression; "
+                        "this option can be given multiple times",
+                        default=[])
+  l_parser.add_argument("--include",
+                        action="append",
+                        help="include files whose absolute path matches a regular expression "
+                        "even if they also match an exclude filter (see --exclude) or if they are "
+                        "not matching the patch prefix (see --prefix); "
+                        "this option can be given multiple times",
+                        default=[])
   l_parser.add_argument("--scope",
                         action="store",
                         help="comma-separated list of items' scope to include : \n"
@@ -107,7 +119,9 @@ def main():
                                 l_result.prefix,
                                 l_format,
                                 l_result.src_dir,
-                                l_result.verbose)
+                                l_result.verbose,
+                                l_result.exclude,
+                                l_result.include)
   try:
     l_obj.process()
   except RuntimeError as l_error:

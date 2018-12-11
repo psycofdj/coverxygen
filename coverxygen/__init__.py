@@ -4,6 +4,7 @@
 import os
 import sys
 import json
+import re
 import xml.etree.ElementTree as ET
 
 #------------------------------------------------------------------------------
@@ -28,15 +29,17 @@ __classifiers__  = [
 #------------------------------------------------------------------------------
 
 class Coverxygen(object):
-  def __init__(self, p_path, p_output, p_scope, p_kind, p_prefix, p_format, p_rootDir, p_verbose):
-    self.m_root    = p_path
-    self.m_output  = p_output
-    self.m_scope   = p_scope
-    self.m_kind    = p_kind
-    self.m_prefix  = os.path.abspath(p_prefix) if p_prefix is not None else ""
-    self.m_format  = p_format
-    self.m_rootDir = os.path.abspath(p_rootDir) if p_rootDir is not None else ""
-    self.m_verbose = p_verbose
+  def __init__(self, p_path, p_output, p_scope, p_kind, p_prefix, p_format, p_rootDir, p_verbose, p_excludes, p_includes):
+    self.m_root     = p_path
+    self.m_output   = p_output
+    self.m_scope    = p_scope
+    self.m_kind     = p_kind
+    self.m_prefix   = os.path.abspath(p_prefix) if p_prefix is not None else ""
+    self.m_format   = p_format
+    self.m_rootDir  = os.path.abspath(p_rootDir) if p_rootDir is not None else ""
+    self.m_verbose  = p_verbose
+    self.m_excludes = p_excludes
+    self.m_includes = p_includes
 
   @staticmethod
   def error(p_format, *p_args):
@@ -130,6 +133,20 @@ class Coverxygen(object):
       l_path = os.path.join(p_rootDir, p_file)
     return os.path.abspath(l_path)
 
+  @staticmethod
+  def matches_regex_list(p_string, p_regExList):
+    for c_regExPattern in p_regExList:
+      if re.match(c_regExPattern, p_string):
+        return True
+    return False
+
+  def matches_include(self, p_file):
+    return Coverxygen.matches_regex_list(p_file, self.m_includes)
+
+  def matches_exclude(self, p_file):
+    return Coverxygen.matches_regex_list(p_file, self.m_excludes)
+
+
   def should_filter_out(self, p_node, p_file, p_line):
     l_scope  = p_node.get('prot')
     l_kind   = self.extract_kind(p_node)
@@ -151,11 +168,16 @@ class Coverxygen(object):
             l_kind = 'union'
           else:
             l_kind = 'function'
-    
+
     if (not l_scope in self.m_scope) or (not l_kind in self.m_kind):
       return True
-    if not p_file.startswith(self.m_prefix):
-      return True
+
+    if not self.matches_include(p_file):
+      if not p_file.startswith(self.m_prefix):
+        return True
+      if self.matches_exclude(p_file):
+        return True
+
     self.verbose("found symbol of type %s at %s:%d", l_kind, p_file, p_line)
     return False
 
