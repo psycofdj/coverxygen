@@ -6,6 +6,7 @@ __author__    = "Xavier MARCELET <xavier@marcelet.com>"
 #------------------------------------------------------------------#
 
 import os
+import json
 import tempfile
 import xml.etree.ElementTree as ET
 import unittest2 as unittest
@@ -319,15 +320,14 @@ class CoverxygenTest(unittest.TestCase):
   def test_output_print_lvoc(self):
     l_obj = Coverxygen(None, None, [], [], None, None, None, False)
     l_stream = StringIO()
-    l_results = {}
     l_symbols = [{'documented': True,  'line': 466, 'symbol': 'MyEnum', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
                  {'documented': False, 'line': 466, 'symbol': 'Enum_Value_1', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
                  {'documented': True,  'line': 466, 'symbol': 'Enum_Value_2', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
                  {'documented': True,  'line': 17,  'symbol': 'MyOtherEnum', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')},
                  {'documented': True,  'line': 17,  'symbol': 'OtherEnum_Value_1', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')},
                  {'documented': True,  'line': 17,  'symbol': 'OtherEnum_Value_2', 'file': os.path.abspath('/opt/MyOtherEnumClass.hpp')}]
-    l_results = l_obj.group_symbols_by_file(l_symbols)
-    l_obj.output_print_lcov(l_stream, l_results)
+    l_symbolsByFile = l_obj.group_symbols_by_file(l_symbols)
+    l_obj.output_print_lcov(l_stream, l_symbolsByFile)
     l_outputResult = l_stream.getvalue()
     l_stream.close()
 
@@ -335,6 +335,72 @@ class CoverxygenTest(unittest.TestCase):
     self.assertNotIn("DA:466,1", l_outputResult)
     self.assertNotIn("DA:17,0", l_outputResult)
     self.assertIn("DA:17,1", l_outputResult)
+
+  def test_output_print_json_v2_v3_summary(self):
+    l_obj = Coverxygen(None, None, [], [], None, None, None, False)
+
+    l_myEnumClassFile      = os.path.abspath('/opt/MyEnumClass.hpp')
+    l_myOtherEnumClassFile = os.path.abspath('/opt/MyOtherEnumClass.hpp')
+    l_myClassFile          = os.path.abspath('/opt/MyClass.hpp')
+    l_myEnumSymbol      = {'documented': True,  'line': 466, 'kind': 'enum', 'symbol': 'MyEnum', 'file': l_myEnumClassFile}
+    l_myClassSymbol     = {'documented': True,  'line': 10,  'kind': 'class', 'symbol': 'MyClass', 'file': l_myClassFile}
+    l_enumValue1Symbol  = {'documented': False, 'line': 466, 'kind': 'enumvalue', 'symbol': 'Enum_Value_1', 'file': l_myEnumClassFile}
+    l_symbols = [l_myEnumSymbol,
+                 l_enumValue1Symbol,
+                 {'documented': True,  'line': 466, 'kind': 'enumvalue', 'symbol': 'Enum_Value_2', 'file': l_myEnumClassFile},
+                 {'documented': True,  'line': 17,  'kind': 'enum', 'symbol': 'MyOtherEnum', 'file': l_myOtherEnumClassFile},
+                 {'documented': True,  'line': 17,  'kind': 'enumvalue', 'symbol': 'OtherEnum_Value_1', 'file': l_myOtherEnumClassFile},
+                 {'documented': True,  'line': 17,  'kind': 'enumvalue', 'symbol': 'OtherEnum_Value_2', 'file': l_myOtherEnumClassFile},
+                 l_myClassSymbol,
+                 {'documented': False,  'line': 20,  'kind': 'function', 'symbol': 'MyClass::foo', 'file': l_myClassFile}]
+
+    # json-summary
+    l_stream = StringIO()
+    l_obj.output_print_json_summary(l_stream, l_symbols)
+    l_jsonSummaryResult = l_stream.getvalue()
+    l_stream.close()
+    l_decodedJsonSummaryResult = json.loads(l_jsonSummaryResult)
+    self.assertIn("total", l_decodedJsonSummaryResult)
+    self.assertEqual(0.75, l_decodedJsonSummaryResult["total"]["coverage_rate"])
+    self.assertEqual(8, l_decodedJsonSummaryResult["total"]["symbol_count"])
+    self.assertEqual(6, l_decodedJsonSummaryResult["total"]["documented_symbol_count"])
+    self.assertIn("kinds", l_decodedJsonSummaryResult)
+    self.assertIn("class", l_decodedJsonSummaryResult["kinds"])
+    self.assertEqual(1.0, l_decodedJsonSummaryResult["kinds"]["class"]["coverage_rate"])
+    self.assertEqual(1, l_decodedJsonSummaryResult["kinds"]["class"]["symbol_count"])
+    self.assertEqual(1, l_decodedJsonSummaryResult["kinds"]["class"]["documented_symbol_count"])
+    self.assertIn("function", l_decodedJsonSummaryResult["kinds"])
+    self.assertEqual(0.0, l_decodedJsonSummaryResult["kinds"]["function"]["coverage_rate"])
+    self.assertEqual(1, l_decodedJsonSummaryResult["kinds"]["function"]["symbol_count"])
+    self.assertEqual(0, l_decodedJsonSummaryResult["kinds"]["function"]["documented_symbol_count"])
+    self.assertNotIn("friend", l_decodedJsonSummaryResult["kinds"])
+    self.assertNotIn("files", l_decodedJsonSummaryResult)
+
+    # json-v2
+    l_stream = StringIO()
+    l_symbolsByFile = l_obj.group_symbols_by_file(l_symbols)
+    l_obj.output_print_json_v2(l_stream, l_symbolsByFile)
+    l_jsonV2Result = l_stream.getvalue()
+    l_stream.close()
+    l_decodedJsonV2Result = json.loads(l_jsonV2Result)
+    self.assertIn(l_myEnumClassFile, l_decodedJsonV2Result)
+    self.assertIn(l_myClassFile, l_decodedJsonV2Result)
+    self.assertIn(l_myEnumSymbol, l_decodedJsonV2Result[l_myEnumClassFile])
+    self.assertIn(l_enumValue1Symbol, l_decodedJsonV2Result[l_myEnumClassFile])
+    self.assertIn(l_myClassSymbol, l_decodedJsonV2Result[l_myClassFile])
+
+    # json-v3
+    l_stream = StringIO()
+    l_obj.output_print_json_v3(l_stream, l_symbols, l_symbolsByFile)
+    l_jsonV3Result = l_stream.getvalue()
+    l_stream.close()
+    l_decodedJsonV3Result = json.loads(l_jsonV3Result)
+    self.assertIn("total", l_decodedJsonV3Result)
+    self.assertIn("kinds", l_decodedJsonV3Result)
+    self.assertIn("files", l_decodedJsonV3Result)
+    self.assertEqual(l_decodedJsonSummaryResult, {"total": l_decodedJsonV3Result["total"], "kinds": l_decodedJsonV3Result["kinds"]})
+    self.assertEqual(l_decodedJsonV2Result, l_decodedJsonV3Result["files"])
+
 
   def test_output_print_summary(self):
     l_obj = Coverxygen(None, None, [], [], None, None, None, False)
