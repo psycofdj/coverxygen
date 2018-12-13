@@ -32,10 +32,14 @@ def main():
   l_parser.add_argument("--format",
                         action="store",
                         help="output file format : \n"
-                        "lcov        : lcov compatible format (default)\n"
-                        "json-legacy : legacy json format\n"
-                        "json        : simpler json format\n"
-                        "summary     : textual summary table format\n",
+                        "lcov         : lcov compatible format (default)\n"
+                        "json-v3      : json format which includes summary information\n"
+                        "json-v2      : simpler json format\n"
+                        "json-v1      : legacy json format\n"
+                        "json         : deprecated - same as json-v2\n"
+                        "json-legacy  : deprecated - same as json-v1\n"
+                        "json-summary : summary in json format\n"
+                        "summary      : textual summary table format\n",
                         default="lcov")
   l_parser.add_argument("--xml-dir",
                         action="store",
@@ -90,6 +94,13 @@ def main():
     l_result.scope = "public,protected,private"
   if l_result.kind == "all":
     l_result.kind = "enum,enumvalue,friend,typedef,variable,function,signal,slot,class,struct,union,define,file,namespace,page"
+
+  l_formatMapping = {
+    "json"       : "json-v2",
+    "json-legacy": "json-v1"
+  }
+  if l_result.format in l_formatMapping:
+    l_result.format = l_formatMapping[l_result.format]
 
   l_result.scope = l_result.scope.split(",")
   l_result.kind  = l_result.kind.split(",")

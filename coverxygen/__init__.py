@@ -244,14 +244,18 @@ class Coverxygen(object):
     l_outStream = self.output_get_stream(self.m_output)
     if self.m_format == "summary":
       self.output_print_summary(l_outStream, p_symbols)
+    elif self.m_format == "json-summary":
+      self.output_print_json_summary(l_outStream, p_symbols)
     else:
-      l_results = Coverxygen.group_symbols_by_file(p_symbols)
-      if self.m_format == "json":
-        self.output_print_json(l_outStream, l_results)
-      elif self.m_format == "json-legacy":
-        self.output_print_json_legacy(l_outStream, l_results)
+      l_symbolsByFile = Coverxygen.group_symbols_by_file(p_symbols)
+      if self.m_format == "json-v3":
+        self.output_print_json_v3(l_outStream, p_symbols, l_symbolsByFile)
+      elif self.m_format == "json-v2":
+        self.output_print_json_v2(l_outStream, l_symbolsByFile)
+      elif self.m_format == "json-v1":
+        self.output_print_json_v1(l_outStream, l_symbolsByFile)
       elif self.m_format == "lcov":
-        self.output_print_lcov(l_outStream, l_results)
+        self.output_print_lcov(l_outStream, l_symbolsByFile)
       else:
         self.error("invalid requested output format '%s'", self.m_format)
 
@@ -260,6 +264,51 @@ class Coverxygen(object):
     l_xmlDoc    = self.get_xmldoc_from_file(l_indexPath)
     l_symbols   = self.process_index(l_xmlDoc)
     self.output_results(l_symbols)
+
+  @staticmethod
+  def count_symbols_by_kind(p_symbols):
+    l_symbolCounts = {}
+    for c_symbol in p_symbols:
+      l_symbolKind = c_symbol["kind"]
+      if not l_symbolKind in l_symbolCounts:
+        l_symbolCounts[l_symbolKind] = {
+          "documented_symbol_count": 0,
+          "symbol_count"           : 0
+        }
+      if c_symbol["documented"]:
+        l_symbolCounts[l_symbolKind]["documented_symbol_count"] += 1
+      l_symbolCounts[l_symbolKind]["symbol_count"] += 1
+    return l_symbolCounts
+
+  @staticmethod
+  def calculate_kind_coverage(p_symbolKindCounts):
+    l_symbolKindCountsWithCoverage = p_symbolKindCounts
+    for c_symbolKind, c_counts in p_symbolKindCounts.items():
+      l_symbolKindCountsWithCoverage[c_symbolKind]["coverage_rate"] = c_counts["documented_symbol_count"]/c_counts["symbol_count"]
+    return l_symbolKindCountsWithCoverage
+
+  @staticmethod
+  def calculate_totals(p_symbolKindCounts):
+    l_totalDocumented = 0
+    l_total = 0
+    for c_counts in p_symbolKindCounts.values():
+      l_totalDocumented += c_counts["documented_symbol_count"]
+      l_total += c_counts["symbol_count"]
+    return {
+      "documented_symbol_count": l_totalDocumented,
+      "symbol_count"           : l_total,
+      "coverage_rate"          : l_totalDocumented / l_total
+    }
+
+  @staticmethod
+  def create_summary(p_symbols):
+    l_symbolKindCounts = Coverxygen.count_symbols_by_kind(p_symbols)
+    l_totalCounts = Coverxygen.calculate_totals(l_symbolKindCounts)
+    l_symbolKindCountsWithCoverage = Coverxygen.calculate_kind_coverage(l_symbolKindCounts)
+    return {
+      "total": l_totalCounts,
+      "kinds": l_symbolKindCountsWithCoverage
+    }
 
   @staticmethod
   def output_get_stream(p_output):
@@ -272,13 +321,24 @@ class Coverxygen(object):
     return l_file
 
   @staticmethod
-  def output_print_json(p_stream, p_results):
-    p_stream.write(json.dumps(p_results, indent=2))
+  def output_print_json_summary(p_stream, p_symbols):
+    l_summary = Coverxygen.create_summary(p_symbols)
+    p_stream.write(json.dumps(l_summary, indent=2))
 
   @staticmethod
-  def output_print_json_legacy(p_stream, p_results):
+  def output_print_json_v3(p_stream, p_symbols, p_symbolsByFile):
+    l_data = Coverxygen.create_summary(p_symbols)
+    l_data["files"] = p_symbolsByFile
+    p_stream.write(json.dumps(l_data, indent=2))
+
+  @staticmethod
+  def output_print_json_v2(p_stream, p_symbolsByFile):
+    p_stream.write(json.dumps(p_symbolsByFile, indent=2))
+
+  @staticmethod
+  def output_print_json_v1(p_stream, p_symbolsByFile):
     l_res = []
-    for c_file, c_symbols in p_results.items():
+    for c_file, c_symbols in p_symbolsByFile.items():
       l_res.append({ c_file : c_symbols })
     p_stream.write(json.dumps(l_res, indent=2))
 
@@ -296,21 +356,6 @@ class Coverxygen(object):
       for c_line in l_lines:
         p_stream.write("DA:%d,%d\n" % (c_line, l_lines[c_line]))
       p_stream.write("end_of_record\n")
-
-  @staticmethod
-  def count_symbols_by_kind(p_symbols):
-    l_symbolCounts = {}
-    for c_symbol in p_symbols:
-      l_symbolKind = c_symbol["kind"]
-      if not l_symbolKind in l_symbolCounts:
-        l_symbolCounts[l_symbolKind] = {
-          "documented": 0,
-          "total"     : 0
-        }
-      if c_symbol["documented"]:
-        l_symbolCounts[l_symbolKind]["documented"] += 1
-      l_symbolCounts[l_symbolKind]["total"] += 1
-    return l_symbolCounts
 
   @staticmethod
   def symbol_kind_to_string(p_kind):
@@ -334,21 +379,21 @@ class Coverxygen(object):
     return l_mapping[p_kind]
 
   @staticmethod
-  def determine_first_column_width(p_symbolsCounts):
-    l_kindStringLengths = map(lambda c_symbolKindCount: len(c_symbolKindCount["kind"]), p_symbolsCounts)
-    l_longestKindStringLength = max(l_kindStringLengths, default=0)
-    return l_longestKindStringLength
-
-  @staticmethod
   def symbol_kind_counts_dict_to_list(p_symbolKindCountsDict):
     l_symbolCountsList = []
-    for c_symbolKind in p_symbolKindCountsDict:
+    for c_symbolKind, c_counts in p_symbolKindCountsDict.items():
       l_symbolCountsList.append({
         "kind": Coverxygen.symbol_kind_to_string(c_symbolKind),
-        "documented": p_symbolKindCountsDict[c_symbolKind]["documented"],
-        "total": p_symbolKindCountsDict[c_symbolKind]["total"]
+        "documented_symbol_count": c_counts["documented_symbol_count"],
+        "symbol_count": c_counts["symbol_count"]
       })
     return sorted(l_symbolCountsList, key=lambda obj: obj["kind"])
+
+  @staticmethod
+  def determine_first_column_width(p_symbolsKindCountsList):
+    l_kindStringLengths = map(lambda c_symbolKindCount: len(c_symbolKindCount["kind"]), p_symbolsKindCountsList)
+    l_longestKindStringLength = max(l_kindStringLengths, default=0)
+    return l_longestKindStringLength
 
   @staticmethod
   def print_summary_line(p_stream, p_header, p_headerWidth, p_count, p_total):
@@ -358,19 +403,14 @@ class Coverxygen(object):
 
   @staticmethod
   def output_print_summary(p_stream, p_symbols):
-    l_symbolKindCounts = Coverxygen.count_symbols_by_kind(p_symbols)
-    l_symbolKindCounts = Coverxygen.symbol_kind_counts_dict_to_list(l_symbolKindCounts)
-    l_totalDocumented = 0
-    l_total = 0
-    l_firstColumnWidth = Coverxygen.determine_first_column_width(l_symbolKindCounts)
-    for c_symbolCount in l_symbolKindCounts:
-      l_documentedKinds = c_symbolCount["documented"]
-      l_totalKinds = c_symbolCount["total"]
-      l_totalDocumented += l_documentedKinds
-      l_total += l_totalKinds
-      Coverxygen.print_summary_line(p_stream, c_symbolCount["kind"], l_firstColumnWidth, l_documentedKinds, l_totalKinds)
+    l_summary = Coverxygen.create_summary(p_symbols)
+    l_symbolKindCountsList = Coverxygen.symbol_kind_counts_dict_to_list(l_summary["kinds"])
+    l_totalCounts = l_summary["total"]
+    l_firstColumnWidth = Coverxygen.determine_first_column_width(l_symbolKindCountsList)
+    for c_symbolKindCount in l_symbolKindCountsList:
+      Coverxygen.print_summary_line(p_stream, c_symbolKindCount["kind"], l_firstColumnWidth, c_symbolKindCount["documented_symbol_count"], c_symbolKindCount["symbol_count"])
     p_stream.write("%s\n" % ("-" * 35))
-    Coverxygen.print_summary_line(p_stream, "Total", l_firstColumnWidth, l_totalDocumented, l_total)
+    Coverxygen.print_summary_line(p_stream, "Total", l_firstColumnWidth, l_totalCounts["documented_symbol_count"], l_totalCounts["symbol_count"])
 
 # Local Variables:
 # ispell-local-dictionary: "en"
