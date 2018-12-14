@@ -49,12 +49,12 @@ def main():
                               default=None)
   l_optionalArgs.add_argument("--exclude",
                               action="append",
-                              help="exclude files whose absolute path matches a regular expression;\n"
+                              help="exclude files whose absolute path matches the given regular expression <EXLUDE>;\n"
                               "this option can be given multiple times",
                               default=[])
   l_optionalArgs.add_argument("--include",
                               action="append",
-                              help="include files whose absolute path matches a regular expression\n"
+                              help="include files whose absolute path matches the given regular expression <INCLUDE>\n"
                               "even if they also match an exclude filter (see --exclude) or if they\n"
                               "are not matching the patch prefix (see --prefix);\n"
                               "this option can be given multiple times",
