@@ -26,7 +26,7 @@ Alternatively, Coverxygen can also calculate the coverage and print a summary ta
 
 ## Prerequisites
 
-Coverxygen relies on doxygen to generate the documentation information. 
+Coverxygen relies on doxygen to generate the documentation information.
 ```bash
 sudo apt-get install doxygen
 ```
@@ -50,7 +50,7 @@ link : https://launchpad.net/~psycofdj/+archive/ubuntu/coverxygen
 sudo add-apt-repository ppa:psycofdj/coverxygen
 sudo apt-get update
 # with python2 (default)
-sudo apt-get install python-coverxygen        
+sudo apt-get install python-coverxygen
 # or with python3
 sudo apt-get install python3-coverxygen
 ```
@@ -74,46 +74,62 @@ python -m coverxygen --xml-path <path_to_doxygen_xml_dir> --output doc-coverage.
 
 Full usage :
 ```
-usage: coverxygen [-h] [--version] [--verbose] [--json JSON] [--format FORMAT] --xml-dir XML_DIR --output OUTPUT --src-dir ROOT_DIR [--prefix PREFIX] [--scope SCOPE] [--kind KIND]
+usage: coverxygen [-h] [--version] [--verbose] [--json] [--format FORMAT]
+                  [--prefix PREFIX] [--exclude EXCLUDE] [--include INCLUDE]
+                  [--scope SCOPE] [--kind KIND] --xml-dir XML_DIR --output
+                  OUTPUT --src-dir SRC_DIR
+
+required arguments:
+  --xml-dir XML_DIR  path to generated doxygen XML directory
+  --output OUTPUT    destination output file (- for stdout)
+  --src-dir SRC_DIR  root source directory used to match prefix for relative path generated files
 
 optional arguments:
-  -h, --help           show this help message and exit
-  --version            prints version
-  --verbose            enabled verbose output
-  --json JSON          (deprecated) same as --format json-legacy
-  --format FORMAT      output file format : 
-                       lcov        : lcov compatible format (default)
-                       json-legacy : legacy json format
-                       json        : simpler json format
-                       summary     : textual summary table format
-  --xml-dir XML_DIR    path to generated doxygen XML directory
-  --output OUTPUT      destination output file (- for stdout)
-  --src-dir ROOT_DIR   root source directory used to match prefix for relative path generated files
-  --prefix PREFIX      keep only file matching given path prefix
-  --scope SCOPE        comma-separated list of item scopes to include : 
-                        - public    : public member and global elements
-                        - protected : protected member elements
-                        - private   : private member elements
-                        - all       : all above
-  --kind KIND          comma-separated list of item types to include : 
-                        - enum      : enum definitions
-                        - enumvalue : enum value definitions
-                                      Note: a single undocumented enum value will mark
-                                      the containing enum as undocumented
-                        - friend    : friend declarations
-                        - typedef   : type definitions
-                        - variable  : variable definitions
-                        - function  : function definitions
-                        - signal    : Qt signal definitions
-                        - slot      : Qt slot definitions
-                        - class     : class definitions
-                        - struct    : struct definitions
-                        - union     : union definitions
-                        - define    : define definitions
-                        - file      : files
-                        - namespace : namespace definitions
-                        - page      : documentation pages
-                        - all       : all above
+  -h, --help         show this help message and exit
+  --version          print version and exit
+  --verbose          enabled verbose output
+  --json             (deprecated) same as --format json-legacy
+  --format FORMAT    output file format : 
+                     lcov         : lcov compatible format (default)
+                     json-v3      : json format which includes summary information
+                     json-v2      : simpler json format
+                     json-v1      : legacy json format
+                     json         : (deprecated) same as json-v2
+                     json-legacy  : (deprecated) same as json-v1
+                     json-summary : summary in json format
+                     summary      : textual summary table format
+  --prefix PREFIX    keep only file matching given path prefix
+  --exclude EXCLUDE  exclude files whose absolute path matches a regular expression;
+                     this option can be given multiple times
+  --include INCLUDE  include files whose absolute path matches a regular expression
+                     even if they also match an exclude filter (see --exclude) or if they
+                     are not matching the patch prefix (see --prefix);
+                     this option can be given multiple times
+  --scope SCOPE      comma-separated list of item scopes to include :
+                      - public    : public member and global elements
+                      - protected : protected member elements
+                      - private   : private member elements
+                      - all       : all above
+  --kind KIND        comma-separated list of item types to include :
+                      - enum      : enum definitions
+                      - enumvalue : enum value definitions
+                                    Note: a single undocumented enum value will mark
+                                    the containing enum as undocumented
+                      - friend    : friend declarations
+                      - typedef   : type definitions
+                      - variable  : variable definitions
+                      - function  : function definitions
+                      - signal    : Qt signal definitions
+                      - slot      : Qt slot definitions
+                      - class     : class definitions
+                      - struct    : struct definitions
+                      - union     : union definitions
+                      - define    : define definitions
+                      - file      : files
+                      - namespace : namespace definitions
+                      - page      : documentation pages
+                      - all       : all above
+
 ```
 
 ## Run lcov or genhtml
