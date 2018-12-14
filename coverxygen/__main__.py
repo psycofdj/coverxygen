@@ -32,9 +32,14 @@ def main():
   l_parser.add_argument("--format",
                         action="store",
                         help="output file format : \n"
-                        "lcov        : lcov compatible format (default)\n"
-                        "json-legacy : legacy json format\n"
-                        "json        : simpler json format\n",
+                        "lcov         : lcov compatible format (default)\n"
+                        "json-v3      : json format which includes summary information\n"
+                        "json-v2      : simpler json format\n"
+                        "json-v1      : legacy json format\n"
+                        "json         : deprecated - same as json-v2\n"
+                        "json-legacy  : deprecated - same as json-v1\n"
+                        "json-summary : summary in json format\n"
+                        "summary      : textual summary table format\n",
                         default="lcov")
   l_parser.add_argument("--xml-dir",
                         action="store",
@@ -46,7 +51,7 @@ def main():
                         required=True)
   l_parser.add_argument("--src-dir",
                         action="store",
-                        help ="root source directory used to match prefix for"
+                        help ="root source directory used to match prefix for "
                         "relative path generated files",
                         required=True)
   l_parser.add_argument("--prefix",
@@ -55,21 +60,21 @@ def main():
                         default=None)
   l_parser.add_argument("--scope",
                         action="store",
-                        help="comma-separated list of items' scope to include : \n"
-                        " - public    : public member elements\n"
+                        help="comma-separated list of item scopes to include : \n"
+                        " - public    : public member and global elements\n"
                         " - protected : protected member elements\n"
                         " - private   : private member elements\n"
                         " - all       : all above\n",
                         default="all")
   l_parser.add_argument("--kind",
                         action="store",
-                        help="comma-separated list of items' type to include : \n"
+                        help="comma-separated list of item types to include : \n"
                         " - enum      : enum definitions\n"
-                        " - enumvalue : enumvalue definitions\n"
-                        "               Note: a single undocumented enumvalue will mark\n"
+                        " - enumvalue : enum value definitions\n"
+                        "               Note: a single undocumented enum value will mark\n"
                         "               the containing enum as undocumented\n"
-                        " - friend	: friend declarations\n"
-                        " - typedef   : typedef definitions\n"
+                        " - friend    : friend declarations\n"
+                        " - typedef   : type definitions\n"
                         " - variable  : variable definitions\n"
                         " - function  : function definitions\n"
                         " - signal    : Qt signal definitions\n"
@@ -78,9 +83,9 @@ def main():
                         " - struct    : struct definitions\n"
                         " - union     : union definitions\n"
                         " - define    : define definitions\n"
-                        " - file      : file definitions\n"
+                        " - file      : files\n"
                         " - namespace : namespace definitions\n"
-                        " - page      : page definitions\n"
+                        " - page      : documentation pages\n"
                         " - all       : all above\n",
                         default="all")
   l_result = l_parser.parse_args()
@@ -89,6 +94,13 @@ def main():
     l_result.scope = "public,protected,private"
   if l_result.kind == "all":
     l_result.kind = "enum,enumvalue,friend,typedef,variable,function,signal,slot,class,struct,union,define,file,namespace,page"
+
+  l_formatMapping = {
+    "json"       : "json-v2",
+    "json-legacy": "json-v1"
+  }
+  if l_result.format in l_formatMapping:
+    l_result.format = l_formatMapping[l_result.format]
 
   l_result.scope = l_result.scope.split(",")
   l_result.kind  = l_result.kind.split(",")
