@@ -12,94 +12,98 @@ import coverxygen
 #------------------------------------------------------------------------------
 
 def main():
-  if "--version" in sys.argv:
-    print(coverxygen.__version__)
-    sys.exit(0)
+  l_parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter, prog="coverxygen", add_help=False)
+  l_requiredArgs = l_parser.add_argument_group("required arguments")
+  l_optionalArgs = l_parser.add_argument_group("optional arguments")
 
-  l_parser = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter, prog="coverxygen")
-  l_parser.add_argument("--version",
-                        action="store_true",
-                        help ="prints version",
-                        default=False)
-  l_parser.add_argument("--verbose",
-                        action="store_true",
-                        help ="enabled verbose output",
-                        default=False)
-  l_parser.add_argument("--json",
-                        action="store_true",
-                        help="(deprecated) same as --format json-legacy",
-                        default=None)
-  l_parser.add_argument("--format",
-                        action="store",
-                        help="output file format : \n"
-                        "lcov         : lcov compatible format (default)\n"
-                        "json-v3      : json format which includes summary information\n"
-                        "json-v2      : simpler json format\n"
-                        "json-v1      : legacy json format\n"
-                        "json         : deprecated - same as json-v2\n"
-                        "json-legacy  : deprecated - same as json-v1\n"
-                        "json-summary : summary in json format\n"
-                        "summary      : textual summary table format\n",
-                        default="lcov")
-  l_parser.add_argument("--xml-dir",
-                        action="store",
-                        help ="path to generated doxygen XML directory",
-                        required=True)
-  l_parser.add_argument("--output",
-                        action="store",
-                        help ="destination output file (- for stdout)",
-                        required=True)
-  l_parser.add_argument("--src-dir",
-                        action="store",
-                        help ="root source directory used to match prefix for "
-                        "relative path generated files",
-                        required=True)
-  l_parser.add_argument("--prefix",
-                        action="store",
-                        help ="keep only file matching given path prefix",
-                        default=None)
-  l_parser.add_argument("--exclude",
-                        action="append",
-                        help="exclude files whose absolute path matches a regular expression; "
-                        "this option can be given multiple times",
-                        default=[])
-  l_parser.add_argument("--include",
-                        action="append",
-                        help="include files whose absolute path matches a regular expression "
-                        "even if they also match an exclude filter (see --exclude) or if they are "
-                        "not matching the patch prefix (see --prefix); "
-                        "this option can be given multiple times",
-                        default=[])
-  l_parser.add_argument("--scope",
-                        action="store",
-                        help="comma-separated list of item scopes to include : \n"
-                        " - public    : public member and global elements\n"
-                        " - protected : protected member elements\n"
-                        " - private   : private member elements\n"
-                        " - all       : all above\n",
-                        default="all")
-  l_parser.add_argument("--kind",
-                        action="store",
-                        help="comma-separated list of item types to include : \n"
-                        " - enum      : enum definitions\n"
-                        " - enumvalue : enum value definitions\n"
-                        "               Note: a single undocumented enum value will mark\n"
-                        "               the containing enum as undocumented\n"
-                        " - friend    : friend declarations\n"
-                        " - typedef   : type definitions\n"
-                        " - variable  : variable definitions\n"
-                        " - function  : function definitions\n"
-                        " - signal    : Qt signal definitions\n"
-                        " - slot      : Qt slot definitions\n"
-                        " - class     : class definitions\n"
-                        " - struct    : struct definitions\n"
-                        " - union     : union definitions\n"
-                        " - define    : define definitions\n"
-                        " - file      : files\n"
-                        " - namespace : namespace definitions\n"
-                        " - page      : documentation pages\n"
-                        " - all       : all above\n",
-                        default="all")
+  l_optionalArgs.add_argument("-h", "--help",
+                              action="help",
+                              help="show this help message and exit")
+  l_optionalArgs.add_argument("--version",
+                              action="version",
+                              help ="print version and exit",
+                              version=coverxygen.__version__)
+  l_optionalArgs.add_argument("--verbose",
+                              action="store_true",
+                              help ="enabled verbose output",
+                              default=False)
+  l_optionalArgs.add_argument("--json",
+                              action="store_true",
+                              help="(deprecated) same as --format json-legacy",
+                              default=None)
+  l_optionalArgs.add_argument("--format",
+                              action="store",
+                              help="output file format :\n"
+                              "lcov         : lcov compatible format (default)\n"
+                              "json-v3      : json format which includes summary information\n"
+                              "json-v2      : simpler json format\n"
+                              "json-v1      : legacy json format\n"
+                              "json         : (deprecated) same as json-v2\n"
+                              "json-legacy  : (deprecated) same as json-v1\n"
+                              "json-summary : summary in json format\n"
+                              "summary      : textual summary table format\n",
+                              default="lcov")
+  l_optionalArgs.add_argument("--prefix",
+                              action="store",
+                              help ="keep only file matching given path prefix",
+                              default=None)
+  l_optionalArgs.add_argument("--exclude",
+                              action="append",
+                              help="exclude files whose absolute path matches a regular expression;\n"
+                              "this option can be given multiple times",
+                              default=[])
+  l_optionalArgs.add_argument("--include",
+                              action="append",
+                              help="include files whose absolute path matches a regular expression\n"
+                              "even if they also match an exclude filter (see --exclude) or if they\n"
+                              "are not matching the patch prefix (see --prefix);\n"
+                              "this option can be given multiple times",
+                              default=[])
+  l_optionalArgs.add_argument("--scope",
+                              action="store",
+                              help="comma-separated list of item scopes to include :\n"
+                              " - public    : public member and global elements\n"
+                              " - protected : protected member elements\n"
+                              " - private   : private member elements\n"
+                              " - all       : all above\n",
+                              default="all")
+  l_optionalArgs.add_argument("--kind",
+                              action="store",
+                              help="comma-separated list of item types to include : \n"
+                              " - enum      : enum definitions\n"
+                              " - enumvalue : enum value definitions\n"
+                              "               Note: a single undocumented enum value will mark\n"
+                              "               the containing enum as undocumented\n"
+                              " - friend    : friend declarations\n"
+                              " - typedef   : type definitions\n"
+                              " - variable  : variable definitions\n"
+                              " - function  : function definitions\n"
+                              " - signal    : Qt signal definitions\n"
+                              " - slot      : Qt slot definitions\n"
+                              " - class     : class definitions\n"
+                              " - struct    : struct definitions\n"
+                              " - union     : union definitions\n"
+                              " - define    : define definitions\n"
+                              " - file      : files\n"
+                              " - namespace : namespace definitions\n"
+                              " - page      : documentation pages\n"
+                              " - all       : all above\n",
+                              default="all")
+
+  l_requiredArgs.add_argument("--xml-dir",
+                              action="store",
+                              help ="path to generated doxygen XML directory",
+                              required=True)
+  l_requiredArgs.add_argument("--output",
+                              action="store",
+                              help ="destination output file (- for stdout)",
+                              required=True)
+  l_requiredArgs.add_argument("--src-dir",
+                              action="store",
+                              help ="root source directory used to match prefix for "
+                              "relative path generated files",
+                              required=True)
+
   l_result = l_parser.parse_args()
 
   if l_result.scope == "all":
