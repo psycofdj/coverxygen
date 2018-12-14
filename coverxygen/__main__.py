@@ -132,9 +132,9 @@ def main():
                                 l_result.output,
                                 l_result.scope,
                                 l_result.kind,
-                                l_result.prefix,
                                 l_format,
                                 l_result.src_dir,
+                                l_result.prefix,
                                 l_result.verbose,
                                 l_result.exclude,
                                 l_result.include)

@@ -200,7 +200,7 @@ class CoverxygenTest(unittest.TestCase):
     l_doc    = ET.fromstring(l_xml)
     l_scopes = ["s1", "s2"]
     l_kinds  = ["k1", "k2", "friend"]
-    l_obj = Coverxygen(None, None, l_scopes, l_kinds, "/p", None, None, False)
+    l_obj = Coverxygen(None, None, l_scopes, l_kinds, None, None, "/p")
     self.assertFalse(l_obj.should_filter_out(l_doc.find("./node1"), os.path.abspath("/p/file.hh"),     1))
     self.assertFalse(l_obj.should_filter_out(l_doc.find("./node2"), os.path.abspath("/p/file.hh"),     1))
     self.assertTrue( l_obj.should_filter_out(l_doc.find("./node3"), os.path.abspath("/p/file.hh"),     1))
@@ -210,13 +210,30 @@ class CoverxygenTest(unittest.TestCase):
     self.assertFalse(l_obj.should_filter_out(l_doc.find("./node6"), os.path.abspath("/p/file.hh"),     1))
     self.assertTrue( l_obj.should_filter_out(l_doc.find("./node7"), os.path.abspath("/p/file.hh"),     1))
 
+  def test_file_filter(self):
+    l_xml = """
+    <data>
+      <node1 prot="s1" kind="k1"/>
+    </data>
+    """
+    l_doc = ET.fromstring(l_xml)
+    l_dummyNode = l_doc.find("./node1")
+    l_excludes = [".*[\\\\/]test[\\\\/].*", ".*\\.ctt$"]
+    l_includes = [".*[\\\\/]special\\.ctt$"]
+    l_obj = Coverxygen(None, None, ["s1"], ["k1"], None, None, p_prefix="/src", p_includes=l_includes, p_excludes=l_excludes)
+    self.assertFalse(l_obj.should_filter_out(l_dummyNode, os.path.abspath("/src/file.cpp"), 1))
+    self.assertTrue(l_obj.should_filter_out(l_dummyNode, os.path.abspath("/src/file.ctt"), 1))
+    self.assertTrue(l_obj.should_filter_out(l_dummyNode, os.path.abspath("/src/test/file.cpp"), 1))
+    self.assertFalse(l_obj.should_filter_out(l_dummyNode, os.path.abspath("/src/test/special.ctt"), 1))
+    self.assertFalse(l_obj.should_filter_out(l_dummyNode, os.path.abspath("/other/special.ctt"), 1))
+
   def test_process_symbol(self):
     l_classDoc = ET.parse(self.get_data_path("class.xml"))
     l_scopes   = ["private",  "protected", "public"]
     l_kinds    = ["function", "class", "enum", "namespace"]
 
     l_node   = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a672c075ed901e463609077d571a714c7']")
-    l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
+    l_obj    = Coverxygen(None, None, l_scopes, l_kinds, None, "/opt", "/opt")
     l_data   = l_obj.process_symbol(l_node, "/opt/file.hh")
     l_expect = [{'documented': True, 'line': 102, 'kind': 'enum', 'symbol': 'argument', 'file': os.path.abspath('/opt/src/Application.hh')}]
     self.assertEqual(l_expect, l_data)
@@ -228,14 +245,14 @@ class CoverxygenTest(unittest.TestCase):
 
     l_namesapceDoc = ET.parse(self.get_data_path("namespace.xml"))
     l_node         = l_namesapceDoc.find("./compounddef[@id='namespace_my_namespace']")
-    l_obj          = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
+    l_obj          = Coverxygen(None, None, l_scopes, l_kinds, None, "/opt", "/opt")
     l_data         = l_obj.process_symbol(l_node, "/opt/file.hh")
     l_expect       = [{'documented': True, 'line': 5, 'kind': 'namespace', 'symbol': 'MyNamespace', 'file': os.path.abspath('/opt/src/MyNamespace.hh')}]
     self.assertEqual(l_expect, l_data)
 
     l_enumDoc = ET.parse(self.get_data_path("enum.xml"))
     l_node    = l_enumDoc.find("./compounddef//memberdef[@id='class_my_enum_class_1a4bffd5affc2abeba8ed3af3c2fd81ff4']")
-    l_obj     = Coverxygen(None, None, l_scopes, ["enum", "enumvalue"], "/opt", None, "/opt", False)
+    l_obj     = Coverxygen(None, None, l_scopes, ["enum", "enumvalue"], None, "/opt", "/opt")
     l_data    = l_obj.process_symbol(l_node, "/opt/file.hh")
     l_expect  = [{'documented': True, 'line': 466, 'kind': 'enum', 'symbol': 'MyEnum', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
                  {'documented': True, 'line': 466, 'kind': 'enumvalue', 'symbol': 'Enum_Value_1', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
@@ -299,7 +316,7 @@ class CoverxygenTest(unittest.TestCase):
     l_testDataFile   = self.get_data_path("class.xml")
     l_scopes = ["private",  "protected", "public"]
     l_kinds  = ["enum"]
-    l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
+    l_obj    = Coverxygen(None, None, l_scopes, l_kinds, None, "/opt", "/opt")
     l_file   = os.path.abspath("/opt/src/Application.hh")
     l_symbols = l_obj.process_file(l_testDataFile)
     self.assertEqual(2, len(l_symbols))
@@ -309,7 +326,7 @@ class CoverxygenTest(unittest.TestCase):
     l_testDataFile   = self.get_data_path("class.xml")
     l_scopes = ["private",  "protected", "public"]
     l_kinds  = ["class"]
-    l_obj    = Coverxygen(None, None, l_scopes, l_kinds, "/opt", None, "/opt", False)
+    l_obj    = Coverxygen(None, None, l_scopes, l_kinds, None, "/opt", "/opt")
     l_file   = os.path.abspath("/opt/src/Application.hh")
     l_symbols = l_obj.process_file(l_testDataFile)
     self.assertEqual(1, len(l_symbols))
@@ -318,7 +335,7 @@ class CoverxygenTest(unittest.TestCase):
 
 
   def test_output_print_lvoc(self):
-    l_obj = Coverxygen(None, None, [], [], None, None, None, False)
+    l_obj = Coverxygen(None, None, [], [], None, None)
     l_stream = StringIO()
     l_symbols = [{'documented': True,  'line': 466, 'symbol': 'MyEnum', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
                  {'documented': False, 'line': 466, 'symbol': 'Enum_Value_1', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
@@ -337,7 +354,7 @@ class CoverxygenTest(unittest.TestCase):
     self.assertIn("DA:17,1", l_outputResult)
 
   def test_output_print_json_v2_v3_summary(self):
-    l_obj = Coverxygen(None, None, [], [], None, None, None, False)
+    l_obj = Coverxygen(None, None, [], [], None, None)
 
     l_myEnumClassFile      = os.path.abspath('/opt/MyEnumClass.hpp')
     l_myOtherEnumClassFile = os.path.abspath('/opt/MyOtherEnumClass.hpp')
@@ -403,7 +420,7 @@ class CoverxygenTest(unittest.TestCase):
 
 
   def test_output_print_summary(self):
-    l_obj = Coverxygen(None, None, [], [], None, None, None, False)
+    l_obj = Coverxygen(None, None, [], [], None, None)
     l_stream = StringIO()
     l_symbols = [{'documented': True,  'line': 466, 'kind': 'enum', 'symbol': 'MyEnum', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},
                  {'documented': False, 'line': 466, 'kind': 'enumvalue', 'symbol': 'Enum_Value_1', 'file': os.path.abspath('/opt/MyEnumClass.hpp')},

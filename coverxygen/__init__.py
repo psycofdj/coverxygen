@@ -30,7 +30,7 @@ __classifiers__  = [
 #------------------------------------------------------------------------------
 
 class Coverxygen(object):
-  def __init__(self, p_path, p_output, p_scope, p_kind, p_prefix, p_format, p_rootDir, p_verbose, p_excludes, p_includes):
+  def __init__(self, p_path, p_output, p_scope, p_kind, p_format, p_rootDir, p_prefix=None, p_verbose=False, p_excludes=[], p_includes=[]):
     self.m_root     = p_path
     self.m_output   = p_output
     self.m_scope    = p_scope
