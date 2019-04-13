@@ -69,7 +69,7 @@ doxygen <path_to_your_doxygen.cfg>
 
 ## Run Coverxygen
 ```bash
-python -m coverxygen --xml-path <path_to_doxygen_xml_dir> --output doc-coverage.info
+python3 -m coverxygen --xml-dir <path_to_doxygen_xml_dir> --src-dir <path_to_root_source_dir> --output doc-coverage.info
 ```
 
 Full usage :
