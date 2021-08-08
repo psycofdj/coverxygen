@@ -319,7 +319,7 @@ class Coverxygen(object):
     return {
       "documented_symbol_count": l_totalDocumented,
       "symbol_count"           : l_total,
-      "coverage_rate"          : l_totalDocumented / l_total
+      "coverage_rate"          : 0 if l_total == 0 else l_totalDocumented / l_total
     }
 
   @staticmethod
@@ -419,7 +419,7 @@ class Coverxygen(object):
 
   @staticmethod
   def print_summary_line(p_stream, p_header, p_headerWidth, p_count, p_total):
-    l_percentage = (p_count / p_total) * 100.0
+    l_percentage = 0 if p_total == 0 else (p_count / p_total) * 100.0
     p_stream.write("%s: %5.1f%% (%d/%d)\n" % (("%%-%ds" % (p_headerWidth)) % p_header,
                                                 l_percentage, p_count, p_total))
 
