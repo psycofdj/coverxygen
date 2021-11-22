@@ -16,6 +16,8 @@
 
 # Coverxygen
 
+[![Continuous Integration](https://github.com/psycofdj/coverxygen/actions/workflows/ci.yml/badge.svg)](https://github.com/psycofdj/coverxygen/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/psycofdj/coverxygen/badge.svg?branch=master)](https://coveralls.io/github/psycofdj/coverxygen?branch=master)
 
 # How to
 

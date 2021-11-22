@@ -1,5 +1,5 @@
 tar-ignore = ".git*"
-tar-ignore = ".travis.yml"
+tar-ignore = "*.yml"
 tar-ignore = "build*"
 tar-ignore = ".pybuild*"
 tar-ignore = "coverxygen.egg-info"
