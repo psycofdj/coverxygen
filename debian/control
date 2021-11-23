@@ -3,16 +3,8 @@ Section: python
 Priority: optional
 Maintainer: Xavier MARCELET <xavier@marcelet.com>
 Standards-Version: 3.9.7
-Build-Depends: debhelper (>= 9), python-all (>= 2.7), python3-all (>= 3.2), python-setuptools, python3-setuptools, dh-python
+Build-Depends: debhelper (>= 9), python3-all (>= 3.2), python3-setuptools, dh-python
 X-Python3-Version: >= 3.2
-X-Python2-Version: >= 2.7
-
-Package: python-coverxygen
-Architecture: all
-Depends: ${python:Depends}, ${misc:Depends}
-Description: Generate doxygen's documentation coverage report
- http://github.com/psycofdj/coverxygen
- .
 
 Package: python3-coverxygen
 Architecture: all

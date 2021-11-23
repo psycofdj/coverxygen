@@ -12,7 +12,7 @@ from functools import reduce
 
 __author__       = "Xavier MARCELET <xavier@marcelet.com>"
 __copyright__    = "Copyright (C) 2016 Xavier MARCELET"
-__version__      = "1.6.0"
+__version__      = "1.7.0"
 __description__  = "Generate doxygen's documentation coverage report"
 __url__          = "https://github.com/psycofdj/coverxygen"
 __download_url__ = "https://github.com/psycofdj/coverxygen/tarball/%s" % __version__
@@ -23,7 +23,6 @@ __classifiers__  = [
   "Intended Audience :: Developers",
   "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
   "Operating System :: Unix",
-  "Programming Language :: Python :: 2",
   "Programming Language :: Python :: 3"
 ]
 
