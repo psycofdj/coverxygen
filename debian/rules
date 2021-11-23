@@ -4,17 +4,16 @@
 #export DH_VERBOSE = 1
 
 %:
-	dh $@ --with python2,python3  --buildsystem=pybuild
+	dh $@ --with python3  --buildsystem=pybuild
 
 override_dh_auto_test:
 
 override_dh_auto_clean:
-	python setup.py clean -a
+	python3 setup.py clean -a
 	find . -name \*.pyc -exec rm {} \;
 
 override_dh_auto_build:
-	python setup.py build --force
+	python3 setup.py build --force
 
 override_dh_auto_install:
-	python  setup.py install --force --root=debian/python-coverxygen  --no-compile -O0
 	python3 setup.py install --force --root=debian/python3-coverxygen --no-compile -O0
