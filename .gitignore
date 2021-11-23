@@ -109,3 +109,4 @@ debian/python3-coverxygen/
 debian/python-coverxygen.postinst.debhelper
 debian/python-coverxygen.prerm.debhelper
 
+.debhelper

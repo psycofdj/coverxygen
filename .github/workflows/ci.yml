@@ -1,0 +1,45 @@
+name: Continuous Integration
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Fetch repository
+      uses: actions/checkout@v2
+    - name: Install Ubuntu packages
+      run: sudo apt-get install -y debhelper lintian fakeroot python-all python3-all python-setuptools dh-python
+    - name: Set up Python 3.6
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.6'
+    - name: Install python packages
+      run: |
+              pip install six urllib3 coverage-lcov
+              pip install -rrequirements.dev.txt --upgrade
+
+    - name: Run tests
+      run: python3 ./devtools/unittests.py --format json -v
+
+    - name: Run pylint
+      run: python3 ./devtools/xtdlint.py --rcfile .pylintrc -j 4 coverxygen -r yes -s yes || echo "Some errors found, but continuing..."
+
+    - name: Package
+      run: |
+              dpkg-buildpackage -uc -us
+              lintian ../python-coverxygen_*.deb || echo "Some errors found, but continuing..."
+              lintian ../python3-coverxygen_*.deb || echo "Some errors found, but continuing..."
+
+    - name: Generate coverage
+      run: |
+              ./devtools/coverage.sh python3
+              coverage-lcov
+
+    - name: Coveralls
+      uses: coverallsapp/github-action@master
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        path-to-lcov: lcov.info
