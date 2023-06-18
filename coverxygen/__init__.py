@@ -267,6 +267,8 @@ class Coverxygen(object):
       self.output_print_summary(l_outStream, p_symbols)
     elif self.m_format == "json-summary":
       self.output_print_json_summary(l_outStream, p_symbols)
+    elif self.m_format == "markdown-summary":
+      self.output_print_markdown_summary(l_outStream, p_symbols)
     else:
       l_symbolsByFile = Coverxygen.group_symbols_by_file(p_symbols)
       if self.m_format == "json-v3":
@@ -417,10 +419,15 @@ class Coverxygen(object):
     return l_longestKindStringLength
 
   @staticmethod
+  def get_value_summary_value(count, total):
+    percentage = 0 if total == 0 else (count / total) * 100.0
+    # Format: 100.0% (999/999)
+    return f'{percentage:5.1f}% ({count}/{total})'
+
+  @staticmethod
   def print_summary_line(p_stream, p_header, p_headerWidth, p_count, p_total):
-    l_percentage = 0 if p_total == 0 else (p_count / p_total) * 100.0
-    p_stream.write("%s: %5.1f%% (%d/%d)\n" % (("%%-%ds" % (p_headerWidth)) % p_header,
-                                                l_percentage, p_count, p_total))
+    value_string = Coverxygen.get_value_summary_value(p_count, p_total)
+    p_stream.write("%s: %s\n" % (("%%-%ds" % (p_headerWidth)) % p_header, value_string))
 
   @staticmethod
   def output_print_summary(p_stream, p_symbols):
@@ -432,6 +439,27 @@ class Coverxygen(object):
       Coverxygen.print_summary_line(p_stream, c_symbolKindCount["kind"], l_firstColumnWidth, c_symbolKindCount["documented_symbol_count"], c_symbolKindCount["symbol_count"])
     p_stream.write("%s\n" % ("-" * 35))
     Coverxygen.print_summary_line(p_stream, "Total", l_firstColumnWidth, l_totalCounts["documented_symbol_count"], l_totalCounts["symbol_count"])
+
+  @staticmethod
+  def output_print_markdown_summary(stream, symbols):
+    summary = Coverxygen.create_summary(symbols)
+    symbol_kind_counts_list = Coverxygen.symbol_kind_counts_dict_to_list(summary["kinds"])
+    symbol_kind_counts_list.append({
+        "kind": "Total",
+        "documented_symbol_count": summary["total"]["documented_symbol_count"],
+        "symbol_count": summary["total"]["symbol_count"]
+      })
+    # Append a value column in string format
+    second_column_width = 0
+    for symbol_kind_count in symbol_kind_counts_list:
+      symbol_kind_count['value_string'] = Coverxygen.get_value_summary_value(symbol_kind_count["documented_symbol_count"], symbol_kind_count["symbol_count"])
+      second_column_width = max(second_column_width, len(symbol_kind_count['value_string']))
+    # Render the table
+    first_column_width = max(Coverxygen.determine_first_column_width(symbol_kind_counts_list), 8)
+    stream.write(f'| {"Element".ljust(first_column_width)} | {"Value".ljust(second_column_width)} |\n')
+    stream.write(f'|{"-".ljust(first_column_width+2)}|{" ".ljust(second_column_width+2)}|\n')
+    for symbol_kind_count in symbol_kind_counts_list:
+      stream.write(f'| {symbol_kind_count["kind"].ljust(first_column_width)} | {symbol_kind_count["value_string"].ljust(second_column_width)} |\n')
 
 # Local Variables:
 # ispell-local-dictionary: "en"
