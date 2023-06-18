@@ -34,14 +34,15 @@ def main():
   l_optionalArgs.add_argument("--format",
                               action="store",
                               help="output file format :\n"
-                              "lcov         : lcov compatible format (default)\n"
-                              "json-v3      : json format which includes summary information\n"
-                              "json-v2      : simpler json format\n"
-                              "json-v1      : legacy json format\n"
-                              "json         : (deprecated) same as json-v2\n"
-                              "json-legacy  : (deprecated) same as json-v1\n"
-                              "json-summary : summary in json format\n"
-                              "summary      : textual summary table format\n",
+                              "lcov             : lcov compatible format (default)\n"
+                              "json-v3          : json format which includes summary information\n"
+                              "json-v2          : simpler json format\n"
+                              "json-v1          : legacy json format\n"
+                              "json             : (deprecated) same as json-v2\n"
+                              "json-legacy      : (deprecated) same as json-v1\n"
+                              "json-summary     : summary in json format\n"
+                              "markdown-summary : summary in markdown table format\n"
+                              "summary          : textual summary table format\n",
                               default="lcov")
   l_optionalArgs.add_argument("--prefix",
                               action="store",
