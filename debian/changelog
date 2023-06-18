@@ -1,4 +1,10 @@
-coverxygen (1.8.0ppa1~jammy) focal; urgency=medium
+coverxygen (1.8.0ppa2~jammy) jammy; urgency=medium
+
+  * add support for jammy
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Sun, 18 Jun 2023 14:55:00 +0200
+
+coverxygen (1.8.0ppa2~focal) focal; urgency=medium
 
   * add support for jammy
 
