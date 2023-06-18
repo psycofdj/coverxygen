@@ -88,15 +88,16 @@ optional arguments:
   --version          print version and exit
   --verbose          enabled verbose output
   --json             (deprecated) same as --format json-legacy
-  --format FORMAT    output file format : 
-                     lcov         : lcov compatible format (default)
-                     json-v3      : json format which includes summary information
-                     json-v2      : simpler json format
-                     json-v1      : legacy json format
-                     json         : (deprecated) same as json-v2
-                     json-legacy  : (deprecated) same as json-v1
-                     json-summary : summary in json format
-                     summary      : textual summary table format
+  --format FORMAT    output file format :
+                     lcov             : lcov compatible format (default)
+                     json-v3          : json format which includes summary information
+                     json-v2          : simpler json format
+                     json-v1          : legacy json format
+                     json             : (deprecated) same as json-v2
+                     json-legacy      : (deprecated) same as json-v1
+                     json-summary     : summary in json format
+                     markdown-summary : ummary in markdown table format
+                     summary          : textual summary table format
   --prefix PREFIX    keep only file matching given path prefix
   --exclude EXCLUDE  exclude files whose absolute path matches a regular expression;
                      this option can be given multiple times
@@ -184,6 +185,7 @@ You can find his work at [alobbs/doxy-coverage](https://github.com/alobbs/doxy-c
 ## Hall of Fame
 
 - [j-ulrich](https://github.com/j-ulrich) for his many contributions
+- [antoniovazquezblanco](https://github.com/antoniovazquezblanco) for his many contributions
 
 
 # Project status
