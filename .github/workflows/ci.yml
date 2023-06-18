@@ -9,13 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Fetch repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
     - name: Install Ubuntu packages
       run: sudo apt-get install -y debhelper lintian fakeroot python-all python3-all python-setuptools dh-python
-    - name: Set up Python 3.6
-      uses: actions/setup-python@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.6'
+        python-version: '3.9'
     - name: Install python packages
       run: |
               pip install six urllib3 coverage-lcov
