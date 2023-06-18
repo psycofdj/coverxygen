@@ -1,3 +1,9 @@
+coverxygen (1.8.0ppa1~jammy) focal; urgency=medium
+
+  * add support for jammy
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Sun, 18 Jun 2023 14:55:00 +0200
+
 coverxygen (1.7.0ppa1~focal) focal; urgency=medium
 
   * drop support for python2.7
