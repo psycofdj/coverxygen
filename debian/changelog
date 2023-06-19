@@ -1,3 +1,15 @@
+coverxygen (1.8.1ppa1~jammy) jammy; urgency=medium
+
+  * fix markdown output
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Mon, 19 Jun 2023 19:48:00 +0200
+
+coverxygen (1.8.1ppa1~focal) focal; urgency=medium
+
+  * fix markdown output
+
+ -- Xavier MARCELET <xavier@marcelet.com>  Mon, 19 Jun 2023 19:48:00 +0200
+
 coverxygen (1.8.0ppa2~jammy) jammy; urgency=medium
 
   * add support for jammy
