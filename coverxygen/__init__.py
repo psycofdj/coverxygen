@@ -457,7 +457,7 @@ class Coverxygen(object):
     # Render the table
     first_column_width = max(Coverxygen.determine_first_column_width(symbol_kind_counts_list), 8)
     stream.write(f'| {"Element".ljust(first_column_width)} | {"Value".ljust(second_column_width)} |\n')
-    stream.write(f'|{"-".ljust(first_column_width+2)}|{" ".ljust(second_column_width+2)}|\n')
+    stream.write(f'|{"-"*(first_column_width+2)}|{"-"*(second_column_width+2)}|\n')
     for symbol_kind_count in symbol_kind_counts_list:
       stream.write(f'| {symbol_kind_count["kind"].ljust(first_column_width)} | {symbol_kind_count["value_string"].ljust(second_column_width)} |\n')
 
