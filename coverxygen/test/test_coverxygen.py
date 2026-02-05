@@ -9,7 +9,7 @@ import os
 import json
 import tempfile
 import xml.etree.ElementTree as ET
-import unittest2 as unittest
+import unittest
 from io import StringIO
 from coverxygen import Coverxygen
 
@@ -432,6 +432,6 @@ class CoverxygenTest(unittest.TestCase):
     l_outputResult = l_stream.getvalue()
     l_stream.close()
 
-    self.assertRegexpMatches(l_outputResult, r".*Enums\s*:\s+100\.0% \(2/2\).*")
-    self.assertRegexpMatches(l_outputResult, r".*Enum Values\s*:\s+75\.0% \(3/4\).*")
-    self.assertRegexpMatches(l_outputResult, r".*Total\s*:\s+83\.3% \(5/6\).*")
+    self.assertRegex(l_outputResult, r".*Enums\s*:\s+100\.0% \(2/2\).*")
+    self.assertRegex(l_outputResult, r".*Enum Values\s*:\s+75\.0% \(3/4\).*")
+    self.assertRegex(l_outputResult, r".*Total\s*:\s+83\.3% \(5/6\).*")

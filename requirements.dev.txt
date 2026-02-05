@@ -1,4 +1,4 @@
-unittest2
+unittest
 requests
 coverage
 coveralls
