@@ -29,8 +29,8 @@ __classifiers__  = [
 #------------------------------------------------------------------------------
 
 class Coverxygen(object):
-  def __init__(self, p_path, p_output, p_scope, p_kind, p_format, p_rootDir, p_prefix=None, p_verbose=False, p_excludes=[], p_includes=[]):
-    self.m_root     = p_path
+  def __init__(self, p_root, p_output, p_scope, p_kind, p_format, p_rootDir, p_prefix=None, p_verbose=False, p_excludes=[], p_includes=[], p_excludesymbols=[]):
+    self.m_root     = p_root
     self.m_output   = p_output
     self.m_scope    = p_scope
     self.m_kind     = p_kind
@@ -40,6 +40,7 @@ class Coverxygen(object):
     self.m_verbose  = p_verbose
     self.m_excludes = p_excludes
     self.m_includes = p_includes
+    self.m_excludesymbols = p_excludesymbols
 
   @staticmethod
   def error(p_format, *p_args):
@@ -76,6 +77,22 @@ class Coverxygen(object):
     except BaseException as l_error:
       Coverxygen.error("error while parsing xml file %s : %s", p_file, str(l_error))
     return l_doc
+ 
+  @staticmethod
+  def find_compounddef(p_node, parent_map, compounddefs):
+    l_cur = p_node
+    while l_cur is not None:
+      if l_cur.tag == "compounddef":
+        return l_cur # Found the compounddef 
+      
+      if l_cur.tag == "innerclass":
+        # Found an innerclass → jump to its referenced compounddef
+        l_refid = l_cur.get("refid")
+        if l_refid in compounddefs:
+          return compounddefs[l_refid]
+      
+      l_cur = parent_map.get(l_cur)
+    return None
 
   @staticmethod
   def extract_name(p_node):
@@ -95,8 +112,43 @@ class Coverxygen(object):
     return None
 
   @staticmethod
+  def extract_function_sig(p_node):
+    l_def        = p_node.find("./definition")  
+    l_argsstring = p_node.find("./argsstring")
+    if l_def is not None and l_argsstring is not None:
+      return l_def.text + l_argsstring.text
+    return ""  # empty string if not a function
+  
+  @staticmethod
+  def extract_enum_qualified_name(p_node, p_root):
+    """
+      Extracts the qualified name of an enum, including its parent class/namespace if applicable.
+      Since Doxygen does not provide a direct way to get the qualified name of an enum, we need to 
+      look at its parent nodes to determine if it is nested inside a class or namespace. 
+      If the enum is not nested, we simply return its name.
+    """
+    l_name      = p_node.find("./name") 
+    if p_root is None:
+      return l_name.text
+
+    # Build a parent map: child -> parent
+    l_parent_map = {child: parent for parent in p_root.iter() for child in parent}
+    # build map of compounddefs by ID
+    l_compounddefs = {}
+    for comp in p_root.findall(".//compounddef"):
+      l_cid = comp.get("id")
+      if l_cid: 
+        l_compounddefs[l_cid] = comp
+    
+    l_compounddef = Coverxygen.find_compounddef(p_node, l_parent_map, l_compounddefs)
+    if p_node.get("kind") == "enum" and l_name is not None and l_compounddef is not None:
+      return l_compounddef.findtext("compoundname") + "::" + l_name.text
+    
+    return ""  # empty string if not an enum
+  
+  @staticmethod
   def extract_kind(p_node):
-    l_kind = p_node.get("kind")
+    l_kind = p_node.get("kind") 
 
     if l_kind == 'friend':
       l_isDefinition = (p_node.get('inline') == 'yes' or p_node.find('initializer') is not None)
@@ -161,7 +213,22 @@ class Coverxygen(object):
 
   def matches_exclude(self, p_file):
     return Coverxygen.matches_regex_list(p_file, self.m_excludes)
-
+    
+  def matches_excludesymbol(self, p_node):
+    if (p_node.get("kind") in  ["function", "class", "struct", "namespace", "enum", "typedef", "variable"]):
+      if p_node.get("kind") == "function":
+        l_fulldefstring = Coverxygen.extract_function_sig(p_node)
+      elif p_node.get("kind") == "enum":
+        l_fulldefstring = Coverxygen.extract_enum_qualified_name(p_node, self.m_root)
+      else:
+        l_fulldefstring = Coverxygen.extract_name(p_node)
+        
+      self.verbose("Analyzing symbol: %s", l_fulldefstring )
+      l_match = Coverxygen.matches_regex_list(l_fulldefstring, self.m_excludesymbols) 
+      if l_match:
+        self.verbose("--- Excluding %s: %s", p_node.get("kind"), l_fulldefstring)
+        return True
+    return False
 
   def should_filter_out(self, p_node, p_file, p_line):
     l_scope  = p_node.get('prot')
@@ -177,6 +244,9 @@ class Coverxygen(object):
       if not p_file.startswith(self.m_prefix):
         return True
       if self.matches_exclude(p_file):
+        return True
+        
+    if self.matches_excludesymbol(p_node):
         return True
 
     self.verbose("found symbol of type %s at %s:%d", l_kind, p_file, p_line)

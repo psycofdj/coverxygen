@@ -227,6 +227,71 @@ class CoverxygenTest(unittest.TestCase):
     self.assertFalse(l_obj.should_filter_out(l_dummyNode, os.path.abspath("/src/test/special.ctt"), 1))
     self.assertFalse(l_obj.should_filter_out(l_dummyNode, os.path.abspath("/other/special.ctt"), 1))
 
+  def test_symbol_filter(self):
+      l_classDoc = ET.parse(self.get_data_path("class.xml"))
+      l_scopes   = ["private", "protected", "public"]
+      l_kinds    = ["function", "class", "struct", "namespace", "enum", "typedef", "variable"]
+      # NOTE: no test data for struct or namespace at the moment.
+      l_verbose = False # for debugging test
+
+      l_nodeClass   = l_classDoc.find("./compounddef[@id='classxtd_1_1Application']") # class
+      l_nodeCtor   = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a3da92b7f6543aa1dd26aee2d886d8135']")  
+      l_nodeExecuteFunc = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1af6aafabf6c552d200f810f754f34e14c']")  # execute function
+      l_nodeMemberIoServ = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a653309319aa3e9fcc8dee7e5cade810f']")  # m_ioService member variable
+      l_nodeMemberArgEnum = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a672c075ed901e463609077d571a714c7']")  # argument enum type 
+      l_nodeTypedef = l_classDoc.find("./compounddef//memberdef[@id='classxtd_1_1Application_1a907b6fe8247636495890e668530863d6']")  # typedef
+
+      def should_filter_out_helper(nodes):
+        for node in nodes:
+          self.assertTrue(l_obj.should_filter_out(node, os.path.abspath('/opt/src/Application.hh'), 1))
+      def should_not_filter_out_helper(nodes):
+        for node in nodes:
+          self.assertFalse(l_obj.should_filter_out(node, os.path.abspath('/opt/src/Application.hh'), 1))
+
+      # no exclusions - symbol should not be filtered out
+      l_obj = Coverxygen(l_classDoc, None, l_scopes, l_kinds, None, "/opt", "/opt")
+      should_not_filter_out_helper([l_nodeClass, l_nodeCtor, l_nodeExecuteFunc, l_nodeMemberIoServ, l_nodeMemberArgEnum, l_nodeTypedef])
+
+      # exclude everything - all symbols should be filtered out
+      l_excludesymbols = [r".+"]
+      l_obj = Coverxygen(l_classDoc, None, l_scopes, l_kinds, None, "/opt", "/opt", p_verbose=l_verbose, p_excludesymbols=l_excludesymbols)
+      should_filter_out_helper([l_nodeClass, l_nodeCtor, l_nodeExecuteFunc, l_nodeMemberIoServ, l_nodeMemberArgEnum, l_nodeTypedef])
+  
+      # exclude entire class - all symbols should be filtered out
+      l_excludesymbols = [r".*Application.*"]
+      l_obj = Coverxygen(l_classDoc, None, l_scopes, l_kinds, None, "/opt", "/opt", p_verbose=l_verbose, p_excludesymbols=l_excludesymbols)
+      should_filter_out_helper([l_nodeClass, l_nodeCtor, l_nodeExecuteFunc, l_nodeMemberIoServ, l_nodeMemberArgEnum, l_nodeTypedef])
+   
+      # exclude ctor only
+      l_excludesymbols = [r".*Application::Application\(.+\)"]
+      l_obj = Coverxygen(l_classDoc, None, l_scopes, l_kinds, None, "/opt", "/opt", p_verbose=l_verbose, p_excludesymbols=l_excludesymbols)
+      should_filter_out_helper([l_nodeCtor])
+      should_not_filter_out_helper([l_nodeClass, l_nodeExecuteFunc, l_nodeMemberIoServ, l_nodeMemberArgEnum, l_nodeTypedef])
+
+      # exclude execute function only
+      l_excludesymbols = [r".*Application::execute\(.+\)"]
+      l_obj = Coverxygen(l_classDoc, None, l_scopes, l_kinds, None, "/opt", "/opt", p_verbose=l_verbose, p_excludesymbols=l_excludesymbols)
+      should_filter_out_helper([l_nodeExecuteFunc])
+      should_not_filter_out_helper([l_nodeClass, l_nodeCtor, l_nodeMemberIoServ, l_nodeMemberArgEnum, l_nodeTypedef])
+      
+      # exclude ctor & execute function
+      l_excludesymbols = [r".*Application::Application\(.+\)", r".*Application::execute\(.+\)"]
+      l_obj = Coverxygen(l_classDoc, None, l_scopes, l_kinds, None, "/opt", "/opt", p_verbose=l_verbose, p_excludesymbols=l_excludesymbols)
+      should_filter_out_helper([l_nodeCtor, l_nodeExecuteFunc])
+      should_not_filter_out_helper([l_nodeClass, l_nodeMemberIoServ, l_nodeMemberArgEnum, l_nodeTypedef])
+      
+      # exclude typename & member variable
+      l_excludesymbols = [r".*Application::t_sig_handler.*", r".*Application::m_ioService"]
+      l_obj = Coverxygen(l_classDoc, None, l_scopes, l_kinds, None, "/opt", "/opt", p_verbose=l_verbose, p_excludesymbols=l_excludesymbols)
+      should_filter_out_helper([l_nodeTypedef, l_nodeMemberIoServ])
+      should_not_filter_out_helper([l_nodeClass, l_nodeCtor, l_nodeExecuteFunc, l_nodeMemberArgEnum])
+     
+      # exclude enum
+      l_excludesymbols = [r".*Application::argument"]
+      l_obj = Coverxygen(l_classDoc, None, l_scopes, l_kinds, None, "/opt", "/opt", p_verbose=l_verbose, p_excludesymbols=l_excludesymbols)
+      should_filter_out_helper([l_nodeMemberArgEnum])
+      should_not_filter_out_helper([l_nodeClass, l_nodeCtor, l_nodeExecuteFunc, l_nodeTypedef, l_nodeMemberIoServ])
+
   def test_process_symbol(self):
     l_classDoc = ET.parse(self.get_data_path("class.xml"))
     l_scopes   = ["private",  "protected", "public"]
