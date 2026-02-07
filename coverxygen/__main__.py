@@ -60,6 +60,13 @@ def main():
                               "are not matching the patch prefix (see --prefix);\n"
                               "this option can be given multiple times",
                               default=[])
+  l_optionalArgs.add_argument("--excludesymbols",
+                              action="append",
+                              help="exclude symbols which match the given regular expression <EXCLUDESYMBOLS>\n"
+                              "note that symbols are only matched against their fully qualified name if such is\n"
+                              "used in the regex. Also, Doxygen uses the \"ref with var\" convention (`int &a`);\n"
+                              "this option can be given multiple times",
+                              default=[])
   l_optionalArgs.add_argument("--scope",
                               action="store",
                               help="comma-separated list of item scopes to include :\n"
