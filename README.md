@@ -72,64 +72,67 @@ python3 -m coverxygen --xml-dir <path_to_doxygen_xml_dir> --src-dir <path_to_roo
 ```
 
 Full usage :
+
 ```
-usage: coverxygen [-h] [--version] [--verbose] [--json] [--format FORMAT]
-                  [--prefix PREFIX] [--exclude EXCLUDE] [--include INCLUDE]
-                  [--scope SCOPE] [--kind KIND] --xml-dir XML_DIR --output
-                  OUTPUT --src-dir SRC_DIR
+usage: coverxygen [-h] [--version] [--verbose] [--json] [--format FORMAT] [--prefix PREFIX] [--exclude EXCLUDE] [--include INCLUDE]
+                  [--excludesymbols EXCLUDESYMBOLS] [--scope SCOPE] [--kind KIND] --xml-dir XML_DIR --output OUTPUT --src-dir SRC_DIR
 
 required arguments:
-  --xml-dir XML_DIR  path to generated doxygen XML directory
-  --output OUTPUT    destination output file (- for stdout)
-  --src-dir SRC_DIR  root source directory used to match prefix for relative path generated files
+  --xml-dir XML_DIR     path to generated doxygen XML directory
+  --output OUTPUT       destination output file (- for stdout)
+  --src-dir SRC_DIR     root source directory used to match prefix for relative path generated files
 
 optional arguments:
-  -h, --help         show this help message and exit
-  --version          print version and exit
-  --verbose          enabled verbose output
-  --json             (deprecated) same as --format json-legacy
-  --format FORMAT    output file format :
-                     lcov             : lcov compatible format (default)
-                     json-v3          : json format which includes summary information
-                     json-v2          : simpler json format
-                     json-v1          : legacy json format
-                     json             : (deprecated) same as json-v2
-                     json-legacy      : (deprecated) same as json-v1
-                     json-summary     : summary in json format
-                     markdown-summary : ummary in markdown table format
-                     summary          : textual summary table format
-  --prefix PREFIX    keep only file matching given path prefix
-  --exclude EXCLUDE  exclude files whose absolute path matches a regular expression;
-                     this option can be given multiple times
-  --include INCLUDE  include files whose absolute path matches a regular expression
-                     even if they also match an exclude filter (see --exclude) or if they
-                     are not matching the patch prefix (see --prefix);
-                     this option can be given multiple times
-  --scope SCOPE      comma-separated list of item scopes to include :
-                      - public    : public member and global elements
-                      - protected : protected member elements
-                      - private   : private member elements
-                      - all       : all above
-  --kind KIND        comma-separated list of item types to include :
-                      - enum      : enum definitions
-                      - enumvalue : enum value definitions
-                                    Note: a single undocumented enum value will mark
-                                    the containing enum as undocumented
-                      - friend    : friend declarations
-                      - typedef   : type definitions
-                      - variable  : variable definitions
-                      - function  : function definitions
-                      - signal    : Qt signal definitions
-                      - slot      : Qt slot definitions
-                      - class     : class definitions
-                      - struct    : struct definitions
-                      - union     : union definitions
-                      - define    : define definitions
-                      - file      : files
-                      - namespace : namespace definitions
-                      - page      : documentation pages
-                      - all       : all above
-
+  -h, --help            show this help message and exit
+  --version             print version and exit
+  --verbose             enabled verbose output
+  --json                (deprecated) same as --format json-legacy
+  --format FORMAT       output file format :
+                        lcov             : lcov compatible format (default)
+                        json-v3          : json format which includes summary information
+                        json-v2          : simpler json format
+                        json-v1          : legacy json format
+                        json             : (deprecated) same as json-v2
+                        json-legacy      : (deprecated) same as json-v1
+                        json-summary     : summary in json format
+                        markdown-summary : summary in markdown table format
+                        summary          : textual summary table format
+  --prefix PREFIX       keep only file matching given path prefix
+  --exclude EXCLUDE     exclude files whose absolute path matches the given regular expression <EXLUDE>;
+                        this option can be given multiple times
+  --include INCLUDE     include files whose absolute path matches the given regular expression <INCLUDE>
+                        even if they also match an exclude filter (see --exclude) or if they
+                        are not matching the patch prefix (see --prefix);
+                        this option can be given multiple times
+  --excludesymbols EXCLUDESYMBOLS
+                        exclude symbols which match the given regular expression <EXCLUDESYMBOLS>
+                        note that symbols are only matched against their fully qualified name if such is
+                        used in the regex. Also, Doxygen uses the "ref with var" convention (`int &a`);
+                        this option can be given multiple times
+  --scope SCOPE         comma-separated list of item scopes to include :
+                         - public    : public member and global elements
+                         - protected : protected member elements
+                         - private   : private member elements
+                         - all       : all above
+  --kind KIND           comma-separated list of item types to include : 
+                         - enum      : enum definitions
+                         - enumvalue : enum value definitions
+                                       Note: a single undocumented enum value will mark
+                                       the containing enum as undocumented
+                         - friend    : friend declarations
+                         - typedef   : type definitions
+                         - variable  : variable definitions
+                         - function  : function definitions
+                         - signal    : Qt signal definitions
+                         - slot      : Qt slot definitions
+                         - class     : class definitions
+                         - struct    : struct definitions
+                         - union     : union definitions
+                         - define    : define definitions
+                         - file      : files
+                         - namespace : namespace definitions
+                         - page      : documentation pages
+                         - all       : all above
 ```
 
 ## Run lcov or genhtml
