@@ -11,7 +11,7 @@ jobs:
     - name: Fetch repository
       uses: actions/checkout@v3
     - name: Install Ubuntu packages
-      run: sudo apt-get install -y debhelper lintian fakeroot python-all python3-all python-setuptools dh-python
+      run: sudo apt-get install -y debhelper lintian fakeroot python3-all python3-setuptools dh-python build-essential
     - name: Set up Python 3.9
       uses: actions/setup-python@v4
       with:
